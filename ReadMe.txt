@@ -2,7 +2,7 @@
 		   Haohmaru V1.0 Beta by Master Gouken
 		     E-mail: Ikuzotomugen@yahoo.com
 =======================================================================
-Strory
+Story
 -----------------------------------------------------------------------
 While travelling through a bamboo forest in feudal Japan, Haohmaru is pounced upon by five demonic warriors. Haoh draws his sword, and with great skill, manages to slay them all. Upon his victory, Haoh senses another demonic presence. He looks behind him, and discovers that Amakusa has been resurrected. Exhausted from his previous battle, Haoh charges bravely at the sorcerer. Amakusa quickly casts as a spell, which paralizes Haohmaru and causes him to be consumed by a giant vortex, which transports him to another dimension. While in this new world, he is approached by Suave Dude, the sponsor of the great M.U.G.E.N tournament. Suave, promises Haoh, that if he wins this tournament, he will transport him back to his own dimension, so that he may exact his revenge. Haohmaru graciously accepts his offer, and prepares himself mentally and physically, for the upcoming slaughter.
 -----------------------------------------------------------------------
@@ -15,19 +15,19 @@ Roll: F+LP+LK
 
 Power Charge: MP+MK
 
-Parry: Tap F immediately after being hit (Can be done in the air). 
+Parry: Tap F immediately before being hit (Can be done in the air). 
 
 ---------------
 Special
 ===============
-Senpuu Retsuzan : QCF + P
+Senpuu Retsu Zan : QCF + P
 
 Senpuu Tene : QCF + K (Counter)
  -Holding up, during the defensive posture will result in a Kogetsu Zan
 
-Kogetsuzan : dp + P
+Kogetsu Zan : dp + P
 
-Resshinzan : QCB + P
+Resshin Zan : QCB + P
 
 ----------------
 Super Arts
@@ -71,7 +71,5 @@ Credits
 -Valodim, for providing free web hosting. Thanks Val :D.
 
 -JJWE aka Neo Gouki, for his Neo Geo Battle Collesium Haohmaru palette rips.
-
--Last but certainly not least God for giving me the skill and  understanding to code in MUGEN.
 
 -Oh and anyone else I may have forgotten...please forgive me, my memory stinks, and I would never intentionally omit you.
