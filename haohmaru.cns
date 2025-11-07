@@ -1,4 +1,4 @@
-;		   Haohmaru v1.0 Beta by Master Gouken
+;		   Haohmaru v2.0a Beta by Master Gouken
 ;======================================================================
 ;                            Variable Table		
 ;======================================================================
@@ -48,9 +48,9 @@ walk.fwd  = 2.5           ;Walk forward
 walk.back = -2.3          ;Walk backward
 run.fwd  = 5.7, 0         ;Run forward (x, y)
 run.back = -4.5,-3.8      ;Hop backward (x, y)
-jump.neu = 0,-7.6 ;-7.6   ;Neutral jumping velocity (x, y)
-jump.back = -3.4,-6.7     ;Jump back Speed (x, y)
-jump.fwd = 3.4,-6.7       ;Jump forward Speed (x, y)
+jump.neu = 0,-11.33 ;-7.6   ;Neutral jumping velocity (x, y)
+jump.back = -3.4,-00.33     ;Jump back Speed (x, y)
+jump.fwd = 3.4,-11.33       ;Jump forward Speed (x, y)
 runjump.back = -6.55,-8.5 ;Running jump speeds (opt)
 runjump.fwd = 6,-8.5      ;.
 airjump.neu = 0,-8.1      ;.
@@ -60,7 +60,7 @@ airjump.fwd = 2.5         ;.
 [Movement]
 airjump.num = 0      ;Number of air jumps allowed (opt)
 airjump.height = 32  ;Minimum distance from ground before you can air jump (opt)
-yaccel = .38 ;.32        ;Vertical acceleration
+yaccel = .6        ;Vertical acceleration
 stand.friction = .85  ;Friction coefficient when standing
 crouch.friction = .82 ;Friction coefficient when crouching
 
@@ -308,7 +308,7 @@ value = 0
 
 ;--------------------------------------------------------------------
 ; Taunt
-; CNS difficulty: easy
+;--------------------------------------------------------------------
 [Statedef 195]
 type = S
 ctrl = 0
@@ -351,20 +351,11 @@ poweradd = 20
 sprpriority = 2
 hitcountpersist = 1
 
-[State 200, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (2) < 0)
-value = 10,0
-
-[State 200, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (4) < 0)
-value = 17,0
-
-[State 200, Width]
-type = Width
-trigger1 = (AnimElemTime (4) >= 0)
-value = 10,0
+[State 200, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(3)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 200, SlashEffect]
 type = Explod
@@ -384,8 +375,7 @@ animtype = Light
 guardflag = MA
 hitflag = MAF
 priority = 3, Hit
-pausetime = 11, 12
-guard.pausetime = 13,20
+pausetime = 8,8
 sparkno = s8000+RANDOM%6
 Guard.Sparkno = s8030
 sparkxy = -10, -69
@@ -430,9 +420,23 @@ juggle  = 4+Var(7)
 poweradd= 65
 ctrl = 0
 velset = 0,0
-anim = ifelse(P2Dist X > 90,210,211)
+anim = ifelse(P2Dist X > 80,210,211)
 sprpriority = -1
 hitcountpersist = 1
+
+[State 210, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(3)<=0
+trigger1 = anim = 210
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 210, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+trigger1 = anim = 211
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 210, Voice]
 type = PlaySnd
@@ -462,20 +466,6 @@ sprpriority = 5
 ;pos = 35,6
 IGNOREHITPAUSE = 0
 
-[State 210, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (2) < 0)
-value = 10,0
-
-[State 210, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (4) < 0)
-value = 23,0
-
-[State 210, Width]
-type = Width
-trigger1 = (AnimElemTime (4) >= 0)
-value = 10,0
 
 [State 210, 1]
 type = PlaySnd
@@ -490,8 +480,7 @@ attr = S, NA
 animtype  = Medium
 damage    = 50,15
 guardflag = MA
-pausetime = 11,22
-guard.pausetime = 13,22
+pausetime = 10,10
 sparkno = s8000+random%6
 Guard.Sparkno = s8030
 sparkxy = -10,-60
@@ -532,7 +521,7 @@ value = 400, 2
 volume = 255
 channel = 1
 
-[State 200, SlashEffect]
+[State 220, SlashEffect]
 type = Explod
 trigger1 = animelem = 5 && Anim = 220
 anim = 225
@@ -541,7 +530,7 @@ postype = p1
 ;bindtime = -1
 sprpriority = 5
 
-[State 200, SlashEffect]
+[State 220, SlashEffect]
 type = Explod
 trigger1 = animelem = 3 && Anim = 221
 anim = 226
@@ -550,38 +539,12 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 
-[State 220, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (3) < 0)
-value = 10,0
-
-[State 220, Width]
-type = Width
-trigger1 = (AnimElemTime (4) >= 0) && (AnimElemTime (5) < 0)
-value = 30,0
-
-[State 220, Width]
-type = Width
-trigger1 = (AnimElemTime (5) >= 0) && (AnimElemTime (8) < 0)
+[State 220, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(6)<=0
 trigger1 = anim = 220
-value = 35,0
-
-[State 220, Width]
-type = Width
-trigger1 = (AnimElemTime (5) >= 0) && (AnimElemTime (8) < 0)
-trigger1 = anim = 221
-value = 20,0
-
-[State 220, Width]
-type = Width
-trigger1 = (AnimElemTime (5) >= 0) && (AnimElemTime (8) < 0)
-trigger1 = anim = 221
-value = 16,0
-
-[State 220, Width]
-type = Width
-trigger1 = (AnimElemTime (8) >= 0)
-value = 4,0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 220, Step 1]
 type = PosAdd
@@ -638,24 +601,31 @@ trigger2 = Time = 10 && anim = 221
 value = 210, 2
 volume = 255
 
+[State 220, Slow_Mo]
+type = pause
+trigger1 = movehit = [1,6]
+time = 1
+movetime = 10
+ignorehitpause = 1
+
+
 [State 220, 2]
 type = HitDef
 trigger1 = Time = 0 && anim = 220
 attr = S, NA
 animtype  = Hard
-damage    = ceil((100+60)/(1+hitcount)),90
+damage    = 160,90
 guardflag = MA
-pausetime = 11,30
-guard.pausetime = 11,30
+pausetime = 12,12
 sparkno = s8000+random%6
 Guard.Sparkno = s8030
 sparkxy = -33,-50
 hitsound   = s250,2
 guardsound = s300,3
 ground.type = Low
-ground.slidetime = 19
-ground.hittime  = 25
-ground.velocity = -7.2
+ground.slidetime = 28
+ground.hittime  = 28
+ground.velocity = -9.2
 air.velocity = -2.5,-4
 envshake.time = 10
 envshake.ampl = 6
@@ -666,10 +636,9 @@ type = HitDef
 trigger1 = Time = 0 && anim = 221
 attr = S, NA
 animtype  = Hard
-damage    = ceil((100+60)/(1+hitcount)),90
+damage    = 160,90
 guardflag = MA
-pausetime = 11,25
-guard.pausetime = 11,25
+pausetime = 12,12
 sparkno = s8000+random%6
 Guard.Sparkno = s8030
 sparkxy = -20,-50
@@ -716,20 +685,12 @@ value = 400, 0
 volume = 255
 channel = 1
 
-[State 230, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (2) < 0)
-value = 6,0
+[State 230, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(3)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
-[State 230, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (5) < 0)
-value = 12,0
-
-[State 230, Width]
-type = Width
-trigger1 = (AnimElemTime (5) >= 0)
-value = 4,0
 
 [State 230, 1]
 type = PlaySnd
@@ -743,8 +704,7 @@ attr = S, NA
 animtype  = Medium
 damage    = 26,5
 guardflag = MA
-pausetime = 11,12
-guard.pausetime = 11,15
+pausetime = 8,8
 sparkno = S8015+Random%6
 Guard.Sparkno = s8030
 sparkxy = -10,-3
@@ -786,7 +746,7 @@ channel = 1
 
 [State 240, posadd]
 type = PosAdd
-trigger1 = AnimElem = 3 && anim = 240
+trigger1 = AnimElem = 2 && anim = 240
 x = 12
 
 [State 240, posadd]
@@ -794,47 +754,17 @@ type = PosAdd
 trigger1 = AnimElem = 6 && anim = 240
 x = -10
 
-[State 240, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (2) < 0)
-trigger1 = anim = 241
-value = 4,0
-
-[State 240, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (5) < 0)
-trigger1 = anim = 241
-value = 20,0
-
-[State 240, Width]
-type = Width
-trigger1 = (AnimElemTime (5) >= 0)
-trigger1 = anim = 241
-value = 6,0
-
-[State 240, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (3) < 0)
-trigger1 = anim = 240
-value = 4,0
-
-[State 240, Width]
-type = Width
-trigger1 = (AnimElemTime (3) >= 0) && (AnimElemTime (8) < 0)
-trigger1 = anim = 240
-value = 14,0
-
-[State 240, Width]
-type = Width
-trigger1 = (AnimElemTime (8) >= 0)
-trigger1 = anim = 240
-value = 4,0
-
 [State 240, Woosh]
 type = PlaySnd
 trigger1 = Time = 8
 value = 0, 2
 volume = 255
+
+[State 240, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 240, 2]
 type = HitDef
@@ -843,8 +773,7 @@ attr = S, NA
 animtype  = Medium
 damage    = 34,10
 guardflag = MA
-pausetime = 11,19
-guard.pausetime = 11,15
+pausetime = 10,10
 sparkno = s8015+random%6
 Guard.Sparkno = s8030
 sparkxy = -16,-85
@@ -855,9 +784,6 @@ ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = -6
 air.velocity = -2.2,-3.2
-envshake.time = 10
-envshake.ampl = 2
-envshake.freq = 176
 
 [State 240, 2]
 type = HitDef
@@ -925,53 +851,11 @@ type = posadd
 trigger1 = animelem = 7 && anim = 250
 x = 15
 
-[State 250, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (2) < 0)
-trigger1 = anim = 251
-value = 6,0
-
-[State 250, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (3) < 0)
-trigger1 = anim = 251
-value = 10,0
-
-[State 250, Width]
-type = Width
-trigger1 = (AnimElemTime (3) >= 0) && (AnimElemTime (8) < 0)
-trigger1 = anim = 251
-value = 20,0
-
-[State 250, Width]
-type = Width
-trigger1 = (AnimElemTime (8) >= 0)
-trigger1 = anim = 251
-value = 8,0
-
-[State 250, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (2) < 0)
-trigger1 = anim = 250
-value = 8,0
-
-[State 250, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (4) < 0)
-trigger1 = anim = 250
-value = 12,0
-
-[State 250, Width]
-type = Width
-trigger1 = (AnimElemTime (4) >= 0) && (AnimElemTime (7) < 0)
-trigger1 = anim = 250
-value = 25,0
-
-[State 250, Width]
-type = Width
-trigger1 = (AnimElemTime (8) >= 0)
-trigger1 = anim = 250
-value = 8,0
+[State 230, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(5)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 250, Woosh]
 type = PlaySnd
@@ -986,8 +870,7 @@ attr = S, NA
 animtype  = Hard
 damage    = 40,10
 guardflag = MA
-pausetime = 13,17
-guard.pausetime = 11,15
+pausetime = 12,12
 sparkno = s8015+random%6
 Guard.Sparkno = s8030
 sparkxy = -10,-60
@@ -996,11 +879,13 @@ guardsound = s300,3
 ground.type = Low
 ground.slidetime = 20
 ground.hittime  = 25
-ground.velocity = -7.6
+ground.velocity = -12.6
 air.velocity = -2.2,-3.2
 envshake.time = 10
 envshake.ampl = 6
-envshake.freq = 176
+envshake.freq = 140
+envshake.dir = 90
+envshake.mul = 0.6
 
 [State 250, 2]
 type = HitDef
@@ -5350,6 +5235,7 @@ value = 0
 type = VelSet
 trigger1 = Time = 0
 y = 0
+x = 0
 
 [State 0, 3] ;Stop moving if low velocity or 4 ticks pass
 type = VelSet
@@ -5366,7 +5252,7 @@ value = 5050
 ; Jump Land
 [Statedef 52]
 type    = S
-physics = S
+physics = N
 ctrl = 0
 anim = 47
 hitcountpersist = 1
@@ -5375,6 +5261,7 @@ hitcountpersist = 1
 type = VelSet
 trigger1 = Time = 0
 y = 0
+x = 0
 
 [State 52, 2]
 type = PosSet
@@ -5861,8 +5748,8 @@ value = 710 + Var(9) ; <= that's because of the state numbers I chose for my par
 [State -2, Debug data]
 type = displaytoclipboard
 trigger1 = time >= 0
-text = "Var(6) = %d,By Master Gouken" 
-params = Var(6)
+text = "Movehit = %d,By Master Gouken" 
+params = movehit
 
 [State -2, Effect]
 type = playsnd
