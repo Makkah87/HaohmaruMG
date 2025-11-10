@@ -6,7 +6,7 @@
 name = "HaohmaruMG"         ;Name of character
 displayname = "Haohmaru"    ;Name of character to display
 versiondate = 04,14,2002    ;Version date of character (MM-DD-YYYY)
-mugenversion = 04,14,2002   ;Version of M.U.G.E.N character works on
+mugenversion = 1.1   ;Version of M.U.G.E.N character works on
 author = "Master Gouken"    ;Character author name
 pal.defaults = 6,3,4,2      ;Default palettes in order of preference
 

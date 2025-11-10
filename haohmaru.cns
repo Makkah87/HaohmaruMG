@@ -385,10 +385,11 @@ ground.type = High
 ground.slidetime = 12 ;9
 ground.hittime  = 15 ;12
 ground.velocity = -5.2
-airguard.velocity = -1.9,-.8
+airguard.velocity = -3.4,-3.3
 air.type = High
-air.velocity = -1.4,-3
+air.velocity = -3.4,-3.3
 air.hittime = 12
+yaccel = 0.6
 
 [State 200, Voice]
 type = PlaySnd
@@ -490,7 +491,8 @@ ground.type = High
 ground.slidetime = 12
 ground.hittime  = 16
 ground.velocity = -6.2
-air.velocity = -2.5,-4
+air.velocity = -4.5,-4
+yaccel = 0.6
 
 [State 210, 5]
 type = ChangeState
@@ -626,10 +628,11 @@ ground.type = Low
 ground.slidetime = 28
 ground.hittime  = 28
 ground.velocity = -9.2
-air.velocity = -2.5,-4
+air.velocity = -6.5,-5.3
 envshake.time = 10
 envshake.ampl = 6
 envshake.freq = 176
+yaccel = 0.6
 
 [State 220, 3]
 type = HitDef
@@ -2581,16 +2584,6 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 
-[State 1000, Width]
-type = width
-trigger1 = (animelemtime(1)>=0)&&(animelemtime(7)<0)
-value = 10,0
-
-[State 1000, Width]
-type = width
-trigger1 = (animelemtime(7)>=0)
-value = 15,0
-
 [State 1000, VelSet]
 type = velset
 trigger1 = animelem = 2
@@ -2614,6 +2607,12 @@ trigger1 = animelem = 2
 value = 210,0
 volume = 255
 
+[State 1000, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
 [State 1000, 5]
 type = HitDef
 trigger1 = Time = 0
@@ -2622,8 +2621,7 @@ animtype  = Hard
 damage    = 30,15
 priority  = 7
 guardflag = MA
-pausetime = 12,10
-guard.pausetime = 12,15
+pausetime = 12,12
 sparkno = s8008+random%3
 guardsound = s300,3
 Guard.Sparkno = s8031
@@ -2633,13 +2631,14 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -2.5,-7.2
-air.velocity = -2.5,-6.5
+ground.velocity = -2.1,-8.2
+air.velocity = -2.1,-7.7
 envshake.time = 10
 envshake.ampl = 2
 envshake.freq = 176
 fall.recover = 0
 fall = 1
+yaccel = 0.65
 
 [State 1000, 7]
 type = ChangeState
@@ -2660,10 +2659,11 @@ sprpriority = 2
 hitdefpersist = 1
 hitcountpersist = 1
 
-[State 1001, Width]
-type = width
-trigger1 = 1
-value = 14,0
+[State 1001, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(2)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 1001, Woosh]
 type = playsnd
@@ -2674,13 +2674,13 @@ volume = 255
 [State 1001, Velset]
 type = Velset
 trigger1 = time = 0
-y = -9
+y = -9*1.166666666666667
 x = 1
 
 [State 1001, Gravity]
 type = VelAdd
 trigger1 = 1
-y = 0.40
+y = 0.40*1.166666666666667
 
 [State 1001, Decend]
 type = ChangeState
@@ -2703,10 +2703,11 @@ type = width
 trigger1 = 1
 value = 12,0
 
-;[State 1002, Veladd]
-;type = veladd
-;trigger1 = 1 && vel x > 0
-;x = -0.10
+[State 1002, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 1002, NoVelX]
 type = VelSet
@@ -2802,6 +2803,12 @@ trigger1 = time = 0
 value = SCA
 time = 22
 
+[State 1010, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
 [State 1010, SlashEffect]
 type = Explod
 trigger1 = animelem = 2
@@ -2819,16 +2826,6 @@ id = 1005
 postype = p1
 bindtime = -1
 sprpriority = 5
-
-[State 1010, Width]
-type = width
-trigger1 = (animelemtime(1)>=0)&&(animelemtime(2)<0)
-value = 8,0
-
-[State 1010, Width]
-type = width
-trigger1 = (animelemtime(2)>=0)
-value = 12,0
 
 [State 1010, VelSet]
 type = velset
@@ -2861,8 +2858,7 @@ animtype  = Hard
 damage    = 50,15
 priority  = 5
 guardflag = MA
-pausetime = 10,8
-guard.pausetime = 10,15
+pausetime = 12,12
 sparkno = s8008+random%3
 guardsound = s300,3
 Guard.Sparkno = s8031
@@ -2872,11 +2868,12 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -1,-5.2
-air.velocity = -1,-5.2
+ground.velocity = -1,-8.2
+air.velocity = -1,-8.2
 envshake.time = 10
 envshake.ampl = 2
 envshake.freq = 176
+yaccel = 0.6
 
 [State 1010, 7]
 type = ChangeState
@@ -2896,6 +2893,12 @@ anim = 1001
 sprpriority = 2
 hitcountpersist = 1
 
+[State 1011, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(2)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
 [State 1011, 5]
 type = HitDef
 trigger1 = Time = 0
@@ -2904,8 +2907,7 @@ animtype  = Hard
 damage    = 50,19
 priority  = 5
 guardflag = MA
-pausetime = 12,10
-guard.pausetime = 12,15
+pausetime = 12,12
 sparkno = s8008+random%3
 guardsound = s300,3
 Guard.Sparkno = s8031
@@ -2916,18 +2918,13 @@ ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = -2.5,-7.7
-air.velocity = -2.5,-7.7
+air.velocity = -2.5,-13.7
 envshake.time = 10
 envshake.ampl = 4
 envshake.freq = 176
 fall.recover = 0
 fall = 1
-
-[State 1011, Width]
-type = width
-trigger1 = 1
-value = 14,0
-
+yaccel = 0.6
 [State 1011, Woosh]
 type = playsnd
 trigger1 = Time = 0
@@ -2937,13 +2934,13 @@ volume = 255
 [State 1011, Velset]
 type = Velset
 trigger1 = time = 0
-y = -10
+y = -10*1.166666666666667
 x = 1.4
 
 [State 1011, Gravity]
 type = VelAdd
 trigger1 = 1
-y = 0.43
+y = 0.43*1.166666666666667
 
 [State 1011, Decend]
 type = ChangeState
@@ -2989,21 +2986,6 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 
-[State 1020, Width]
-type = width
-trigger1 = (animelemtime(1)>=0)&&(animelemtime(2)<0)
-value = 8,0
-
-[State 1020, Width]
-type = width
-trigger1 = (animelemtime(2)>=0)&&(animelemtime(7)<=0)
-value = 12,0
-
-[State 1020, Width]
-type = width
-trigger1 = (animelemtime(7)>=0)
-value = 16,0
-
 [State 1020, VelSet]
 type = velset
 trigger1 = animelem = 2
@@ -3035,8 +3017,7 @@ animtype  = Hard
 damage    = 60,20
 priority  = 5
 guardflag = MA
-pausetime = 10,8
-guard.pausetime = 10,15
+pausetime = 12,12
 sparkno = s8008+random%3
 guardsound = s300,3
 Guard.Sparkno = s8031
@@ -3046,11 +3027,12 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -1,-6
-air.velocity = -1,-6
+ground.velocity = -1,-10
+air.velocity = -1,-9
 envshake.time = 10
 envshake.ampl = 2
 envshake.freq = 176
+yaccel = 0.6
 
 [State 1020, 7]
 type = ChangeState
@@ -3070,6 +3052,12 @@ anim = 1001
 sprpriority = 2
 hitcountpersist = 1
 
+[State 1021, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(2)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
 [State 1021, 5]
 type = HitDef
 trigger1 = Time = 0
@@ -3078,8 +3066,7 @@ animtype  = Hard
 damage    = 70,35
 priority  = 5
 guardflag = MA
-pausetime = 12,10
-guard.pausetime = 12,15
+pausetime = 12,12
 sparkno = s8008+random%3
 guardsound = s300,3
 Guard.Sparkno = s8031
@@ -3089,18 +3076,14 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -2.5,-9
-air.velocity = -2.5,-9
+ground.velocity = -2.5,-10.7
+air.velocity = -2.5,-15
 envshake.time = 10
 envshake.ampl = 4
 envshake.freq = 176
 fall.recover = 0
 fall = 1
-
-[State 1021, Width]
-type = width
-trigger1 = 1
-value = 14,0
+yaccel = 0.65
 
 [State 1021, Woosh]
 type = playsnd
@@ -3111,13 +3094,13 @@ volume = 255
 [State 1021, Velset]
 type = Velset
 trigger1 = time = 0
-y = -12
+y = -13*1.166666666666667
 x = 1.9
 
 [State 1021, Gravity]
 type = VelAdd
 trigger1 = 1
-y = 0.45
+y = 0.55*1.166666666666667
 
 [State 1021, Decend]
 type = ChangeState
