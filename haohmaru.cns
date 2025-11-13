@@ -384,7 +384,7 @@ guardsound = s300,3
 ground.type = High
 ground.slidetime = 12 ;9
 ground.hittime  = 15 ;12
-ground.velocity = -5.2
+ground.velocity = -6.2
 airguard.velocity = -3.4,-3.3
 air.type = High
 air.velocity = -3.4,-3.3
@@ -490,7 +490,7 @@ guardsound = s300,3
 ground.type = High
 ground.slidetime = 12
 ground.hittime  = 16
-ground.velocity = -6.2
+ground.velocity = -10.3
 air.velocity = -4.5,-4
 yaccel = 0.6
 
@@ -544,7 +544,7 @@ sprpriority = 5
 [State 220, Anim_HitPause]
 type = assertspecial
 trigger1 = animelemtime(6)<=0
-trigger1 = anim = 220
+;trigger1 = anim = 220
 flag = animatehitpause
 ignorehitpause = 1
 
@@ -627,7 +627,7 @@ guardsound = s300,3
 ground.type = Low
 ground.slidetime = 28
 ground.hittime  = 28
-ground.velocity = -9.2
+ground.velocity = -10.2
 air.velocity = -6.5,-5.3
 envshake.time = 10
 envshake.ampl = 6
@@ -656,6 +656,16 @@ envshake.time = 10
 envshake.ampl = 6
 envshake.freq = 176
 yaccel = 0.6
+
+[State 1000, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 2
+freq = 176
+mul = 0.9
+ignorehitpause = 1
 
 [State 220, 4]
 type = SprPriority
@@ -858,6 +868,14 @@ x = 15
 [State 230, Anim_HitPause]
 type = assertspecial
 trigger1 = animelemtime(5)<=0
+trigger1 = anim = 250
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 230, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+trigger1 = anim = 251
 flag = animatehitpause
 ignorehitpause = 1
 
@@ -910,7 +928,7 @@ guardsound = s300,3
 ground.type = High
 ground.slidetime = 16
 ground.hittime  = 27
-ground.velocity = -6
+ground.velocity = -9.66
 air.velocity = -5.2,-7.7
 envshake.time = 10
 envshake.ampl = 6
@@ -947,6 +965,12 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 
+[State 400, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(3)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
 [State 400, Voice]
 type = PlaySnd
 trigger1 = Time = 2 && random < 600
@@ -960,17 +984,6 @@ trigger1 = Time = 3
 value = 210, 0
 volume = 255
 
-[State 400, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (2) < 0)
-trigger2 = (AnimElemTime (4) >= 0)
-value = 8,0
-
-[State 400, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (4) < 0)
-value = 25,0
-
 [State 400, 2]
 type = HitDef
 trigger1 = Time = 0
@@ -980,19 +993,19 @@ priority  = 3
 animtype  = Light
 hitflag = MAF
 guardflag = L
-pausetime = 10,11
-guard.pausetime = 10,15
+pausetime = 8,8
 sparkno = s8000+random%6
 Guard.Sparkno = s8030
 sparkxy = -13,-53
 hitsound   = s250,0
 guardsound = s300,3
 ground.type = Low
-ground.slidetime = 4
+ground.slidetime = 14
 ground.hittime  = 17
-ground.velocity = -4.3
-air.velocity = -1.5,-3
+ground.velocity = -6.3
+air.velocity = -4.5,-4
 
+yaccel = 0.6
 [State 400, 4]
 type = ChangeState
 trigger1 = AnimTime = 0
@@ -1020,16 +1033,11 @@ value = 400, 1
 volume = 255
 channel = 1
 
-[State 410, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (2) < 0)
-trigger2 = (AnimElemTime (9) >= 0)
-value = 8,0
-
-[State 410, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (9) < 0)
-value = 40,0
+[State 410, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 410, SlashEffect]
 type = Explod
@@ -1054,8 +1062,7 @@ damage    = 37,15
 animtype  = Medium
 hitflag = MAF
 guardflag = M
-pausetime = 11,12
-guard.pausetime = 11,15
+pausetime = 10,10
 sparkno = s8000+random%6
 Guard.Sparkno = s8030
 sparkxy = -19,-30
@@ -1064,8 +1071,9 @@ guardsound = s300,3
 ground.type = Low
 ground.slidetime = 15
 ground.hittime  = 14
-ground.velocity = -4.7
-air.velocity = -3,-4
+ground.velocity = -9.7
+air.velocity = -6,-4
+yaccel = 0.6
 
 [State 410, 4]
 type = ChangeState
@@ -1103,17 +1111,6 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 
-[State 420, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (2) < 0)
-trigger2 = (AnimElemTime (7) >= 0)
-value = 12,0
-
-[State 420, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (7) < 0)
-value = 20,0
-
 [State 410, 1]
 type = PlaySnd
 trigger1 = Time = 6
@@ -1128,21 +1125,18 @@ damage    = 110,60
 animtype  = Hard
 hitflag = MAF
 guardflag = M
-pausetime = 11,12
-guard.pausetime = 11,15
+pausetime = 12,12
 sparkno = s8000+random%6
 Guard.Sparkno = s8030
 sparkxy = -15,-80
 hitsound   = s250,2
 guardsound = s300,3
 ground.type = High
-ground.slidetime = 12
+ground.slidetime = 14.3
 ground.hittime  = 25
-ground.velocity = -4
-air.velocity = -3,-4
-envshake.time = 10
-envshake.ampl = 6
-envshake.freq = 176
+ground.velocity = -12
+air.velocity = -4,-9
+yaccel = 0.6
 
 [State 410, 4]
 type = ChangeState
@@ -1164,16 +1158,11 @@ anim = 430
 sprpriority = 2
 hitcountpersist = 1
 
-[State 420, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (2) < 0)
-trigger2 = (AnimElemTime (5) >= 0)
-value = 8,0
-
-[State 420, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (5) < 0)
-value = 15,0
+[State 430, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(3)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 430, 1]
 type = PlaySnd
@@ -1188,8 +1177,7 @@ damage    = 28,12
 animtype  = Light
 hitflag = MAFD
 guardflag = L
-pausetime = 11,12
-guard.pausetime = 11,15
+pausetime = 8,8
 sparkno = s8015+random%6
 Guard.Sparkno = s8030
 sparkxy = -10,-8
@@ -1228,16 +1216,11 @@ type = PlaySnd
 trigger1 = Time = 5
 value = 0, 2
 
-[State 440, Width]
-type = Width
-trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (2) < 0)
-trigger2 = (AnimElemTime (5) >= 0)
-value = 8,0
-
-[State 440, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (5) < 0)
-value = 15,0
+[State 440, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(3)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 440, 3]
 type = HitDef
@@ -1246,8 +1229,7 @@ attr = C, NA
 damage    = 40,15
 hitflag = MAFD
 guardflag = L
-pausetime = 11,12
-guard.pausetime = 11,15
+pausetime = 10,10
 sparkno = s8015+random%6
 Guard.Sparkno = s8030
 sparkxy = -5,-10
@@ -1256,8 +1238,8 @@ guardsound = s300,3
 ground.type = Low
 ground.slidetime = 10
 ground.hittime  = 15
-ground.velocity = -5.4,0
-air.velocity = -1.2,-3
+ground.velocity = -5.7,0
+air.velocity = -6.2,-3
 guard.velocity = -5
 
 [State 440, 4]
@@ -1289,6 +1271,12 @@ type = PlaySnd
 trigger1 = Time = 17
 value = 0, 3
 
+[State 440, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(6)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
 [State 450, 3]
 type = HitDef
 trigger1 = Time = 0
@@ -1296,8 +1284,7 @@ attr = C, NA
 damage    = 52,19
 hitflag = MAFD
 guardflag = L
-pausetime = 11,12
-guard.pausetime = 11,15
+pausetime = 12,12
 sparkno = s8015+random%6
 Guard.Sparkno = s8030
 sparkxy = -5,-10
@@ -1306,10 +1293,10 @@ guardsound = s300,3
 ground.type = Trip
 ground.slidetime = 10
 ground.hittime  = 15
-ground.velocity = -3.5,-3
-air.velocity = -1.2,-3
-guard.velocity = -5
+ground.velocity = -3.5,-6
+air.velocity = -3.7,-6.9
 fall = 1
+yaccel = 0.6
 
 [State 450, 4]
 type = ChangeState
@@ -2631,6 +2618,16 @@ fall.recover = 0
 fall = 1
 yaccel = 0.65
 
+[State 1000, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 2
+freq = 120
+mul = 0.9
+ignorehitpause = 1
+
 [State 1000, 7]
 type = ChangeState
 trigger1 = AnimTime = 0
@@ -2654,6 +2651,16 @@ hitcountpersist = 1
 type = assertspecial
 trigger1 = animelemtime(2)<=0
 flag = animatehitpause
+ignorehitpause = 1
+
+[State 1001, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 2
+freq = 120
+mul = 0.9
 ignorehitpause = 1
 
 [State 1001, Woosh]
@@ -2866,6 +2873,16 @@ envshake.ampl = 2
 envshake.freq = 176
 yaccel = 0.6
 
+[State 1010, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 2
+freq = 120
+mul = 0.9
+ignorehitpause = 1
+
 [State 1010, 7]
 type = ChangeState
 trigger1 = AnimTime = 0
@@ -2916,6 +2933,17 @@ envshake.freq = 176
 fall.recover = 0
 fall = 1
 yaccel = 0.6
+
+[State 1011, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 2
+freq = 120
+mul = 0.9
+ignorehitpause = 1
+
 [State 1011, Woosh]
 type = playsnd
 trigger1 = Time = 0
@@ -3025,6 +3053,16 @@ envshake.ampl = 2
 envshake.freq = 176
 yaccel = 0.6
 
+[State 1020, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 2
+freq = 120
+mul = 0.9
+ignorehitpause = 1
+
 [State 1020, 7]
 type = ChangeState
 trigger1 = AnimTime = 0
@@ -3075,6 +3113,16 @@ envshake.freq = 176
 fall.recover = 0
 fall = 1
 yaccel = 0.65
+
+[State 1021, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 2
+freq = 120
+mul = 0.9
+ignorehitpause = 1
 
 [State 1021, Woosh]
 type = playsnd
@@ -3301,11 +3349,6 @@ anim = 1040
 ctrl = 0
 sprpriority = 2
 hitcountpersist = 1
-
-[State 1050, Width]
-type = width
-trigger1 = (animelemtime(1)>=0)
-value = 12,0
 
 [State 1050, UCantHitMe]
 type = NotHitBy
