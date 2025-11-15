@@ -662,7 +662,7 @@ type = envshake
 trigger1 = moveguarded = 1
 trigger1 = movehitvar(frame) = 1
 time = 8
-ampl = 2
+ampl = 6
 freq = 176
 mul = 0.9
 ignorehitpause = 1
@@ -765,6 +765,11 @@ x = 12
 
 [State 240, posadd]
 type = PosAdd
+trigger1 = AnimElem = 3 && anim = 240
+x = 6
+
+[State 240, posadd]
+type = PosAdd
 trigger1 = AnimElem = 6 && anim = 240
 x = -10
 
@@ -777,6 +782,14 @@ volume = 255
 [State 240, Anim_HitPause]
 type = assertspecial
 trigger1 = animelemtime(4)<=0
+trigger1 = anim = 240
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 240, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(3)<=0
+trigger1 = anim = 241
 flag = animatehitpause
 ignorehitpause = 1
 
@@ -796,8 +809,9 @@ guardsound = s300,3
 ground.type = High
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -6
-air.velocity = -2.2,-3.2
+ground.velocity = -8.3
+air.velocity = -5.2,-4.6
+yaccel = 0.6
 
 [State 240, 2]
 type = HitDef
@@ -816,11 +830,9 @@ guardsound = s300,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -6
-air.velocity = -2.2,-3.2
-envshake.time = 10
-envshake.ampl = 2
-envshake.freq = 176
+ground.velocity = -6.9
+air.velocity = -5.2,-3.2
+yaccel = 0.6
 
 [State 240, 4]
 type = ChangeState
@@ -2623,7 +2635,7 @@ type = envshake
 trigger1 = moveguarded = 1
 trigger1 = movehitvar(frame) = 1
 time = 8
-ampl = 2
+ampl = 6
 freq = 120
 mul = 0.9
 ignorehitpause = 1
@@ -2658,7 +2670,7 @@ type = envshake
 trigger1 = moveguarded = 1
 trigger1 = movehitvar(frame) = 1
 time = 8
-ampl = 2
+ampl = 6
 freq = 120
 mul = 0.9
 ignorehitpause = 1
@@ -2878,7 +2890,7 @@ type = envshake
 trigger1 = moveguarded = 1
 trigger1 = movehitvar(frame) = 1
 time = 8
-ampl = 2
+ampl = 6
 freq = 120
 mul = 0.9
 ignorehitpause = 1
@@ -2939,7 +2951,7 @@ type = envshake
 trigger1 = moveguarded = 1
 trigger1 = movehitvar(frame) = 1
 time = 8
-ampl = 2
+ampl = 6
 freq = 120
 mul = 0.9
 ignorehitpause = 1
@@ -3058,7 +3070,7 @@ type = envshake
 trigger1 = moveguarded = 1
 trigger1 = movehitvar(frame) = 1
 time = 8
-ampl = 2
+ampl = 6
 freq = 120
 mul = 0.9
 ignorehitpause = 1
@@ -3119,7 +3131,7 @@ type = envshake
 trigger1 = moveguarded = 1
 trigger1 = movehitvar(frame) = 1
 time = 8
-ampl = 2
+ampl = 6
 freq = 120
 mul = 0.9
 ignorehitpause = 1
