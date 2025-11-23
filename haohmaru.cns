@@ -387,7 +387,7 @@ ground.hittime  = 15 ;12
 ground.velocity = -6.2
 airguard.velocity = -3.4,-3.3
 air.type = High
-air.velocity = -3.4,-3.3
+air.velocity = -3.9,-3.3
 air.hittime = 12
 yaccel = 0.6
 
@@ -491,7 +491,7 @@ ground.type = High
 ground.slidetime = 12
 ground.hittime  = 16
 ground.velocity = -10.3
-air.velocity = -4.5,-4
+air.velocity = -5.5,-4
 yaccel = 0.6
 
 [State 210, 5]
@@ -810,7 +810,7 @@ ground.type = High
 ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = -8.3
-air.velocity = -5.2,-4.6
+air.velocity = -5.7,-4.6
 yaccel = 0.6
 
 [State 240, 2]
@@ -831,7 +831,7 @@ ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = -6.9
-air.velocity = -5.2,-3.2
+air.velocity = -6.2,-3.7
 yaccel = 0.6
 
 [State 240, 4]
@@ -902,7 +902,7 @@ type = HitDef
 trigger1 = Time = 0 && anim = 250
 attr = S, NA
 animtype  = Hard
-damage    = 40,10
+damage    = 40,0
 guardflag = MA
 pausetime = 12,12
 sparkno = s8015+random%6
@@ -915,7 +915,7 @@ ground.slidetime = 20
 ground.hittime  = 25
 ground.velocity = -12.6
 air.velocity = -9.2,-3.2
-envshake.time = 10
+envshake.time = 4
 envshake.ampl = 6
 envshake.freq = 140
 envshake.dir = 90
@@ -928,9 +928,9 @@ type = HitDef
 trigger1 = Time = 0 && anim = 251
 attr = S, NA
 animtype  = Hard
-damage    = 40,10
+damage    = 40,0
 guardflag = MA
-pausetime = 13,17
+pausetime = 12,12
 guard.pausetime = 11,15
 sparkno = s8015+random%6
 Guard.Sparkno = s8030
@@ -942,9 +942,6 @@ ground.slidetime = 16
 ground.hittime  = 27
 ground.velocity = -9.66
 air.velocity = -5.2,-7.7
-envshake.time = 10
-envshake.ampl = 6
-envshake.freq = 140
 yaccel = 0.6
 envshake.mul = 0.6
 
@@ -1361,7 +1358,8 @@ ground.type = High
 ground.slidetime = 5
 ground.hittime  = 5
 ground.velocity = -4
-air.velocity = -3.3,-3
+air.velocity = -3.3,-4.8
+yaccel = 0.6
 
 [State 600, 3]
 type = CtrlSet
@@ -1420,7 +1418,8 @@ ground.type = High
 ground.slidetime = 17
 ground.hittime  = 17
 ground.velocity = -5
-air.velocity = -3.7,-4
+air.velocity = -3.7,-5.2
+yaccel = 0.6
 ;----------------------------------------------------------------------
 ;Jump Strong Slash
 ;----------------------------------------------------------------------
@@ -1518,7 +1517,8 @@ ground.type = High
 ground.slidetime = 6
 ground.hittime  = 6
 ground.velocity = -4
-air.velocity = -3,-3
+air.velocity = -3,-4.3
+yaccel = 0.6
 
 ;----------------------------------------------------------------------
 ;Jump Medium Kick
@@ -1563,7 +1563,9 @@ ground.type = High
 ground.slidetime = 15
 ground.hittime  = 15
 ground.velocity = -5
-air.velocity = -3.7,-4
+air.velocity = -3.9,-5.3
+yaccel = 0.6
+
 ;----------------------------------------------------------------------
 ;Jump Strong Kick
 ;----------------------------------------------------------------------
@@ -1607,8 +1609,8 @@ ground.type = High
 ground.slidetime = 15
 ground.hittime  = 20
 ground.velocity = -5
-air.velocity = -4.1,-4
-
+air.velocity = -4.6,-5.7
+yaccel = 0.6
 
 ;----------------------------------------------------------------------
 ;CVS2-style dodge
