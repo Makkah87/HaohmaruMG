@@ -616,7 +616,7 @@ type = HitDef
 trigger1 = Time = 0 && anim = 220
 attr = S, NA
 animtype  = Hard
-damage    = 160,90
+damage    = 208,90
 guardflag = MA
 pausetime = 12,12
 sparkno = s8000+random%6
@@ -3329,7 +3329,7 @@ movetype= A
 physics = N
 juggle  = 4
 poweradd= 110
-anim = 1040
+anim = 1045
 ctrl = 0
 sprpriority = 2
 hitcountpersist = 1
@@ -3348,13 +3348,13 @@ volume = 255
 
 [State 1050, Jump]
 type = velset
-trigger1 = time = 0
-x = 8
-y = -13
+trigger1 = animelem = 2
+x = 6.4
+y = -15.4
 
 [State 1050, Gravity]
 type = veladd
-trigger1 = 1
+trigger1 = animelemtime(2) >0
 y = 0.99
 
 [State 1050, Land]
