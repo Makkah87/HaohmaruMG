@@ -44,8 +44,8 @@ shadowoffset = 0     ;Number of pixels to vertically offset the shadow
 draw.offset = 0,0    ;Player drawing offset in pixels (x, y)
 
 [Velocity]
-walk.fwd  = 2.5           ;Walk forward
-walk.back = -2.3          ;Walk backward
+walk.fwd  = 2.9           ;Walk forward
+walk.back = -2.6          ;Walk backward
 run.fwd  = 5.7, 0         ;Run forward (x, y)
 run.back = -4.5,-3.8      ;Hop backward (x, y)
 jump.neu = 0,-11.33 ;-7.6   ;Neutral jumping velocity (x, y)
@@ -1678,8 +1678,8 @@ sprpriority = 2
 
 [State 710, VelSet]
 type = velset
-trigger1 = time = 0
-x = 4.2
+trigger1 = animelem = 2
+x = 5.2
 
 [State 710, NoPush]
 type = playerpush
@@ -1713,7 +1713,7 @@ channel = 1
 
 [State 710, Disableshadows]
 type = AfterImageTime
-trigger1 = animelemtime(5) = 4
+trigger1 = animelemtime(8) = 2
 Time = 0
 
 [State 710, UCantHitMe]
@@ -1723,12 +1723,12 @@ value = SCA
 
 [State 710, VelSet]
 type = velset
-trigger1 = animelem = 6
+trigger1 = animelem = 9
 x = 0
 
 [State 710, Control]
-type = ctrlset
-trigger1 = animelem = 6
+type = null;ctrlset
+trigger1 = animelem = 9
 value = 1
 
 [State 710, End]
@@ -5342,87 +5342,52 @@ trigger1 = animtime = 0
 value = 0
 ;----------------------------------------------------------------------
 ; Hop Back
+;----------------------------------------------------------------------
 [Statedef 105]
-type    = A
-physics = A
+type    = S
+physics = N
 ctrl = 0
 anim = 105
+velset = 0,0
 sprpriority = 1
 
 [State 105, Hop]
 type = playsnd
-trigger1 = time = 0
+trigger1 = animelem = 2
 value = 80,1
 volume = 255
 
-[State 105, PosSet]
-type = posset
-trigger1 = pos Y >= 0 && animelemtime(1) < 2
-y = 0
-
-[State 105, PosSet]
-type = velset
-trigger1 = vel Y >= 0 && animelemtime(1) < 2
-y = 0
+[State 105, Pidgey]
+type = statetypeset
+trigger1 = animelem = 2
+statetype = A
 
 [State 105, 1]
 type = VelSet
-trigger1 = animelemtime(1) = 2
-x = -6
-y = -4
+trigger1 = animelem = 2
+x = -6.7
 
-[State 105, Gravity]
-type = veladd
-trigger1 = 1
-y = 0.15
+[State 105, Land]
+type = velset
+trigger1 = animelemtime(5) = 4
+x = 0
 
-[State 105, 2]
-type = CtrlSet
-trigger1 = Time = 2
-value = 1
+[State 105, LandingDust]
+type = Explod
+trigger1 = animelemtime(5) = 4
+anim = 8052
+id = 8052
+postype = p1
+pos = 0,1
+sprpriority = -5
+scale = 0.25,0.25
 
 [State 105, 3]
 type = ChangeState
-triggerall = time > 17
-trigger1 = Vel Y > 0
-trigger1 = Pos Y >= -10
-value = 106
-
-;--------------------------------------------------------------------
-; RUN_BACK2 (land)
-[Statedef 106]
-type    = S
-physics = S
-ctrl = 1
-anim = 106
-
-[State -3, Landing Sound]
-type = PlaySnd
-trigger1 = Time = 0
-value = 85, 0
-volume = 255
-
-[State 106, 1]
-type = VelSet
-trigger1 = Time = 0
-y = 0
-
-[State 106, 2]
-type = PosSet
-trigger1 = Time = 0
-y = 0
-
-[State 106, 3]
-type = MakeDust
-trigger1 = Time = 2
-pos = -5,-2
-spacing = 1
-
-[State 106, 4]
-type = ChangeState
-trigger1 = animtime = 0
+trigger1 = !animtime
 value = 0
 ctrl = 1
+
 ;----------------------------------------------------------------------
 ; HIT_BOUNCE (hit ground)
 [Statedef 5100]
