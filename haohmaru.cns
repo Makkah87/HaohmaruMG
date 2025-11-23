@@ -109,19 +109,19 @@ flag = roundnotover
 type = PlaySnd
 trigger1 = AnimElem = 3
 value = 180,0
-volume = 255
+volumescale = 100
 
 [State 191, Snd 2]
 type = PlaySnd
 trigger1 = AnimElem = 17
 value = 180,3
-volume = 255
+volumescale = 100
 
 [State 191, Snd 3]
 type = PlaySnd
 trigger1 = AnimElem = 19
 value = 180,1
-volume = 255
+volumescale = 100
 
 [State 181, 1]
 type = NotHitBy
@@ -147,13 +147,13 @@ flag = roundnotover
 type = PlaySnd
 trigger1 = AnimElem = 4
 value = 210,2
-volume = 255
+volumescale = 100
 
 [State 191, Snd 2]
 type = PlaySnd
 trigger1 = AnimElem = 25
 value = 180,3
-volume = 255
+volumescale = 100
 
 [State 181, 1]
 type = NotHitBy
@@ -237,13 +237,13 @@ value = 0
 type = PlaySnd
 trigger1 = AnimElem = 7
 value = 190,1
-volume = 255
+volumescale = 100
 
 [State 192, Snd 2]
 type = PlaySnd
 trigger1 = AnimElem = 11
 value = 190,0
-volume = 255
+volumescale = 100
 
 ;--------------------------------------------------------------------
 ; Introduction -Well, let's write your epitaph
@@ -268,7 +268,7 @@ value = 0
 type = PlaySnd
 trigger1 = Time = 3
 value = 190,3
-volume = 255
+volumescale = 100
 
 ;--------------------------------------------------------------------
 ; Introduction -So i'll be facing a demon...
@@ -283,13 +283,13 @@ velset = 0,0
 type = playsnd
 trigger1 = time = 0
 value = 190, 2
-volume = 255
+volumescale = 100
 
 [State 193, Unsheeth]
 type = playsnd
 trigger1 = animelemtime(26) = 2
 value = 0,0
-volume = 255
+volumescale = 100
 
 [State 193, 2]
 type = AssertSpecial
@@ -322,7 +322,7 @@ sprpriority = 2
 type = playsnd
 trigger1 = time = 0
 value = 180,2
-volume = 255
+volumescale = 100
 
 [State 195, 1]
 type = CtrlSet
@@ -395,14 +395,14 @@ yaccel = 0.6
 type = PlaySnd
 trigger1 = Time = 2 && random < 600
 value = 400, 0
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 200, 1]
 type = PlaySnd
 trigger1 = Time = 3
 value = 210, 0
-volume = 255
+volumescale = 100
 
 [State 200, 7]
 type = ChangeState
@@ -443,7 +443,7 @@ ignorehitpause = 1
 type = PlaySnd
 trigger1 = Time = 2 && random < 600
 value = 400, 1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 200, SlashEffect]
@@ -472,7 +472,7 @@ IGNOREHITPAUSE = 0
 type = PlaySnd
 trigger1 = Time = 4
 value = 210, 1
-volume = 255
+volumescale = 100
 
 [State 210, 2]
 type = HitDef
@@ -520,7 +520,7 @@ type = PlaySnd
 trigger1 = Time = 20 && anim = 220 && random < 600
 trigger2 = Time = 9 && anim = 221 && random < 600
 value = 400, 2
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 220, SlashEffect]
@@ -601,7 +601,7 @@ type = PlaySnd
 trigger1 = Time = 21 && anim = 220
 trigger2 = Time = 10 && anim = 221
 value = 210, 2
-volume = 255
+volumescale = 100
 
 [State 220, Slow_Mo]
 type = pause
@@ -696,7 +696,7 @@ hitcountpersist = 1
 type = PlaySnd
 trigger1 = Time = 4 && random < 600
 value = 400, 0
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 230, Anim_HitPause]
@@ -755,7 +755,7 @@ hitcountpersist = 1
 type = PlaySnd
 trigger1 = Time = 4 && random < 600
 value = 400, ifelse(random < 200,0,1)
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 240, posadd]
@@ -777,7 +777,7 @@ x = 10
 type = PlaySnd
 trigger1 = Time = 8
 value = 0, 2
-volume = 255
+volumescale = 100
 
 [State 240, Anim_HitPause]
 type = assertspecial
@@ -859,7 +859,7 @@ hitcountpersist = 1
 type = PlaySnd
 trigger1 = Time = 4 && random < 600
 value = 400, 1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 250, Step1]
@@ -895,7 +895,7 @@ ignorehitpause = 1
 type = PlaySnd
 trigger1 = Time = 8
 value = 0, 2
-volume = 255
+volumescale = 100
 
 [State 250, 2]
 type = HitDef
@@ -984,14 +984,14 @@ ignorehitpause = 1
 type = PlaySnd
 trigger1 = Time = 2 && random < 600
 value = 400, 0
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 400, 1]
 type = PlaySnd
 trigger1 = Time = 3
 value = 210, 0
-volume = 255
+volumescale = 100
 
 [State 400, 2]
 type = HitDef
@@ -1039,7 +1039,7 @@ hitcountpersist = 1
 type = PlaySnd
 trigger1 = Time = 4 && random < 600
 value = 400, 1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 410, Anim_HitPause]
@@ -1108,7 +1108,7 @@ hitcountpersist = 1
 type = PlaySnd
 trigger1 = Time = 7 && random < 600
 value = 400, 2
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 420, SlashEffect]
@@ -1124,7 +1124,7 @@ sprpriority = 5
 type = PlaySnd
 trigger1 = Time = 6
 value = 210, 2
-volume = 255
+volumescale = 100
 
 [State 410, 2]
 type = HitDef
@@ -1641,13 +1641,13 @@ Trans = add1
 type = playsnd
 trigger1 = time = 3
 value = 0,1
-volume = 255
+volumescale = 100
 
 [State 700, OhNoUDont]
 type = playsnd
 trigger1 = time = 3
 value = 900,0
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 700, Disableshadows]
@@ -1704,13 +1704,13 @@ Trans = add1
 type = playsnd
 trigger1 = time = 3
 value = 0,1
-volume = 255
+volumescale = 100
 
 [State 710, Voice]
 type = playsnd
 trigger1 = time = 3
 value = 900,1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 710, Disableshadows]
@@ -1784,14 +1784,14 @@ movetime = 19
 type = playsnd
 trigger1 = time = 0
 value = 90,3
-volume = 255
+volumescale = 100
 freqmul = 1.5
 
 [State 720, Parry Voice]
 type = playsnd
 trigger1 = time = 0
 value = 400,1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 720, CTRL]
@@ -1850,14 +1850,14 @@ movetime = 19
 type = playsnd
 trigger1 = time = 0
 value = 90,3
-volume = 255
+volumescale = 100
 freqmul = 1.5
 
 [State 721, Parry Voice]
 type = playsnd
 trigger1 = time = 0
 value = 400,1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 721, CTRL]
@@ -1925,14 +1925,14 @@ movetime = 19
 type = playsnd
 trigger1 = time = 0
 value = 90,3
-volume = 255
+volumescale = 100
 freqmul = 1.5
 
 [State 722, Parry Voice]
 type = playsnd
 trigger1 = time = 0
 value = 400,1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 722, CTRL]
@@ -1977,7 +1977,7 @@ fall = 1
 type = playsnd
 trigger1 = animelem = 2
 value = 5000,0
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 800, 2]
@@ -2008,20 +2008,20 @@ var(5) = command = "holdback"
 type = PlaySnd
 trigger1 = Time = 0
 value = 800, 0
-volume = 255
+volumescale = 100
 freqmul = 1.5
 
 [State 810, Woosh]
 type = PlaySnd
 trigger1 = AnimElemtime(7) = 2
 value = 0,2
-volume = 255
+volumescale = 100
 
 [State 810, Voice]
 type = PlaySnd
 trigger1 = AnimElemtime(7) = 3
 value = 400, 1
-volume = 255
+volumescale = 100
 
 [State 810, Width 2-11]
 type = Width
@@ -2157,7 +2157,7 @@ fall = 1
 type = playsnd
 trigger1 = animelem = 2
 value = 5000,0
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 820, 2]
@@ -2189,20 +2189,20 @@ var(5) = command = "holdfwd"
 type = PlaySnd
 trigger1 = Time = 0
 value = 800, 0
-volume = 255
+volumescale = 100
 freqmul = 1.5
 
 [State 825, Woosh]
 type = PlaySnd
 trigger1 = AnimElemtime(6) = 2
 value = 0,2
-volume = 255
+volumescale = 100
 
 [State 825, Voice]
 type = PlaySnd
 trigger1 = AnimElemtime(6) = 2
 value = 400, 0
-volume = 255
+volumescale = 100
 
 [State 825, Width 2-11]
 type = Width
@@ -2371,7 +2371,7 @@ sprpriority = 3
 type = playsnd
 trigger1 = time = 0
 value = 950,0
-volume = 255
+volumescale = 100
 channel = 5
 
 [State 900, ShockWave]
@@ -2391,7 +2391,7 @@ ownpal = 1
 type = playsnd
 trigger1 = time = 1
 value = 950,1
-volume = 255
+volumescale = 100
 channel = 6
 
 [State 900, NoVoice]
@@ -2560,14 +2560,14 @@ x = 4
 type = PlaySnd
 trigger1 = animelem = 3
 value = 1000,1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 1000, Woosh]
 type = playsnd
 trigger1 = animelem = 2
 value = 210,0
-volume = 255
+volumescale = 100
 
 [State 1000, Anim_HitPause]
 type = assertspecial
@@ -2651,7 +2651,7 @@ ignorehitpause = 1
 type = playsnd
 trigger1 = Time = 0
 value = 210,2
-volume = 255
+volumescale = 100
 
 [State 1001, Velset]
 type = Velset
@@ -2680,16 +2680,13 @@ juggle  = 4
 anim = 1002
 sprpriority = 2
 
-[State 1002, Width]
-type = width
-trigger1 = 1
-value = 12,0
 
-[State 1002, Anim_HitPause]
-type = assertspecial
-trigger1 = animelemtime(4)<=0
-flag = animatehitpause
-ignorehitpause = 1
+[State 1002, Corner_Push]
+type = posadd
+triggerall = p2, statetype != l
+trigger1 = p2, backedgedist = 0 && p2dist x < 110
+trigger1 = p2, movetype = h
+x = -2;+(time/100)
 
 [State 1002, NoVelX]
 type = VelSet
@@ -2736,7 +2733,7 @@ time = 1
 type = PlaySnd
 trigger1 = Time = 0
 value = 40,0 ;80, 1
-volume = 255
+volumescale = 100
 
 [State 1003, NoVelY]
 type = VelSet
@@ -2823,14 +2820,14 @@ x = 6.5
 type = PlaySnd
 trigger1 = animelem = 2
 value = 1000,1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 1010, Woosh]
 type = playsnd
 trigger1 = animelem = 4
 value = 210,0
-volume = 255
+volumescale = 100
 
 [State 1010, 5]
 type = HitDef
@@ -2932,7 +2929,7 @@ ignorehitpause = 1
 type = playsnd
 trigger1 = Time = 0
 value = 210,2
-volume = 255
+volumescale = 100
 
 [State 1011, Velset]
 type = Velset
@@ -3003,14 +3000,14 @@ x = 8
 type = PlaySnd
 trigger1 = animelem = 2
 value = 1000,1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 1020, Woosh]
 type = playsnd
 trigger1 = animelem = 4
 value = 210,0
-volume = 255
+volumescale = 100
 
 [State 1020, 5]
 type = HitDef
@@ -3112,7 +3109,7 @@ ignorehitpause = 1
 type = playsnd
 trigger1 = Time = 0
 value = 210,2
-volume = 255
+volumescale = 100
 
 [State 1021, Velset]
 type = Velset
@@ -3124,6 +3121,14 @@ x = 1.9
 type = VelAdd
 trigger1 = 1
 y = 0.55*1.166666666666667
+
+[State 1041, Corner_Push]
+type = posadd
+triggerall = numtarget
+triggerall = target, statetype != l
+trigger1 = target, backedgedist = 0 && p2dist x < 110
+trigger1 = movecontact
+x = -5;+(time/100)
 
 [State 1021, Decend]
 type = ChangeState
@@ -3160,7 +3165,7 @@ time = 10
 type = playsnd
 trigger1 = time = 0
 value = 1000,3
-volume = 255
+volumescale = 100
 
 [State 1030, Jump]
 type = velset
@@ -3233,30 +3238,29 @@ trigger1 = Time = 0
 attr = S, SA
 animtype  = Hard
 damage    = 80, 30
-getpower  = 0
+getpower  = 100
 priority  = 4
 guardflag = MA
 hitflag = MAFD
-pausetime = 17,16 ;14,13
-guard.pausetime = 17,20
+pausetime = 12,12
 sparkno = s8008+random%3
 Guard.Sparkno = s8031
 sparkxy = -10,-40
 hitsound   = s250,2
 guardsound = s250,3
 ground.type = Low
+fall.animtype = hard
 ground.slidetime = 20
 ground.hittime  = 20
 ground.velocity = -2.5, 2   ;-4,6
 guard.velocity = -7
 air.velocity =  -2.5, 2         ;-4,6
 airguard.velocity = -5, -4
-envshake.time = 10
+envshake.time = 6
 envshake.ampl = 4
-envshake.freq = 176
-fall.envshake.time = 10
-fall.envshake.ampl = 4
-fall.envshake.freq = 176
+envshake.freq = 150
+fall.xvelocity = -1.6
+fall.yvelocity = -3
 yaccel = 0.60
 fall = 1
 fall.recover = 0
@@ -3265,7 +3269,7 @@ fall.recover = 0
 type = playsnd
 trigger1 = time = 0
 value = 1000,4
-volume = 255
+volumescale = 100
 
 [State 1031, Land]
 type = ChangeState
@@ -3301,7 +3305,7 @@ time = 10
 type = playsnd
 trigger1 = time = 0
 value = 1000,3
-volume = 255
+volumescale = 100
 
 [State 1040, Jump]
 type = velset
@@ -3344,13 +3348,13 @@ time = 10
 type = playsnd
 trigger1 = time = 0
 value = 1000,3
-volume = 255
+volumescale = 100
 
 [State 1050, Jump]
 type = velset
 trigger1 = animelem = 2
-x = 6.4
-y = -15.4
+x = 6.8
+y = -13.4
 
 [State 1050, Gravity]
 type = veladd
@@ -4088,7 +4092,7 @@ p1stateno = 1081
 type = playsnd
 trigger1 = time = 0
 value = 1000,2
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 1080, End]
@@ -4277,7 +4281,7 @@ ctrl = 0
 type = playsnd
 trigger1 = time = 5
 value = 2000,0
-volume = 255
+volumescale = 100
 
 [State 2000, -Power]
 type = poweradd
@@ -4301,7 +4305,7 @@ time = 2
 type = PlaySnd
 trigger1 = Time = 10
 value = 2000,1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 2000, Afterimage]
@@ -4514,7 +4518,7 @@ sprpriority = 2
 type = playsnd
 trigger1 = time = 5
 value = 2000,0
-volume = 255
+volumescale = 100
 
 [State 2010, UCantHitMe]
 type = NotHitBy
@@ -4569,14 +4573,14 @@ x = 8
 type = PlaySnd
 trigger1 = animelem = 2
 value = 1000,1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 2010, Woosh]
 type = playsnd
 trigger1 = animelem = 4
 value = 210,0
-volume = 255
+volumescale = 100
 
 [State 2010, 5]
 type = HitDef
@@ -4683,7 +4687,7 @@ value = 30,0
 type = playsnd
 trigger1 = Time = 0
 value = 210,2
-volume = 255
+volumescale = 100
 
 [State 2011, Velset]
 type = Velset
@@ -4727,7 +4731,7 @@ value = 12,0
 type = playsnd
 trigger1 = time = 0
 value = 3000,1
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 3000, Super A]
@@ -4801,7 +4805,7 @@ trigger3 = AnimElem = 14
 trigger4 = AnimElem = 20
 trigger5 = AnimElem = 26
 value = 210,1
-volume = 255
+volumescale = 100
 
 [State 3000, Move]
 type = VelSet
@@ -4902,7 +4906,7 @@ sprpriority = 2
 type = playsnd
 trigger1 = time = 0
 value = 3000,2
-volume = 255
+volumescale = 100
 channel = 1
 
 [State 3001, 5]
@@ -4941,7 +4945,7 @@ value = 14,0
 type = playsnd
 trigger1 = Time = 0
 value = 210,2
-volume = 255
+volumescale = 100
 
 [State 3001, Velset]
 type = Velset
@@ -5040,13 +5044,13 @@ type = playsnd
 trigger1 = time = 0
 value = 3000,0
 channel = 1
-volume = 255
+volumescale = 100
 
 [State 3010, Effect]
 type = playsnd
 trigger1 = animelem = 15
 value = 3000,4
-volume = 255
+volumescale = 100
 
 [State 3010, Step 1]
 type = PosAdd
@@ -5093,7 +5097,7 @@ type = playsnd
 trigger1 = time = 18
 value = 3000,3
 channel = 1
-volume = 255
+volumescale = 100
 
 [State 3010, BGeffects]
 type = bgpalfx
@@ -5176,7 +5180,7 @@ Physics = S
 type = playsnd
 trigger1 = animelem = 2
 value = 5000,10
-volume = 255
+volumescale = 100
 
 [State 5950, Posadd]
 type = posadd
@@ -5187,7 +5191,7 @@ x = -7
 type = playsnd
 trigger1 = animtime = 0
 value = 5000,11
-volume = 255
+volumescale = 100
 
 [State 5950, 7]
 type = ChangeState
@@ -5210,7 +5214,7 @@ hitcountpersist = 1
 type = playsnd
 trigger1 = time = 0 && parent, stateno != 5950
 value = 0,11
-volume = 255
+volumescale = 100
 
 [State 9999, invis]
 type = assertspecial
@@ -5297,13 +5301,13 @@ x = const(velocity.run.fwd.x)
 type = playsnd
 trigger1 = animelem = 2; = 2 ;|| animelem = 5
 value = 90,4;40,0
-volume = 255
+volumescale = 100
 
 [State 100, Footstep]
 type = playsnd
 trigger1 = animelem = 5
 value = 90,5
-volume = 255
+volumescale = 100
 
 [State 100, 2] ;Prevent run from canceling into walk
 type = AssertSpecial
@@ -5357,7 +5361,7 @@ sprpriority = 1
 type = playsnd
 trigger1 = animelem = 2
 value = 80,1
-volume = 255
+volumescale = 100
 
 [State 105, Pidgey]
 type = statetypeset
@@ -5721,7 +5725,7 @@ params = movehit
 type = playsnd
 trigger1 = animelemtime(23) = 2 && anim = 0
 value = 0,0
-volume = 255
+volumescale = 100
 
 [State -2, Slash begone]
 type = removeexplod
@@ -5821,14 +5825,14 @@ type = PlaySnd
 triggerall = Time = 1
 trigger1 = stateno = 52 ;Jump land
 value = 40,0 ;80, 1 ;40,0
-volume = 255
+volumescale = 100
 
 [State -3, Jumping Sound]
 type = PlaySnd
 triggerall = Time = 1
 trigger1 = stateno = 50
 value = 80, 1
-volume = 255
+volumescale = 100
 
 [State -3, JumpDust]
 type = Explod
