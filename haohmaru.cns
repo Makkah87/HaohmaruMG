@@ -2683,9 +2683,7 @@ sprpriority = 2
 
 [State 1002, Corner_Push]
 type = posadd
-triggerall = p2, statetype != l
-trigger1 = p2, backedgedist = 0 && p2dist x < 110
-trigger1 = p2, movetype = h
+trigger1 = map(kogetsu_cp) = 1 && p2dist x < 110
 x = -2;+(time/100)
 
 [State 1002, NoVelX]
@@ -2942,6 +2940,23 @@ type = VelAdd
 trigger1 = 1
 y = 0.43*1.166666666666667
 
+[State 1021, Corner_Push]
+type = posadd
+triggerall = p2, statetype != l
+trigger1 = p2, backedgedist = 0 && p2dist x < 110
+trigger1 = movecontact
+x = -3;+(time/100)
+
+[State 1021, Kogetsu_CPush]
+type = mapset
+triggerall = p2, statetype != l
+triggerall = p2, backedgedist = 0 && p2dist x < 110
+trigger1 = movecontact
+trigger2 = uniqhitcount = 1
+map = "kogetsu_cp"
+value = 1
+ignorehitpause = 1
+
 [State 1011, Decend]
 type = ChangeState
 trigger1 = Vel Y >= 0
@@ -3122,13 +3137,22 @@ type = VelAdd
 trigger1 = 1
 y = 0.55*1.166666666666667
 
-[State 1041, Corner_Push]
+[State 1021, Corner_Push]
 type = posadd
-triggerall = numtarget
-triggerall = target, statetype != l
-trigger1 = target, backedgedist = 0 && p2dist x < 110
+triggerall = p2, statetype != l
+trigger1 = p2, backedgedist = 0 && p2dist x < 110
 trigger1 = movecontact
 x = -5;+(time/100)
+
+[State 1021, Kogetsu_CPush]
+type = mapset
+triggerall = p2, statetype != l
+triggerall = p2, backedgedist = 0 && p2dist x < 110
+trigger1 = movecontact
+trigger2 = uniqhitcount = 1
+map = "kogetsu_cp"
+value = 1
+ignorehitpause = 1
 
 [State 1021, Decend]
 type = ChangeState
@@ -5718,8 +5742,18 @@ value = 710 + Var(9) ; <= that's because of the state numbers I chose for my par
 [State -2, Debug data]
 type = displaytoclipboard
 trigger1 = time >= 0
-text = "Movehit = %d,By Master Gouken" 
-params = movehit
+text = "Movehit = %d, Corner Push =%f, By Master Gouken" 
+params = movehit, map(kogetsu_cp)
+
+[State 1021, Kogetsu_CPush_Reset]
+type = mapset
+trigger1 = p2, statetype = l
+trigger2 = p2, stateno = 0
+trigger3 = stateno = 0
+trigger4 = movetype = H
+map = "kogetsu_cp"
+value = 0
+ignorehitpause = 1
 
 [State -2, Effect]
 type = playsnd
