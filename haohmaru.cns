@@ -7,7 +7,7 @@
 ;			Var(3) : Hit Voice Randomizer
 ;                       Var(4) : Combo Condition
 ;                       Var(5) : Throw Turn
-;                       Var(6) : Damage dampener
+;                       Var(6) : ----
 ;			Var(7) : Juggle Addition
 ;			Var(8) : Senpuu in play
 ;			Var(9) : Parry Variable
@@ -45,7 +45,7 @@ draw.offset = 0,0    ;Player drawing offset in pixels (x, y)
 
 [Velocity]
 walk.fwd  = 2.9           ;Walk forward
-walk.back = -2.6          ;Walk backward
+walk.back = -2.4          ;Walk backward
 run.fwd  = 5.7, 0         ;Run forward (x, y)
 run.back = -4.5,-3.8      ;Hop backward (x, y)
 jump.neu = 0,-11.33 ;-7.6   ;Neutral jumping velocity (x, y)
@@ -370,7 +370,7 @@ sprpriority = 5
 type = HitDef
 trigger1 = time = 0
 attr = S, NA 
-damage = 23,10
+damage = 28,0
 animtype = Light
 guardflag = MA
 hitflag = MAF
@@ -479,7 +479,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = S, NA
 animtype  = Medium
-damage    = 50,15
+damage    = 69,0
 guardflag = MA
 pausetime = 10,10
 sparkno = s8000+random%6
@@ -493,6 +493,11 @@ ground.hittime  = 16
 ground.velocity = -10.3
 air.velocity = -5.5,-4
 yaccel = 0.6
+
+[State 210, Close Damage]
+type = modifyhitdef
+trigger1 = !time && anim = 211
+damage = 78,0
 
 [State 210, 5]
 type = ChangeState
@@ -639,7 +644,7 @@ type = HitDef
 trigger1 = Time = 0 && anim = 221
 attr = S, NA
 animtype  = Hard
-damage    = 160,90
+damage    = 125,0
 guardflag = MA
 pausetime = 12,12
 sparkno = s8000+random%6
@@ -705,7 +710,6 @@ trigger1 = animelemtime(3)<=0
 flag = animatehitpause
 ignorehitpause = 1
 
-
 [State 230, 1]
 type = PlaySnd
 trigger1 = Time = 5
@@ -716,7 +720,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = S, NA
 animtype  = Medium
-damage    = 26,5
+damage    = 21,0
 guardflag = MA
 pausetime = 8,8
 sparkno = S8015+Random%6
@@ -798,7 +802,7 @@ type = HitDef
 trigger1 = Time = 0 && anim = 240
 attr = S, NA
 animtype  = Medium
-damage    = 34,10
+damage    = 62,0
 guardflag = MA
 pausetime = 10,10
 sparkno = s8015+random%6
@@ -818,7 +822,7 @@ type = HitDef
 trigger1 = Time = 0 && anim = 241
 attr = S, NA
 animtype  = Medium
-damage = 34,10
+damage = 56,0
 guardflag = MA
 pausetime = 11,12
 guard.pausetime = 11,15
@@ -902,7 +906,7 @@ type = HitDef
 trigger1 = Time = 0 && anim = 250
 attr = S, NA
 animtype  = Hard
-damage    = 40,0
+damage    = 83,0
 guardflag = MA
 pausetime = 12,12
 sparkno = s8015+random%6
@@ -928,7 +932,7 @@ type = HitDef
 trigger1 = Time = 0 && anim = 251
 attr = S, NA
 animtype  = Hard
-damage    = 40,0
+damage    = 90,0
 guardflag = MA
 pausetime = 12,12
 guard.pausetime = 11,15
@@ -997,7 +1001,7 @@ volumescale = 100
 type = HitDef
 trigger1 = Time = 0
 attr = C, NA
-damage    = 23,10
+damage    = 28,0
 priority  = 3
 animtype  = Light
 hitflag = MAF
@@ -1067,7 +1071,7 @@ channel = 1
 type = HitDef
 trigger1 = time = 0
 attr = C, NA
-damage    = 37,15
+damage    = 69,0
 animtype  = Medium
 hitflag = MAF
 guardflag = M
@@ -1126,11 +1130,11 @@ trigger1 = Time = 6
 value = 210, 2
 volumescale = 100
 
-[State 410, 2]
+[State 420, 2]
 type = HitDef
 trigger1 = time = 0
 attr = C, NA
-damage    = 110,60
+damage    = 97,0
 animtype  = Hard
 hitflag = MAF
 guardflag = M
@@ -1147,7 +1151,18 @@ ground.velocity = -12
 air.velocity = -4,-9
 yaccel = 0.6
 
-[State 410, 4]
+[State 420, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 420, Close Damage]
+type = modifyhitdef
+trigger1 = animelem = 3
+damage = 62,0
+
+[State 420, 4]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 11
@@ -1182,7 +1197,7 @@ value = 0, 1
 type = HitDef
 trigger1 = Time = 0
 attr = C, NA
-damage    = 28,12
+damage    = 21,0
 animtype  = Light
 hitflag = MAFD
 guardflag = L
@@ -1235,8 +1250,8 @@ ignorehitpause = 1
 type = HitDef
 trigger1 = Time = 0
 attr = C, NA
-damage    = 40,15
-hitflag = MAFD
+damage    = 49,0
+hitflag = MA
 guardflag = L
 pausetime = 10,10
 sparkno = s8015+random%6
@@ -1290,8 +1305,8 @@ ignorehitpause = 1
 type = HitDef
 trigger1 = Time = 0
 attr = C, NA
-damage    = 52,19
-hitflag = MAFD
+damage    = 76,0
+hitflag = MA
 guardflag = L
 pausetime = 12,12
 sparkno = s8015+random%6
@@ -1344,7 +1359,7 @@ value = 210, 0
 type = HitDef
 trigger1 = Time = 0
 attr = A, NA
-damage    = 20,10
+damage    = 42,0
 guardflag = HA
 priority = 3
 pausetime = 8,8
@@ -1380,10 +1395,11 @@ anim = 610
 sprpriority = 2
 hitcountpersist = 1
 
-[State 600, Width]
-type = Width
-trigger1 = 1
-value = 15,0
+[State 620, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 610, SlashEffect]
 type = Explod
@@ -1403,11 +1419,10 @@ value = 210, 1
 type = HitDef
 trigger1 = Time = 0
 attr = A, NA
-damage = 72,30
+damage = 69,0
 guardflag = HA
 priority = 4
-pausetime = 11,12
-guard.pausetime = 11,15
+pausetime = 10,10
 sparkno = s8000+random%6
 Guard.Sparkno = s8030
 sparkxy = -10,-55
@@ -1434,10 +1449,11 @@ anim = 620
 sprpriority = 2
 hitcountpersist = 1
 
-[State 620, Width]
-type = Width
-trigger1 = 1
-value = 20,0
+[State 620, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 620, SlashEffect]
 type = Explod
@@ -1457,11 +1473,10 @@ value = 210, 2
 type = HitDef
 trigger1 = Time = 0
 attr = A, NA
-damage = 111,60
+damage = 111,0
 guardflag = HA
 priority = 4
-pausetime = 12,17
-guard.pausetime = 12,22
+pausetime = 12,12
 sparkno = s8000+random%6
 Guard.Sparkno = s8030
 sparkxy = -10,-20
@@ -1489,11 +1504,6 @@ anim = 630
 sprpriority = 2
 hitcountpersist = 1
 
-[State 630, Width]
-type = Width
-trigger1 = 1
-value = 20,0
-
 [State 630, 1]
 type = PlaySnd
 trigger1 = Time = 6
@@ -1503,7 +1513,7 @@ value = 0, 1
 type = HitDef
 trigger1 = Time = 0
 attr = A, NA
-damage = 26,8
+damage = 35,0
 guardflag = HA
 priority = 3
 pausetime = 11,12
@@ -1534,11 +1544,6 @@ anim = 640
 sprpriority = 2
 hitcountpersist = 1
 
-[State 640, Width]
-type = Width
-trigger1 = 1
-value = 20,0
-
 [State 640, 2]
 type = PlaySnd
 trigger1 = Time = 7
@@ -1548,11 +1553,10 @@ value = 0, 2
 type = HitDef
 trigger1 = Time = 0
 attr = A, NA
-damage    = 70,40
+damage    = 56,0
 guardflag = HA
 priority = 6
-pausetime = 11,12
-guard.pausetime = 11,15
+pausetime = 10,10
 sparkno = s8015+random%6
 Guard.Sparkno = s8030
 sparkxy = -15,-80
@@ -1580,11 +1584,6 @@ anim = 650
 sprpriority = 2
 hitcountpersist = 1
 
-[State 650, Width]
-type = Width
-trigger1 = 1
-value = 20,0
-
 [State 650, 2]
 type = PlaySnd
 trigger1 = Time = 4
@@ -1594,7 +1593,7 @@ value = 0, 3
 type = HitDef
 trigger1 = Time = 0
 attr = A, NA
-damage    = 75,42
+damage    = 76,0
 guardflag = HA
 priority = 7
 pausetime = 11,12
@@ -2058,7 +2057,7 @@ type = HitDef
 trigger1 = Time = 1
 attr = S, NT
 animtype  = Hard
-damage    = 30, 0
+damage    = 146, 0
 getpower  = 0
 priority  = 4
 guardflag = MA
@@ -2330,7 +2329,7 @@ ampl  = -6
 type = LifeAdd
 trigger1 = Vel Y > 0
 trigger1 = Pos Y >= 0
-value = -10
+value = -132
 
 [State 831, 2] ; Recover near ground (use ChangeState)
 type = ChangeState
@@ -2522,12 +2521,6 @@ ctrl = 0
 sprpriority = 2
 hitcountpersist = 1
 
-[State 1000, UCantHitMe]
-type = NotHitBy
-trigger1 = time = 0
-value = SCA
-time = 22
-
 [State 1000, SlashEffect]
 type = Explod
 trigger1 = animelem = 2
@@ -2543,7 +2536,7 @@ trigger1 = animelem = 6
 anim = 1005
 id = 1005
 postype = p1
-bindtime = -1
+bindtime = 0
 sprpriority = 5
 
 [State 1000, VelSet]
@@ -2580,7 +2573,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = S, SA
 animtype  = Hard
-damage    = 30,15
+damage    = 97,15
 priority  = 7
 guardflag = MA
 pausetime = 12,12
@@ -2774,12 +2767,6 @@ ctrl = 0
 sprpriority = 2
 hitcountpersist = 1
 
-[State 1010, UCantHitMe]
-type = NotHitBy
-trigger1 = time = 0
-value = SCA
-time = 22
-
 [State 1010, Anim_HitPause]
 type = assertspecial
 trigger1 = animelemtime(4)<=0
@@ -2801,7 +2788,7 @@ trigger1 = animelem = 6
 anim = 1005
 id = 1005
 postype = p1
-bindtime = -1
+bindtime = 0
 sprpriority = 5
 
 [State 1010, VelSet]
@@ -2832,7 +2819,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = S, SA
 animtype  = Hard
-damage    = 50,15
+damage    = 62,15
 priority  = 5
 guardflag = MA
 pausetime = 12,12
@@ -2891,7 +2878,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = S, SA
 animtype  = Hard
-damage    = 50,19
+damage    = 42,19
 priority  = 5
 guardflag = MA
 pausetime = 12,12
@@ -2977,12 +2964,6 @@ ctrl = 0
 sprpriority = 2
 hitcountpersist = 1
 
-[State 1020, UCantHitMe]
-type = NotHitBy
-trigger1 = time = 0
-value = SCA
-time = 22
-
 [State 1020, SlashEffect]
 type = Explod
 trigger1 = animelem = 2
@@ -2998,7 +2979,7 @@ trigger1 = animelem = 6
 anim = 1005
 id = 1005
 postype = p1
-bindtime = -1
+bindtime = 0
 sprpriority = 5
 
 [State 1020, VelSet]
@@ -3029,7 +3010,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = S, SA
 animtype  = Hard
-damage    = 60,20
+damage    = 69,20
 priority  = 5
 guardflag = MA
 pausetime = 12,12
@@ -3088,7 +3069,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = S, SA
 animtype  = Hard
-damage    = 70,35
+damage    = 42,20
 priority  = 5
 guardflag = MA
 pausetime = 12,12
@@ -3261,7 +3242,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = S, SA
 animtype  = Hard
-damage    = 80, 30
+damage    = 83, 30
 getpower  = 100
 priority  = 4
 guardflag = MA
@@ -3288,6 +3269,11 @@ fall.yvelocity = -3
 yaccel = 0.60
 fall = 1
 fall.recover = 0
+
+[State 1031, Attack Level]
+type = modifyhitdef
+trigger1 = !time && prevstateno != 1030
+damage = ifelse(prevstateno = 1040, 90, 97),30
 
 [State 1031, Effect]
 type = playsnd
@@ -3334,8 +3320,8 @@ volumescale = 100
 [State 1040, Jump]
 type = velset
 trigger1 = time = 0
-x = 6.3
-y = -11.3
+x = 4.5
+y = -13.5
 
 [State 1040, Gravity]
 type = veladd
@@ -3377,7 +3363,7 @@ volumescale = 100
 [State 1050, Jump]
 type = velset
 trigger1 = animelem = 2
-x = 6.8
+x = 7.3
 y = -13.4
 
 [State 1050, Gravity]
@@ -3553,11 +3539,6 @@ stateno = 1062
 attr = SCA, NP, SP, HP
 ignorehitpause = 1
 
-[State 1061, Set]
-type = posadd
-trigger1 = movehit && anim = 1061
-x = (p2dist X)
-ignorehitpause = 0
 
 [State 1061, Spiral]
 type = changeanim
@@ -3570,12 +3551,12 @@ type = HitDef
 trigger1 = Time = 1
 attr = S, SP
 animtype  = Diagup
-damage    = 120, 60
-getpower  = 0
+damage    = 69,20
+getpower  = 30
 priority  = 4
-guardflag = MA
-hitflag = MAFD
-pausetime = 2,12
+guardflag = M
+hitflag = MAD
+pausetime = 0,5
 Sparkno = -1
 Guard.Sparkno = s8031
 sparkxy = -10,-60
@@ -3585,9 +3566,9 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 20
 ground.hittime  = 20
-ground.velocity = 0, -11
+ground.velocity = -1.3, -14
 guard.velocity = -2
-air.velocity = 0,-10.5
+air.velocity = -1.3,-14
 airguard.velocity = -5, -4
 envshake.time = 10
 envshake.ampl = 4
@@ -3595,7 +3576,7 @@ envshake.freq = 176
 fall.envshake.time = 10
 fall.envshake.ampl = 4
 fall.envshake.freq = 176
-yaccel = 0.45
+yaccel = 0.6
 fall = 1
 fall.recover = 0
 
@@ -3781,12 +3762,6 @@ type = VelSet
 trigger1 = Movehit
 x = 0
 
-[State 1066, Set]
-type = posadd
-trigger1 = movehit && anim = 1061
-x = (p2dist X)
-ignorehitpause = 0
-
 [State 1066, Spiral]
 type = changeanim
 trigger1 = movehit && anim != 1062
@@ -3821,12 +3796,12 @@ type = HitDef
 trigger1 = Time = 1
 attr = S, SP
 animtype  = Diagup
-damage    = 120, 60
+damage    = 76, 25
 getpower  = 0
 priority  = 4
-guardflag = MA
-hitflag = MAFD
-pausetime = 2,12
+guardflag = M
+hitflag = MAD
+pausetime = 0,5
 Sparkno = -1
 Guard.Sparkno = s8031
 guardsound = s300,3
@@ -3836,9 +3811,9 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 20
 ground.hittime  = 20
-ground.velocity = 0, -15
+ground.velocity = -1.7, -15
 guard.velocity = -2
-air.velocity = 0,-14.5
+air.velocity = -2.3,-14.5
 airguard.velocity = -5, -4
 envshake.time = 10
 envshake.ampl = 4
@@ -3989,12 +3964,6 @@ type = VelSet
 trigger1 = Movehit
 x = 0
 
-[State 1071, Set]
-type = posadd
-trigger1 = movehit && anim = 1061
-x = (p2dist X)
-ignorehitpause = 0
-
 [State 1071, Spiral]
 type = changeanim
 trigger1 = movehit && anim != 1062
@@ -4035,11 +4004,11 @@ type = HitDef
 trigger1 = Time = 1
 attr = S, SP
 animtype  = Diagup
-damage    = 120, 60
+damage    = 83, 30
 getpower  = 0
 priority  = 4
-guardflag = MA
-hitflag = MAFD
+guardflag = M
+hitflag = MAD
 pausetime = 2,12
 Guard.Sparkno = s8031
 guardsound = s300,3
@@ -4050,9 +4019,9 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 20
 ground.hittime  = 20
-ground.velocity = 0, -20
+ground.velocity = -2.4, -20
 guard.velocity = -2
-air.velocity = 0,-20
+air.velocity = -2.4,-20
 airguard.velocity = -5, -4
 envshake.time = 10
 envshake.ampl = 4
@@ -4081,7 +4050,7 @@ value = 1062
 ;----------------------------------------------------------------------
 [Statedef 1080]
 type    = S
-movetype= I
+movetype= A
 physics = N
 juggle  = 6
 velset = 0,0
@@ -4089,13 +4058,18 @@ anim = 1080
 ctrl = 0
 sprpriority = 2
 
-[State 220, Width]
-type = Width
-trigger1 = 1
-value = 15,0
+[State 1080, Mid_Anim]
+type = changeanim
+trigger1 = !time && command = "b"
+value = 1085
+
+[State 1080, Strong_Anim]
+type = changeanim
+trigger1 = !time && command = "c"
+value = 1086
 
 [State 1080, Reversaldef]
-type = ReversalDef
+type = null;ReversalDef
 trigger1 = Time >= 0 && command = "holdup"
 reversal.attr = SCA,NA,SA
 pausetime = 15,30
@@ -4104,7 +4078,7 @@ hitsound   = s300,3
 p1stateno = 1020
 
 [State 1080, Reversaldef]
-type = ReversalDef
+type = null;ReversalDef
 trigger1 = Time >= 0 && command != "holdup"
 reversal.attr = SCA,NA,SA
 pausetime = 5,30
@@ -4738,18 +4712,12 @@ ctrl = 0
 [Statedef 3000]
 type    = S
 movetype= A
-physics = S
+physics = N
 juggle  = 4
 velset = 0,0
 anim = 3000
 ctrl = 0
 sprpriority = 2
-hitcountpersist = 1
-
-[State 3000, Width]
-type = Width
-trigger1 = AnimElem = 2, >= 0
-value = 12,0
 
 [State 3000, Tenha]
 type = playsnd
@@ -4766,8 +4734,7 @@ anim = S3005
 sound = s3000,10
 poweradd = -1000
 darken = 0
-time = 40
-movetime = 40
+time = 30
 
 [State 3000, BGeffects]
 type = bgpalfx
@@ -4795,7 +4762,7 @@ time = 16
 
 [State 1000, SlashEffect]
 type = Explod
-trigger1 = animelem = 2
+trigger1 = animelem = 2 && !map(cycle)
 anim = 3002
 id = 3002
 postype = p1
@@ -4804,75 +4771,70 @@ sprpriority = 5
 
 [State 3000, SlashEffect]
 type = Explod
-trigger1 = animelem = 6
-trigger2 = animelem = 12
-trigger3 = animelem = 18
-trigger4 = animelem = 24
-trigger5 = animelem = 30
+trigger1 = animelemtime(1) = 1 && map(cycle) >= 1
 anim = 3003
 id = 3003
+pos = 0,0
 postype = p1
 bindtime = -1
 sprpriority = 5
 
 [State 3000, Super E]
 type = NotHitBy
-trigger1 = AnimElemTime(2) >= 0 && AnimElemTime(14) < 0
-value2 = C, NA
-time = 1
+trigger1 = !time
+value2 = SCA
+time = 8
 
 [State 3000, 1]
 type = PlaySnd
 trigger1 = AnimElem = 2
-trigger2 = AnimElem = 8
-trigger3 = AnimElem = 14
-trigger4 = AnimElem = 20
-trigger5 = AnimElem = 26
 value = 210,1
 volumescale = 100
+channel = 5
 
 [State 3000, Move]
-type = VelSet
-trigger1 = AnimElem = 2
-trigger2 = AnimElem = 8
-trigger3 = AnimElem = 14
-trigger4 = AnimElem = 20
-trigger5 = AnimElem = 26
-x = 8
+type = Veladd
+trigger1 = AnimElemtime(2)> 0
+x = 0.43
 
 [State 3000, Slow]
 type = VelSet
-trigger1 = AnimElem = 7
-trigger2 = AnimElem = 13
-trigger3 = AnimElem = 19
-trigger4 = AnimElem = 25
-trigger5 = AnimElem = 31
-x = 12
+trigger1 = AnimElem = 6
+x = 0
+
+[State 3000, Cycle_Count]
+type = mapset
+trigger1 = !time
+map = "cycle"
+value = 0
+
+[State 3000, Cycle_Count]
+type = mapadd
+trigger1 = animelem = 4
+map = "cycle"
+value = 1
 
 [State 3000, 5]
 type = HitDef
-trigger1 = AnimElem = 2
-trigger2 = AnimElem = 8
-trigger3 = AnimElem = 14
-trigger4 = AnimElem = 20
-trigger5 = AnimElem = 26
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 4
 attr = S, HA
 animtype  = Hard
 damage    = 35,17
 getpower  = 0
 priority  = 6
 guardflag = MA
-pausetime = 4,5
+pausetime = 3,1
 sparkno = s8008+random%3
 guardsound = s300,3
 Guard.Sparkno = s8031
-sparkxy = -45,-60
+sparkxy = -45,-5
 hitsound   = s250,0
 guardsound = 6,0
-ground.type = High
+ground.type = low
 ground.slidetime = 30
 ground.hittime  = 30
-ground.velocity = -3
+ground.velocity = -1.2
 air.velocity = -3,-2.8
 air.fall = 1
 fall.animtype = Hard
@@ -4880,38 +4842,17 @@ fall.recover = 0
 envshake.time = 10
 envshake.ampl = 3
 envshake.freq = 176
+envshake.dir = 0.9
 
-[State 3000, 5]
-type = HitDef
-trigger1 = AnimElem = 26
-attr = S, HA
-animtype  = Hard
-damage    = 72,40
-getpower  = 0
-priority  = 6
-guardflag = MA
-pausetime = 4,5
-sparkno = s8008+random%3
-guardsound = s300,3
-Guard.Sparkno = s8031
-sparkxy = -45,-70
-hitsound   = s250,0
-guardsound = 6,0
-ground.type = Low
-ground.slidetime = 30
-ground.hittime  = 30
-ground.velocity = -1.8,-5
-air.velocity = -3,-4.5
-air.fall = 1
-fall.animtype = Hard
-fall.recover = 0
-envshake.time = 10
-envshake.ampl = 4
-envshake.freq = 176
+[State 3000, High Hit]
+type = modifyhitdef
+trigger1 = animelem = 4
+ground.type = high
+sparkxy = -45,-60
 
 [State 3000, 7]
 type = ChangeState
-trigger1 = AnimTime = 0
+trigger1 = AnimTime = 0 && map(cycle) = 3
 value = 3001
 ctrl = 0
 ;======================================================================
@@ -4922,7 +4863,7 @@ type    = A
 movetype= A
 physics = N
 juggle  = 4
-poweradd= 110
+poweradd= 0
 anim = 1001
 sprpriority = 2
 
@@ -4936,13 +4877,13 @@ channel = 1
 [State 3001, 5]
 type = HitDef
 trigger1 = Time = 0
-attr = S, SA
+trigger2 = animelem = 3 && UniqHitCount < 3
+attr = A, HA
 animtype  = Hard
-damage    = 70,40
+damage    = 17,8
 priority  = 5
 guardflag = MA
-pausetime = 12,10
-guard.pausetime = 12,15
+pausetime = 3.3
 sparkno = s8008+random%3
 guardsound = s300,3
 Guard.Sparkno = s8031
@@ -4952,18 +4893,14 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -3,-11
-air.velocity = -3,-11
+ground.velocity = -3,-4
+air.velocity = -1.1,-11
 envshake.time = 10
 envshake.ampl = 6
-envshake.freq = 176
+envshake.freq = 130
 fall.recover = 0
 fall = 1
-
-[State 3001, Width]
-type = width
-trigger1 = 1
-value = 14,0
+yaccel = 0.65
 
 [State 3001, Woosh]
 type = playsnd
@@ -4980,7 +4917,7 @@ x = 1.9
 [State 3001, Gravity]
 type = VelAdd
 trigger1 = 1
-y = 0.45
+y = 0.6
 
 [State 3001, Decend]
 type = ChangeState
@@ -5012,27 +4949,7 @@ time = 20
 type = NotHitBy
 trigger1 = time = 20
 value = SCA, NT,ST,HT
-time = 20
-
-[State 3010, Width]
-type = Width
-trigger1 = AnimElemtime(12) < 0
-value = 8,0
-
-[State 3010, Width]
-type = Width
-trigger1 = AnimElemtime(14) < 0 && AnimElemtime(12) >= 0
-value = 12,0
-
-[State 3010, Width]
-type = Width
-trigger1 = AnimElemtime(14) >= 0 && AnimElemtime(19) < 0
-value = 40,0
-
-[State 3010, Width]
-type = Width
-trigger1 = AnimElemtime(19) >= 0
-value = 8,0
+time = 42
 
 [State 3010, Super A]
 type = SuperPause
@@ -5042,11 +4959,11 @@ anim = S3005
 sound = s3000,10
 poweradd = -3000
 darken = 0
-time = 95
+time = 30
 
 [State 3010,Effect1]
 type = Explod
-trigger1 = animelem = 12
+trigger1 = animelemtime(8) = 6
 anim = 3012
 id = 3012
 postype = p1
@@ -5056,7 +4973,7 @@ sprpriority = 5
 
 [State 3010,Effect2]
 type = Explod
-trigger1 = animelem = 13
+trigger1 = animelem = 10
 anim = 3011
 id = 3011
 postype = p1
@@ -5078,42 +4995,42 @@ volumescale = 100
 
 [State 3010, Step 1]
 type = PosAdd
-trigger1 = animelem = 11
+trigger1 = animelem = 7
 x = 24
 
 [State 3010, Step 2]
 type = PosAdd
-trigger1 = animelem = 12
+trigger1 = animelem = 8
 x = 25
 
 [State 3010, Step 3]
 type = PosAdd
-trigger1 = animelem = 13
+trigger1 = animelem = 9
 x = 13
 
 [State 3010, Step 4] ;total = 83 pixels
 type = PosAdd
-trigger1 = animelem = 14
+trigger1 = animelem = 10
 x = 22
 
 [State 3010, Step5]
 type = PosAdd
-trigger1 = AnimElem = 18
+trigger1 = AnimElem = 14
 x = -16
 
 [State 3010, Step6]
 type = PosAdd
-trigger1 = AnimElem = 19
+trigger1 = AnimElem = 15
 x = -20
 
 [State 3010, Step7]
 type = PosAdd
-trigger1 = AnimElem = 20
+trigger1 = AnimElem = 16
 x = -22
 
 [State 3010, Step8]
 type = PosAdd
-trigger1 = AnimElem = 21
+trigger1 = AnimElem = 17
 x = -20
 
 [State 3010, TakeThis!!]
@@ -5133,8 +5050,8 @@ time = 80
 type = HitDef
 trigger1 = Time = 0
 attr = S, SA
-animtype  = Hard
-damage    = 500,300
+animtype  = diagup
+damage    = 465,120
 priority  = 7
 guardflag = MA
 pausetime = 20,18
@@ -5148,14 +5065,15 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -4,-8
-air.velocity = -4.2,-6
+ground.velocity = -12,-12
+air.velocity = -12,-12
 envshake.time = 10
 envshake.ampl = 8
 envshake.freq = 176
 fall.recover = 0
 fall = 1
 getpower = 0
+yaccel = 0.75
 
 [State 3010, Shadows]
 type = Afterimage
@@ -5171,7 +5089,7 @@ Trans = Add1
 
 [State 3010, Super C]
 type = AfterImageTime
-trigger1 = animelemtime(22)=3
+trigger1 = animelemtime(15)=3
 time = 2
 
 [State 3010, End]
@@ -5942,29 +5860,6 @@ triggerall = Time = 1
 triggerall = Alive = 1
 trigger1 = StateNo = 5100 && Random < 500
 value = 5000,ifelse(random > 500,0,4)
-
-[State -3, HitRecord]
-type = varset
-trigger1 = 1
-v = 6
-value = hitcount
-ignorehitpause = 1
-
-[State -3, Var(6)Re-Set]
-type = varset
-trigger1 = enemynear,movetype !=H
-v = 6
-value = 0
-
-[State -3, Damagedampener]
-type = AttackMulSet
-trigger1 = Var(6)>=2 && stateno != 3000
-value = 0.5 ;(10-(Var(6)+2))*0.10
-
-[State -3, DampenerDe-activate]
-type = AttackMulSet
-trigger1 = Var(6) = 0
-value = 1.0
 
 [State 1071, NoJuggle]
 type = varset
