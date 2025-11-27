@@ -4888,7 +4888,7 @@ channel = 1
 [State 3001, 5]
 type = HitDef
 trigger1 = Time = 0
-trigger2 = animelem = 3 && (UniqHitCount < 3 || guardcount <3)
+trigger2 = animelem = 3 && (UniqHitCount < 3 && guardcount < 3)
 attr = A, HA
 animtype  = Hard
 damage    = 17,8
