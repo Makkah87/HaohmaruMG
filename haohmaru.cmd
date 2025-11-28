@@ -160,27 +160,27 @@ command = ~D, DF, F, c
 
 [Command]
 name = "ress1"
-command = ~D, DB, x
+command = ~D, DB, B, x
 
 [Command]
 name = "ress1"
-command = ~D, DB, ~x
+command = ~D, DB, B, ~x
 
 [Command]
 name = "ress2"
-command = ~D, DB, y
+command = ~D, DB, B, y
 
 [Command]
 name = "ress2"
-command = ~D, DB, ~y
+command = ~D, DB, B, ~y
 
 [Command]
 name = "ress3"
-command = ~D, DB, z
+command = ~D, DB, B, z
 
 [Command]
 name = "ress3"
-command = ~D, DB, ~z
+command = ~D, DB, B, ~z
 ;-| Double Tap |----------------------------------------------------------------------
 [Command]
 name = "FF"     ;Required (do not remove)

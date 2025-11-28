@@ -22,7 +22,9 @@ airjuggle = 17            ;Number of juggle points
 sparkno = 3               ;Default spark number
 guard.sparkno = s1105     ;Default spark number
 KO.echo = 0               ;Whether there should be an echo upon death
-volume = 225              ;Pretty much self explanitory
+volumescale = 100              ;Pretty much self explanitory
+hitsound.channel = 6	  ;Default channel for hit sounds
+guardsound.channel = 6
 IntPersistIndex = 60      ;Variables with this index and above will not 
 FloatPersistIndex = 40    ;have their values reset to 0 between rounds
 ;====================================================================
@@ -376,7 +378,9 @@ guardflag = MA
 hitflag = MAF
 priority = 3, Hit
 pausetime = 8,8
-sparkno = s8000+RANDOM%6
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.5,0.5
 Guard.Sparkno = s8030
 sparkxy = -10, -69
 hitsound = s250, 0
@@ -400,7 +404,7 @@ channel = 1
 
 [State 200, 1]
 type = PlaySnd
-trigger1 = Time = 3
+trigger1 = Time = 2
 value = 210, 0
 volumescale = 100
 
@@ -482,7 +486,9 @@ animtype  = Medium
 damage    = 69,0
 guardflag = MA
 pausetime = 10,10
-sparkno = s8000+random%6
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.5,0.6
 Guard.Sparkno = s8030
 sparkxy = -10,-60
 hitsound   = s250,1
@@ -603,7 +609,7 @@ x = -20
 
 [State 220, 1]
 type = PlaySnd
-trigger1 = Time = 15 && anim = 220
+trigger1 = Time = 13 && anim = 220
 trigger2 = Time = 8 && anim = 221
 value = 210, 2
 volumescale = 100
@@ -623,7 +629,9 @@ animtype  = Hard
 damage    = 208,90
 guardflag = MA
 pausetime = 12,12
-sparkno = s8000+random%6
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.5,0.75
 Guard.Sparkno = s8030
 sparkxy = -33,-50
 hitsound   = s250,2
@@ -646,7 +654,9 @@ animtype  = Hard
 damage    = 125,0
 guardflag = MA
 pausetime = 12,12
-sparkno = s8000+random%6
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.5,0.75
 Guard.Sparkno = s8030
 sparkxy = -20,-50
 hitsound   = s250,2
@@ -722,7 +732,7 @@ animtype  = Medium
 damage    = 21,0
 guardflag = MA
 pausetime = 8,8
-sparkno = S8015+Random%6
+sparkno = S8000
 Guard.Sparkno = s8030
 sparkxy = -10,-3
 hitsound   = s300,0
@@ -756,7 +766,7 @@ hitcountpersist = 1
 
 [State 240, Voice]
 type = PlaySnd
-trigger1 = Time = 4 && random < 600
+trigger1 = Time = 3 && random < 600
 value = 400, ifelse(random < 200,0,1)
 volumescale = 100
 channel = 1
@@ -778,7 +788,7 @@ x = 10
 
 [State 240, Woosh]
 type = PlaySnd
-trigger1 = Time = 4
+trigger1 = Time = 3
 value = 0, 2
 volumescale = 100
 
@@ -804,7 +814,7 @@ animtype  = Medium
 damage    = 62,0
 guardflag = MA
 pausetime = 10,10
-sparkno = s8015+random%6
+sparkno = s8000
 Guard.Sparkno = s8030
 sparkxy = -16,-85
 hitsound   = s300,1
@@ -824,9 +834,8 @@ attr = S, NA
 animtype  = Medium
 damage = 56,0
 guardflag = MA
-pausetime = 11,12
-guard.pausetime = 11,15
-sparkno = s8015+random%6
+pausetime = 10,10
+sparkno = s8000
 Guard.Sparkno = s8030
 sparkxy = -25,-45
 hitsound   = s300,1
@@ -897,7 +906,7 @@ ignorehitpause = 1
 
 [State 250, Woosh]
 type = PlaySnd
-trigger1 = Time = 7 && anim = 250
+trigger1 = Time = 5 && anim = 250
 trigger2 = Time = 5 && anim = 251
 value = 0, 2
 volumescale = 100
@@ -910,7 +919,7 @@ animtype  = Hard
 damage    = 83,0
 guardflag = MA
 pausetime = 12,12
-sparkno = s8015+random%6
+sparkno = s8000
 Guard.Sparkno = s8030
 sparkxy = -10,-60
 hitsound   = s300,2
@@ -936,8 +945,7 @@ animtype  = Hard
 damage    = 90,0
 guardflag = MA
 pausetime = 12,12
-guard.pausetime = 11,15
-sparkno = s8015+random%6
+sparkno = s8000
 Guard.Sparkno = s8030
 sparkxy = -22,-85
 hitsound   = s300,2
@@ -1008,7 +1016,9 @@ animtype  = Light
 hitflag = MAF
 guardflag = L
 pausetime = 8,8
-sparkno = s8000+random%6
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.5,0.5
 Guard.Sparkno = s8030
 sparkxy = -13,-53
 hitsound   = s250,0
@@ -1042,7 +1052,7 @@ hitcountpersist = 1
 
 [State 410, Voice]
 type = PlaySnd
-trigger1 = Time = 6 && random < 600
+trigger1 = Time = 4 && random < 600
 value = 400, 1
 volumescale = 100
 channel = 1
@@ -1077,7 +1087,9 @@ animtype  = Medium
 hitflag = MAF
 guardflag = M
 pausetime = 10,10
-sparkno = s8000+random%6
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.5,0.6
 Guard.Sparkno = s8030
 sparkxy = -19,-30
 hitsound   = s250,1
@@ -1140,7 +1152,9 @@ animtype  = Hard
 hitflag = MAF
 guardflag = M
 pausetime = 12,12
-sparkno = s8000+random%6
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.5,0.75
 Guard.Sparkno = s8030
 sparkxy = -15,-80
 hitsound   = s250,2
@@ -1191,7 +1205,7 @@ ignorehitpause = 1
 
 [State 430, 1]
 type = PlaySnd
-trigger1 = Time = 3
+trigger1 = Time = 2
 value = 0, 1
 
 [State 430, 2]
@@ -1203,7 +1217,7 @@ animtype  = Light
 hitflag = MAFD
 guardflag = L
 pausetime = 8,8
-sparkno = s8015+random%6
+sparkno = s8000
 Guard.Sparkno = s8030
 sparkxy = -10,-8
 hitsound   = s300,0
@@ -1238,7 +1252,7 @@ hitcountpersist = 1
 
 [State 440, 2]
 type = PlaySnd
-trigger1 = Time = 4
+trigger1 = Time = 3
 value = 0, 2
 
 [State 440, Anim_HitPause]
@@ -1255,7 +1269,7 @@ damage    = 49,0
 hitflag = MA
 guardflag = L
 pausetime = 10,10
-sparkno = s8015+random%6
+sparkno = s8000
 Guard.Sparkno = s8030
 sparkxy = -5,-10
 hitsound   = s300,1
@@ -1293,7 +1307,7 @@ x = 12
 
 [State 450, 2]
 type = PlaySnd
-trigger1 = Time = 15
+trigger1 = Time = 13
 value = 0, 3
 
 [State 440, Anim_HitPause]
@@ -1310,7 +1324,7 @@ damage    = 76,0
 hitflag = MA
 guardflag = L
 pausetime = 12,12
-sparkno = s8015+random%6
+sparkno = s8000
 Guard.Sparkno = s8030
 sparkxy = -5,-10
 hitsound   = s300,2
@@ -1364,8 +1378,9 @@ damage    = 42,0
 guardflag = HA
 priority = 3
 pausetime = 8,8
-guard.pausetime = 9,12
-sparkno = s8000+random%6
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.5,0.5
 Guard.Sparkno = s8030
 sparkxy = -10,-58
 hitsound   = s250,0
@@ -1424,7 +1439,9 @@ damage = 69,0
 guardflag = HA
 priority = 4
 pausetime = 10,10
-sparkno = s8000+random%6
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.5,0.6
 Guard.Sparkno = s8030
 sparkxy = -10,-55
 hitsound   = s250,1
@@ -1478,7 +1495,9 @@ damage = 111,0
 guardflag = HA
 priority = 4
 pausetime = 12,12
-sparkno = s8000+random%6
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.5,0.75
 Guard.Sparkno = s8030
 sparkxy = -10,-20
 hitsound   = s250,2
@@ -1517,9 +1536,8 @@ attr = A, NA
 damage = 35,0
 guardflag = HA
 priority = 3
-pausetime = 11,12
-guard.pausetime = 11,15
-sparkno = s8015+random%6
+pausetime = 8,8
+sparkno = s8000
 Guard.Sparkno = s8030
 sparkxy = -15,-80
 hitsound   = s300,0
@@ -1558,7 +1576,7 @@ damage    = 56,0
 guardflag = HA
 priority = 6
 pausetime = 10,10
-sparkno = s8015+random%6
+sparkno = s8000
 Guard.Sparkno = s8030
 sparkxy = -15,-80
 hitsound   = s300,1
@@ -1597,9 +1615,8 @@ attr = A, NA
 damage    = 76,0
 guardflag = HA
 priority = 7
-pausetime = 11,12
-guard.pausetime = 11,19
-sparkno = s8015+random%6
+pausetime = 12,12
+sparkno = s8000
 Guard.Sparkno = s8030
 sparkxy = -10,-40
 hitsound   = s300,2
@@ -2560,7 +2577,7 @@ channel = 1
 [State 1000, Woosh]
 type = playsnd
 trigger1 = animelem = 2
-value = 210,0
+value = 1000,5
 volumescale = 100
 
 [State 1000, Anim_HitPause]
@@ -2578,7 +2595,9 @@ damage    = 97,15
 priority  = 7
 guardflag = MA
 pausetime = 12,12
-sparkno = s8008+random%3
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
 guardsound = s300,3
 Guard.Sparkno = s8031
 sparkxy = -35,-60
@@ -2812,7 +2831,7 @@ channel = 1
 [State 1010, Woosh]
 type = playsnd
 trigger1 = animelem = 4
-value = 210,0
+value = 1000,5
 volumescale = 100
 
 [State 1010, 5]
@@ -2824,7 +2843,9 @@ damage    = 62,15
 priority  = 5
 guardflag = MA
 pausetime = 12,12
-sparkno = s8008+random%3
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
 guardsound = s300,3
 Guard.Sparkno = s8031
 sparkxy = -40,-60
@@ -2883,7 +2904,9 @@ damage    = 42,19
 priority  = 5
 guardflag = MA
 pausetime = 12,12
-sparkno = s8008+random%3
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
 guardsound = s300,3
 Guard.Sparkno = s8031
 sparkxy = -20,-110
@@ -3003,7 +3026,7 @@ channel = 1
 [State 1020, Woosh]
 type = playsnd
 trigger1 = animelem = 4
-value = 210,0
+value = 1000,5
 volumescale = 100
 
 [State 1020, 5]
@@ -3015,7 +3038,9 @@ damage    = 69,20
 priority  = 5
 guardflag = MA
 pausetime = 12,12
-sparkno = s8008+random%3
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
 guardsound = s300,3
 Guard.Sparkno = s8031
 sparkxy = -40,-60
@@ -3074,7 +3099,9 @@ damage    = 42,20
 priority  = 5
 guardflag = MA
 pausetime = 12,12
-sparkno = s8008+random%3
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
 guardsound = s300,3
 Guard.Sparkno = s8031
 sparkxy = -20,-110
@@ -3249,7 +3276,9 @@ priority  = 4
 guardflag = MA
 hitflag = MAFD
 pausetime = 12,12
-sparkno = s8008+random%3
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
 Guard.Sparkno = s8031
 sparkxy = -10,-40
 hitsound   = s250,2
@@ -4590,7 +4619,6 @@ damage    = 90, 30
 priority  = 5
 guardflag = MA
 pausetime = 3,3
-guard.pausetime = 10,15
 Guard.Sparkno = s8031
 sparkxy = -10,-60
 hitsound   = s250,1
@@ -4655,7 +4683,6 @@ damage    = 20,10
 priority  = 5
 guardflag = MA
 pausetime = 3,2
-guard.pausetime = 15,12
 Guard.Sparkno = s8031
 sparkxy = -10,-60
 hitsound   = s250,2
@@ -4727,6 +4754,13 @@ value = 3000,1
 volumescale = 100
 channel = 1
 
+[State 3000, SlashSND]
+type = playsnd
+trigger1 = animelem = 2
+value = 1000,5
+volumescale = 100
+channel = 3
+
 [State 3000, Super A]
 type = SuperPause
 trigger1 = time = 0
@@ -4787,7 +4821,7 @@ value2 = SCA
 time = 8
 
 [State 3000, 1]
-type = PlaySnd
+type = null;PlaySnd
 trigger1 = AnimElem = 2
 value = 210,1
 volumescale = 100
@@ -4826,7 +4860,8 @@ getpower  = 0
 priority  = 6
 guardflag = MA
 pausetime = 3,1
-sparkno = s8008+random%3
+sparkno = s8017
+sparkangle = random%360
 guardsound = s300,3
 Guard.Sparkno = s8031
 sparkxy = -45,-5
@@ -4885,6 +4920,16 @@ value = 3000,2
 volumescale = 100
 channel = 1
 
+[State 3000, SlashEffect]
+type = Explod
+trigger1 = !time
+anim = 3003
+id = 3003
+pos = 0,0
+postype = p1
+bindtime = 0
+sprpriority = 5
+
 [State 3001, 5]
 type = HitDef
 trigger1 = Time = 0
@@ -4895,7 +4940,8 @@ damage    = 17,8
 priority  = 5
 guardflag = MA
 pausetime = 3.3
-sparkno = s8008+random%3
+sparkno = s8017
+sparkangle = random%360
 guardsound = s300,3
 Guard.Sparkno = s8031
 sparkxy = -20,-110
@@ -4905,6 +4951,7 @@ ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = -3,-7
+guard.velocity =  -7.2
 air.velocity = -1.1,-11
 envshake.time = 3
 envshake.ampl = 6
@@ -5010,7 +5057,7 @@ volumescale = 100
 
 [State 3010, Effect]
 type = playsnd
-trigger1 = animelem = 15
+trigger1 = animelem = 10
 value = 3000,4
 volumescale = 100
 
@@ -5075,9 +5122,8 @@ animtype  = diagup
 damage    = 465,120
 priority  = 7
 guardflag = MA
-pausetime = 20,18
-guard.pausetime = 12,30
-sparkno = s8008+random%3
+pausetime = 19,19
+sparkno = s8017
 guardsound = s300,3
 Guard.Sparkno = s8031
 sparkxy = -10,-60
@@ -5340,6 +5386,12 @@ x = -6.7
 type = velset
 trigger1 = animelemtime(5) = 4
 x = 0
+
+[State 105, Landing Sound]
+type = PlaySnd
+trigger1 = animelemtime(5) = 4
+value = 40,0
+volumescale = 100
 
 [State 105, LandingDust]
 type = Explod
