@@ -1493,6 +1493,7 @@ trigger1 = Time = 0
 attr = A, NA
 damage = 111,0
 guardflag = HA
+animtype = hard
 priority = 4
 pausetime = 12,12
 sparkno = s8017
@@ -5117,7 +5118,7 @@ time = 80
 [State 3010, HitDef]
 type = HitDef
 trigger1 = Time = 0
-attr = S, SA
+attr = S, HA
 animtype  = diagup
 damage    = 465,120
 priority  = 7
@@ -5734,7 +5735,7 @@ value = 710 + Var(9) ; <= that's because of the state numbers I chose for my par
 type = displaytoclipboard
 trigger1 = time >= 0
 text = "Movehit = %d, Corner Push =%f, By Master Gouken" 
-params = movehit, map(kogetsu_cp)
+params = movehit, map(bloodtime)
 
 [State 1021, Kogetsu_CPush_Reset]
 type = mapset
