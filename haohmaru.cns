@@ -3573,7 +3573,7 @@ ignorehitpause = 1
 
 [State 1061, Spiral]
 type = changeanim
-trigger1 = movehit && anim != 1062
+trigger1 = movehit = 2 && anim != 1062 && p2,movetype = H
 value = 1062
 ignorehitpause = 0
 
@@ -3620,6 +3620,7 @@ type = changestate
 trigger1 = moveguarded
 trigger2 = frontedgedist < -70
 trigger3 = backedgedist < -70
+trigger4 = movehit = 2 && p2,movetype != H
 value = 1062
 
 ;======================================================================
@@ -3795,7 +3796,7 @@ x = 0
 
 [State 1066, Spiral]
 type = changeanim
-trigger1 = movehit && anim != 1062
+trigger1 = movehit = 2 && anim != 1062 && p2,movetype = H
 value = 1062
 ignorehitpause = 0
 
@@ -3865,6 +3866,7 @@ type = changestate
 trigger1 = moveguarded
 trigger2 = frontedgedist < -70
 trigger3 = backedgedist < -70
+trigger4 = movehit = 2 && p2,movetype != H
 value = 1062
 
 ;----------------------------------------------------------------------
@@ -3997,7 +3999,7 @@ x = 0
 
 [State 1071, Spiral]
 type = changeanim
-trigger1 = movehit && anim != 1062
+trigger1 = movehit = 2 && anim != 1062 && p2,movetype = H
 value = 1062
 ignorehitpause = 0
 
@@ -4074,6 +4076,7 @@ type = changestate
 trigger1 = moveguarded
 trigger2 = frontedgedist < -70
 trigger3 = backedgedist < -70
+trigger4 = movehit = 2 && p2,movetype != H
 value = 1062
 
 ;----------------------------------------------------------------------

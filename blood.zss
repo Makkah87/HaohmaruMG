@@ -1,6 +1,6 @@
-[Statedef -3]
+[Statedef -2]
 ignorehitpause{
-if movehitvar(frame) = 1 && movehit && hitdefvar(sparkno) = 8017{
+if !p2,hitoverridden && movehitvar(frame) = 1 && movehit && hitdefvar(sparkno) = 8017{
 
 
 helper{id:8000;stateno:8000;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))+pos y;postype:p2}
@@ -18,7 +18,7 @@ changeanim{value:-2}
 if root,hitdefattr = SCA, NA && (!time || (time%3=1 && time < 6)){
 explod{anim:8001;pos:(hitdefvar(sparkx)),(hitdefvar(sparky)-p2, pos y);postype:p1;sprpriority:10;vel:0+random%5,-1;accel:0.4,0.9}
 
-if p2,gethitvar(animtype)=2  && (!time || (time%3=1 && time < 4)){
+if (p2,gethitvar(animtype)=2 ||( root,stateno = 220 || root,stateno = 420 || root,stateno = 620)&&root,winko)  && (!time || (time%3=1 && time < 4)){
 explod{anim:8003;pos:(hitdefvar(sparkx)),(hitdefvar(sparky)-p2,pos y);postype:p1;sprpriority:10;vel:0,-4;accel:0.23,0.2;scale:0.5,0.5}
 explod{anim:8002;pos:(hitdefvar(sparkx)),(hitdefvar(sparky)-p2,pos y);postype:p1;sprpriority:10;vel:2.3,-2;accel:0.23,0.2;scale:0.5,0.5}
 }
