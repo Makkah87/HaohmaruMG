@@ -4566,9 +4566,9 @@ volumescale = 100
 type = NotHitBy
 trigger1 = time = 0
 value = SCA
-time = 35
+time = 6
 
-[State 2010, SlashEffect]
+[State 1020, SlashEffect]
 type = Explod
 trigger1 = animelem = 2
 anim = 1004
@@ -4583,23 +4583,8 @@ trigger1 = animelem = 6
 anim = 1005
 id = 1005
 postype = p1
-bindtime = -1
+bindtime = 0
 sprpriority = 5
-
-[State 2010, Width]
-type = width
-trigger1 = (animelemtime(1)>=0)&&(animelemtime(2)<0)
-value = 8,0
-
-[State 2010, Width]
-type = width
-trigger1 = (animelemtime(2)>=0)&&(animelemtime(7)<=0)
-value = 12,0
-
-[State 2010, Width]
-type = width
-trigger1 = (animelemtime(7)>=0)
-value = 16,0
 
 [State 2010, VelSet]
 type = velset
@@ -4621,7 +4606,7 @@ channel = 1
 [State 2010, Woosh]
 type = playsnd
 trigger1 = animelem = 4
-value = 210,0
+value = 1000,5
 volumescale = 100
 
 [State 2010, 5]
@@ -4629,35 +4614,37 @@ type = HitDef
 trigger1 = Time = 0
 attr = S, SA
 animtype  = Hard
-damage    = 90, 30
+damage    = 69,20
 priority  = 5
 guardflag = MA
-pausetime = 3,3
+pausetime = 2,2
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
+guardsound = s300,3
 Guard.Sparkno = s8031
-sparkxy = -10,-60
+sparkxy = -40,-60
 hitsound   = s250,1
 guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -1,-6
-air.velocity = -1,-6
+ground.velocity = -1,-10
+air.velocity = -1,-9
 envshake.time = 10
 envshake.ampl = 2
 envshake.freq = 176
+yaccel = 0.6
 
-[State 2010, Afterimage]
-type = AfterImage
-trigger1 = Time = 0
-length = 13
-PalBright   =  30, 30,  0
-PalContrast =  70, 70, 20
-PalAdd      = -10,-10,-10
-PalMul      = .85,.85,.50
-TimeGap  = 1
-FrameGap = 2
-Trans = Add
-time = 2
+[State 2010, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 6
+freq = 120
+mul = 0.9
+ignorehitpause = 1
 
 [State 2010, Afterimage]
 type = AfterImageTime
@@ -4684,44 +4671,55 @@ type    = A
 movetype= A
 physics = N
 juggle  = 4
-poweradd= 110
+poweradd = 0
 anim = 2011
 sprpriority = 2
 
+
+[State 2011, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(2)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
 [State 2011, 5]
 type = HitDef
-trigger1 = Time <= 12
+trigger1 = Time < 12
 attr = S, SA
 animtype  = Hard
-damage    = 20,10
+damage    = 10,4
 priority  = 5
-guardflag = MA
-pausetime = 3,2
+guardflag = MAF
+pausetime = 2,2
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
+guardsound = s300,3
 Guard.Sparkno = s8031
-sparkxy = -10,-60
+sparkxy = -20,-110
 hitsound   = s250,2
 guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -2,-10
-air.velocity = -2,-10
+ground.velocity = -2.5,-17.7
+air.velocity = -2.5,-14.89
 envshake.time = 10
 envshake.ampl = 4
 envshake.freq = 176
 fall.recover = 0
-yaccel = 0.50
 fall = 1
+yaccel = 0.65
 
-[State 2011, Slow motion]
-type = pause
-trigger1 = movehit
-time = 1
-
-[State 2011, Width]
-type = width
-trigger1 = 1
-value = 30,0
+[State 2011, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 6
+freq = 120
+mul = 0.9
+ignorehitpause = 1
 
 [State 2011, Woosh]
 type = playsnd
@@ -4732,13 +4730,32 @@ volumescale = 100
 [State 2011, Velset]
 type = Velset
 trigger1 = time = 0
-y = -16
+y = -20*1.166666666666667
 x = 1.9
 
 [State 2011, Gravity]
 type = VelAdd
 trigger1 = 1
-y = 0.52
+y = 0.75*1.166666666666667
+
+[State 2011, Corner_Push]
+type = posadd
+triggerall = p2, statetype != l
+triggerall = Time >= 12
+trigger1 = p2, backedgedist = 0 && p2dist x < 145
+trigger1 = movecontact
+x = -5;+(time/100)
+
+[State 2011, Kogetsu_CPush]
+type = mapset
+triggerall = p2, statetype != l
+triggerall = Time >= 12
+triggerall = p2, backedgedist = 0 && p2dist x < 145
+trigger1 = movecontact
+trigger2 = uniqhitcount = 1
+map = "kogetsu_cp"
+value = 1
+ignorehitpause = 1
 
 [State 2011, Decend]
 type = ChangeState

@@ -73,7 +73,8 @@ time = 20
 name = "tenha"
 command = ~D, DF, F, D, DF, ~z
 time = 20
-;-| Special Motions |----------------------------------------------------------------------
+
+;-|EX Special Motions|---------------------------------------------------------------------
 [Command]
 name = "kogetsuEX"
 command = ~F, D, DF, x+y
@@ -85,6 +86,19 @@ command = ~F, D, DF, y+z
 [Command]
 name = "kogetsuEX"
 command = ~F, D, DF, x+z
+
+[Command]
+name = "kogetsuEX"
+command = ~F, D, DF, ~x+y
+
+[Command]
+name = "kogetsuEX"
+command = ~F, D, DF, ~y+z
+
+[Command]
+name = "kogetsuEX"
+command = ~F, D, DF, ~x+z
+;-| Special Motions |----------------------------------------------------------------------
 
 [Command]
 name = "kogetsu1"
@@ -366,12 +380,14 @@ trigger2 = movecontact
 var(4) = 1
 ;----------------------------------------------------------------------
 ;Kogetsu Zan Zan EX
-;[State -1, Kogetsu Zan Zan EX]
-;type = ChangeState
-;value = 2010
-;triggerall = command = "kogetsuEX"
-;triggerall = power >= 330
-;trigger1 = var(4) ;Use combo condition (above)
+[State -1, Kogetsu Zan Zan EX]
+type = ChangeState
+value = 2010
+triggerall = command = "kogetsuEX"
+triggerall = power >= 330
+trigger1 = var(4) ;Use combo condition (above)
+trigger2 = stateno = 1000 || stateno = 1010 || stateno = 1020
+trigger2 = time <= 2
 ;----------------------------------------------------------------------
 ;Senpuu Retsu Zan EX
 ;[State -1, Senpuu Retsu Zan EX]
