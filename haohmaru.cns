@@ -66,10 +66,14 @@ yaccel = .6        ;Vertical acceleration
 stand.friction = .85  ;Friction coefficient when standing
 crouch.friction = .82 ;Friction coefficient when crouching
 
+[Quotes]
+victory1 = "Airbending slice!"
+victory2 = "Eh...I expected more of a challenge."
+victory3 = "Let's go again! This time I'll tie one hand behind my back."
+victory1 = "Not bad. Actually, it was pretty damn bad. Do better next time."
 ;----------------------------------------------------------------------
 ; Lose by Time Over
-; CNS difficulty: basic
-; CNS ƒŒƒxƒ‹: Šî–{
+; ---------------------------------------------------------------------
 [Statedef 170]
 type = S
 ctrl = 0
@@ -193,6 +197,7 @@ trigger12 = enemy, authorname = "Big Eli King" && enemy, name = "Dark Chun Li"
 trigger13 = enemy, authorname = "Sumi" && enemy, name = "Destrudo Ryu"
 trigger14 = enemy, name = "sf3gouki"
 trigger15 = enemy, authorname = "Z Sabre User" && enemy, name = "Cvshaohmaru" && enemy, palno = 7
+trigger16 = enemy, authorname = "Master Gouken" && enemy, name = "AkumaMG"
 v = 1
 value = 3
 
@@ -1769,6 +1774,11 @@ velset = 0,0
 ctrl = 0
 anim = 720
 sprpriority = 2
+
+[State 720, No-Walkie]
+type = AssertSpecial
+trigger1 = 1
+flag = nowalk
 
 [State 720, PalFX]
 type = PalFX
