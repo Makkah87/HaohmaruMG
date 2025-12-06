@@ -4806,7 +4806,7 @@ time = 30
 type = bgpalfx
 trigger1 = Time = 0
 add = -60,-60,-60
-time = 80
+time = 120
 
 [State 3000, Shadows]
 type = Afterimage
@@ -4895,7 +4895,7 @@ sparkno = s8017
 sparkangle = random%360
 guardsound = s300,3
 Guard.Sparkno = s8031
-sparkxy = -45,-5
+sparkxy = -45,-40
 hitsound   = s250,0
 guardsound = 6,0
 ground.type = low
@@ -4925,7 +4925,7 @@ ignorehitpause = 1
 type = modifyhitdef
 trigger1 = animelem = 4
 ground.type = high
-sparkxy = -45,-60
+sparkxy = -45,-80
 
 [State 3000, 7]
 type = ChangeState
@@ -4975,7 +4975,7 @@ sparkno = s8017
 sparkangle = random%360
 guardsound = s300,3
 Guard.Sparkno = s8031
-sparkxy = -20,-110
+sparkxy = -8,-95
 hitsound   = s250,2
 guardsound = s250,3
 ground.type = Low
