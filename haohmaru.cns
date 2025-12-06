@@ -765,7 +765,7 @@ juggle  = 5+Var(7)
 poweradd= 65
 ctrl = 0
 velset = 0,0
-anim = ifelse(P2Dist X > 50,240,241)
+anim = ifelse(P2Dist X > 70,240,241)
 sprpriority = 2
 hitcountpersist = 1
 
@@ -776,6 +776,16 @@ value = 400, ifelse(random < 200,0,1)
 volumescale = 100
 channel = 1
 
+[State 240, Close_posadd]
+type = PosAdd
+trigger1 = AnimElem = 1 && anim = 241
+x = 9
+
+[State 240, Close_posadd]
+type = PosAdd
+trigger1 = !Animtime && anim = 241
+x = -9
+
 [State 240, posadd]
 type = PosAdd
 trigger1 = AnimElem = 2 && anim = 240
@@ -783,7 +793,17 @@ x = 8
 
 [State 240, posadd]
 type = PosAdd
+trigger1 = AnimElem = 3 && anim = 240
+x = 8
+
+[State 240, posadd]
+type = PosAdd
 trigger1 = AnimElem = 7 && anim = 240
+x = -8
+
+[State 240, posadd]
+type = PosAdd
+trigger1 = AnimElem = 8 && anim = 240
 x = -8
 
 [State 240, posadd]
@@ -4576,6 +4596,7 @@ id = 1004
 postype = p1
 bindtime = -1
 sprpriority = 5
+ownpal = 1
 
 [State 2010, SlashEffect]
 type = Explod
@@ -4585,6 +4606,7 @@ id = 1005
 postype = p1
 bindtime = 0
 sprpriority = 5
+ownpal = 1
 
 [State 2010, VelSet]
 type = velset
@@ -4614,7 +4636,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = S, SA
 animtype  = Hard
-damage    = 69,20
+damage    = 40,20
 priority  = 5
 guardflag = MA
 pausetime = 2,2
@@ -4635,6 +4657,7 @@ envshake.time = 10
 envshake.ampl = 2
 envshake.freq = 176
 yaccel = 0.6
+getpower = 0
 
 [State 2010, BlkShake]
 type = envshake
@@ -4646,17 +4669,25 @@ freq = 120
 mul = 0.9
 ignorehitpause = 1
 
-[State 2010, Afterimage]
-type = AfterImageTime
-trigger1 = 1
-time = 2
-
 [State 2010, Blink Yellow]
 type = PalFX
 trigger1 = Time = 0
-time = 20
-add = 32,16,0
+time = 90
+add = 0,100,0
 sinadd = 64,32,5,3
+
+[State 2010, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 15
+PalBright   =  60, 60,  0
+PalContrast =  70, 170, 20
+PalAdd      = 0,0,0
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 5
+Trans = Add1
+time = 100
 
 [State 2010, 7]
 type = ChangeState
@@ -4687,7 +4718,7 @@ type = HitDef
 trigger1 = Time < 12
 attr = S, SA
 animtype  = Hard
-damage    = 10,4
+damage    = 12,4
 priority  = 5
 guardflag = MAF
 pausetime = 2,2
@@ -4710,6 +4741,8 @@ envshake.freq = 176
 fall.recover = 0
 fall = 1
 yaccel = 0.65
+maxdist = 50, -50
+getpower = 0
 
 [State 2011, BlkShake]
 type = envshake

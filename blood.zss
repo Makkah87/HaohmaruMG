@@ -3,7 +3,7 @@ ignorehitpause{
 if !p2,hitoverridden && movehitvar(frame) = 1 && movehit && hitdefvar(sparkno) = 8017{
 
 
-helper{id:8000;stateno:8000;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))+pos y;postype:p2}
+helper{id:8000;stateno:8000;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))+pos y;postype:p2;ownpal:1}
 }
 }
 
