@@ -2766,10 +2766,16 @@ juggle  = 4
 anim = 1003
 sprpriority = 2
 
-[State 1003, Super C]
+[State 1003, Stop After Image]
 type = AfterImageTime
 trigger1 = time = 0
 time = 1
+
+[State 1003, Stop_Pal_FX]
+type = PalFX
+trigger1 = Time = 0
+time = 0
+add = 0,0,0
 
 [State 1003, Landing Sound]
 type = PlaySnd
@@ -4672,7 +4678,7 @@ ignorehitpause = 1
 [State 2010, Blink Yellow]
 type = PalFX
 trigger1 = Time = 0
-time = 90
+time = 120
 add = 0,100,0
 sinadd = 64,32,5,3
 
@@ -5014,15 +5020,15 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -3,-7
+ground.velocity = -1.1,-11
 guard.velocity =  -7.2
-air.velocity = -1.1,-11
+air.velocity = -2.1,-11
 envshake.time = 3
 envshake.ampl = 6
 envshake.freq = 130
 fall.recover = 0
 fall = 1
-yaccel = 0.65
+yaccel = 0.75;0.65
 
 [State 1000, BlkShake]
 type = envshake
@@ -5186,7 +5192,7 @@ animtype  = diagup
 damage    = 465,120
 priority  = 7
 guardflag = MA
-pausetime = 19,19
+pausetime = 25,25
 sparkno = s8017
 guardsound = s300,3
 Guard.Sparkno = s8031
@@ -5196,7 +5202,7 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -12,-12
+ground.velocity = -17,-12
 air.velocity = -12,-12
 envshake.time = 10
 envshake.ampl = 8
@@ -5204,7 +5210,7 @@ envshake.freq = 176
 fall.recover = 0
 fall = 1
 getpower = 0
-yaccel = 0.75
+yaccel = 0.85
 
 [State 3010, Shadows]
 type = Afterimage
@@ -5815,6 +5821,12 @@ type = playsnd
 trigger1 = animelemtime(23) = 2 && anim = 0
 value = 0,0
 volumescale = 100
+
+[State -2, Stop_Pal_FX]
+type = PalFX
+trigger1 = MoveType = H & Time = 0
+time = 0
+add = 0,0,0
 
 [State -2, Slash begone]
 type = removeexplod

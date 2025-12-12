@@ -29,12 +29,14 @@ explod{anim:8002;pos:(hitdefvar(sparkx)),(hitdefvar(sparky)-p2,pos y);postype:p1
 if root,hitdefattr = SCA, SA && !time{
 explod{anim:8002;pos:(hitdefvar(sparkx)),((hitdefvar(sparky))-p2,pos y)-45;postype:p1;sprpriority:10;vel:-2-random%2.33,-1;accel:-0.5,0.3;scale:0.5,0.5}
 explod{anim:8002;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:2-random%2.33,-2.3;accel:0,0.3;scale:0.7,0.7}
-explod{anim:8003;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:0,-5.6;accel:0,0.42;scale:0.65,0.65}
+explod{anim:8003;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:(1.3+random%4)*ifelse(random<500,-1,1),-5.6;accel:0,0.42;scale:0.65,0.65}
 }
 
 #Super Attacks
 if root,hitdefattr = SCA, HA && !time{
-explod{anim:8003;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:1.3,-4;accel:0.23,0.2;scale:0.75,0.75}
+explod{anim:8003;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:(1.3+random%4)*ifelse(random<500,-1,1),-4;accel:0.23,0.2;scale:0.75,0.75}
+explod{anim:8002;pos:(hitdefvar(sparkx)),((hitdefvar(sparky))-p2,pos y)-45;postype:p1;sprpriority:10;vel:-2-random%2.33,-1;accel:-0.5,0.3;scale:0.5,0.5}
+explod{anim:8002;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:2-random%2.33,-2.3;accel:0,0.3;scale:0.7,0.7}
 }
 
 if root, movetype != A{destroyself{}}
