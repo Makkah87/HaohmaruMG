@@ -45,6 +45,21 @@ command = ~D,DB,B,D,DB,B, x
 time = 30
 
 [Command]
+name = "tenhaL3"
+command = ~D, DF, F, D, DF, x+y
+time = 25
+
+[Command]
+name = "tenhaL3"
+command = ~D, DF, F, D, DF, y+z
+time = 25
+
+[Command]
+name = "tenhaL3"
+command = ~D, DF, F, D, DF, x+z
+time = 25
+
+[Command]
 name = "tenha"
 command = ~D, DF, F, D, DF, x
 time = 20
@@ -335,6 +350,20 @@ time = 1
 ;----------------------------------------------------------------------
 [Statedef -1]
 ;======================================================================
+;----------------------------------------------------------------------
+;Tenha Fujin Zan
+[State -1, Tenha Fujin Zan]
+type = ChangeState
+value = 3500
+triggerall = command = "tenhaL3"
+triggerall = power >= 3000
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = statetype != A
+trigger2 = hitdefattr = SC, NA, SA, HA
+trigger2 = stateno != [3000,3050)
+trigger2 = movecontact
+
 ;----------------------------------------------------------------------
 ;Tenha Denkuu Retsu Zan
 [State -1, Tenha Denkuu Retsu Zan]

@@ -2777,6 +2777,12 @@ trigger1 = Time = 0
 time = 0
 add = 0,0,0
 
+[State 1003, Stop Super BGeffects]
+type = bgpalfx
+trigger1 = Time = 0
+add = 0,0,0
+time = 0
+
 [State 1003, Landing Sound]
 type = PlaySnd
 trigger1 = Time = 0
@@ -4741,9 +4747,10 @@ ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = -2.5,-17.7
 air.velocity = -2.5,-14.89
-envshake.time = 10
+envshake.time = 2
 envshake.ampl = 4
-envshake.freq = 176
+envshake.mul = 0.8
+envshake.freq = 140
 fall.recover = 0
 fall = 1
 yaccel = 0.65
@@ -4845,7 +4852,7 @@ time = 30
 type = bgpalfx
 trigger1 = Time = 0
 add = -60,-60,-60
-time = 120
+time = 200
 
 [State 3000, Shadows]
 type = Afterimage
@@ -5234,6 +5241,270 @@ type = changestate
 trigger1 = animtime = 0
 value = 0
 ctrl = 1
+
+;======================================================================
+;MAX Hyper Combos
+;----------------------------------------------------------------------
+; Tenha FuJin Zan Max
+;----------------------------------------------------------------------
+[Statedef 3500]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+velset = 0,0
+anim = 3000
+ctrl = 0
+sprpriority = 2
+
+[State 3500, Tenha]
+type = playsnd
+trigger1 = time = 0
+value = 3000,1
+volumescale = 100
+channel = 1
+
+[State 3500, SlashSND]
+type = playsnd
+trigger1 = animelem = 2
+value = 1000,5
+volumescale = 100
+channel = 3
+
+[State 3500, Super A]
+type = SuperPause
+trigger1 = time = 0
+pos = -50, -80
+anim = S3005
+sound = s3000,10
+poweradd = -3000
+darken = 0
+time = 30
+
+[State 3500, BGeffects]
+type = bgpalfx
+trigger1 = Time = 0
+add = -60,-60,-60
+time = 200
+
+[State 3010, Shadows]
+type = Afterimage
+trigger1 = Time = 0
+time = 999
+length = 30
+PalPostBright = 0,0,0
+PalContrast = 160,20,20
+PalAdd      =   0, 0, 0
+PalMul      =  0.9 ,0.9 ,0.9
+FrameGap = 10
+Trans = Add1
+
+[State 3500, Super D]
+type = NotHitBy
+trigger1 = time = 0
+value = SCA
+time = 16
+
+[State 1000, SlashEffect]
+type = Explod
+trigger1 = animelem = 2 && !map(cycle)
+anim = 3002
+id = 3002
+postype = p1
+bindtime = -1
+sprpriority = 5
+
+[State 3500, SlashEffect]
+type = Explod
+trigger1 = animelemtime(1) = 1 && map(cycle) >= 1
+anim = 3003
+id = 3003
+pos = 0,0
+postype = p1
+bindtime = -1
+sprpriority = 5
+
+[State 3500, Super E]
+type = NotHitBy
+trigger1 = !time
+value2 = SCA
+time = 22
+
+[State 3500, 1]
+type = null;PlaySnd
+trigger1 = AnimElem = 2
+value = 210,1
+volumescale = 100
+channel = 5
+
+[State 3500, Move]
+type = Veladd
+trigger1 = AnimElemtime(2)> 0
+x = 0.47
+
+[State 3500, Slow]
+type = VelSet
+trigger1 = AnimElem = 6
+x = 0
+
+[State 3500, Cycle_Count]
+type = mapset
+trigger1 = !time
+map = "cycle"
+value = 0
+
+[State 3500, Cycle_Count]
+type = mapadd
+trigger1 = animelem = 4
+map = "cycle"
+value = 1
+
+[State 3500, 5]
+type = HitDef
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 4
+attr = S, HA
+animtype  = Hard
+damage    = 26,17
+getpower  = 0
+priority  = 6
+guardflag = MA
+pausetime = 3,1
+sparkno = s8017
+sparkangle = random%360
+guardsound = s300,3
+Guard.Sparkno = s8031
+sparkxy = -45,-40
+hitsound   = s250,0
+guardsound = 6,0
+ground.type = low
+ground.slidetime = 30
+ground.hittime  = 30
+ground.velocity = -1.2
+air.velocity = -1.2,-5
+air.fall = 1
+fall.animtype = Hard
+fall.recover = 0
+envshake.time = 3
+envshake.ampl = 3
+envshake.freq = 176
+envshake.dir = 0.9
+
+[State 1000, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 3
+ampl = 3
+freq = 176
+mul = 0.9
+ignorehitpause = 1
+
+[State 3500, High Hit]
+type = modifyhitdef
+trigger1 = animelem = 4
+ground.type = high
+sparkxy = -45,-80
+
+[State 3500, 7]
+type = ChangeState
+trigger1 = AnimTime = 0 && map(cycle) = 5
+value = 3501
+ctrl = 0
+;======================================================================
+;Tenha Fujin Zan -Rising- Max
+;======================================================================
+[Statedef 3501]
+type    = A
+movetype= A
+physics = N
+juggle  = 4
+poweradd= 0
+anim = 1001
+sprpriority = 2
+
+[State 3501, FuJinZan]
+type = playsnd
+trigger1 = time = 0
+value = 3500,2
+volumescale = 100
+channel = 1
+
+[State 3501, SlashEffect]
+type = Explod
+trigger1 = !time
+anim = 3003
+id = 3003
+pos = 0,0
+postype = p1
+bindtime = 0
+sprpriority = 5
+
+[State 3501, 5]
+type = HitDef
+trigger1 = Time = 0
+trigger2 = animelem = 3 && (UniqHitCount < 5 && guardcount < 5)
+attr = A, HA
+animtype  = Hard
+damage    = 26,12
+priority  = 5
+guardflag = MA
+pausetime = 3.3
+sparkno = s8017
+sparkangle = random%360
+guardsound = s300,3
+Guard.Sparkno = s8031
+sparkxy = -8,-95
+hitsound   = s250,2
+guardsound = s250,3
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -1.1,-14
+guard.velocity =  -7.2
+air.velocity = -2.1,-11
+envshake.time = 3
+envshake.ampl = 6
+envshake.freq = 130
+fall.recover = 0
+fall = 1
+yaccel = 0.85;0.75
+
+[State 3501, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 3
+ampl = 3
+freq = 176
+mul = 0.9
+ignorehitpause = 1
+
+[State 3501, Woosh]
+type = playsnd
+trigger1 = Time = 0
+value = 210,2
+volumescale = 100
+
+[State 3501, Velset]
+type = Velset
+trigger1 = time = 0
+y = -20
+x = 1.9
+
+[State 3501, Gravity]
+type = VelAdd
+trigger1 = 1
+y = 0.8
+
+[State 3501, Decend]
+type = ChangeState
+trigger1 = Vel Y >= 0
+value = 1002
+ctrl = 0
+
+
+
 ;----------------------------------------------------------------------
 ;Cheap Death -Code By Kung Fu Man
 ;----------------------------------------------------------------------
@@ -5825,8 +6096,16 @@ volumescale = 100
 [State -2, Stop_Pal_FX]
 type = PalFX
 trigger1 = MoveType = H & Time = 0
+trigger1 = prevmovetype = A
 time = 0
 add = 0,0,0
+
+[State -2, Stop Super BGeffects]
+type = bgpalfx
+trigger1 = MoveType = H & Time = 0
+trigger1 = prevmovetype = A
+add = 0,0,0
+time = 0
 
 [State -2, Slash begone]
 type = removeexplod

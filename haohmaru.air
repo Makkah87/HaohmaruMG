@@ -3947,6 +3947,18 @@ Clsn2:2
 5300,1, 0,0, 6
 
 
+[Begin Action 6000]
+Interpolate Scale
+10000,0, 0,0, 15, , A, 0.1,0.1
+Interpolate Scale
+10000,0, 0,0, 0, , A
+
+[Begin Action 6003]
+10000,1, 0,0, 0
+
+[Begin Action 6005]
+10000,2, 0,0, 0
+
 ; 
 [Begin Action 8000]
 8110,1, 0,0, 1, H, A, 0.6,0.6
