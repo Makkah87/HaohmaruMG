@@ -1,0 +1,193 @@
+;===================================
+;Large Power Extend
+;===================================
+[Statedef 4000]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+velset = 0,0
+anim = 6000
+ctrl = 0
+sprpriority = 5
+
+[State 321, var]
+type = varadd
+trigger1 = 1
+v = 1
+value = 2
+supermovetime = 9999
+
+[State 3050, Blue_BG]
+type = bgpalfx
+trigger1 = time = 0
+add = 0,0,200
+time = 40
+sinadd = -255,-255,-255,90
+
+[State 3200, Assert]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 1061, Grow]
+type = angledraw
+trigger1 = 1
+value = 0
+scale = ((var(1))*0.10),((var(1))*0.10)
+supermovetime = 9999
+
+[State 1061, Trans]
+type = trans
+trigger1 = 1
+trans = add
+;supermovetime = 9999
+
+[State 1060, EpiCenter]
+type = Helper
+trigger1 = Time = 0;AnimElem = 2, 1
+name = "super2"
+postype = P1
+pos = 0, 0 ;26,-55
+ownpal = 1
+stateno = 4001
+id = 4001
+supermovetime = 9999
+
+[State 1060, Lv. 3 Effects]
+type = Helper
+triggerall = parent, stateno = (3020, 3999]
+trigger1 = Time = 0;AnimElem = 2, 1
+name = "fiyah"
+postype = P1
+pos = 0, 0 ;26,-55
+ownpal = 1
+stateno = 4003
+id = 4003
+supermovetime = 9999
+size.xscale = 1
+size.yscale = 1
+
+[State 1060, ShockWaves]
+type = Helper
+trigger1 = time%5 = 1 && time <= 35
+name = "wave"
+postype = P1
+pos = 0,0
+ownpal = 1
+stateno = 4002
+id = 4002
+supermovetime = 9999
+
+[State 1062, fade]
+type = palfx
+trigger1 = time = 0
+mul = 350,350,350
+sinadd = -255,-255,-255,200
+time = 40
+supermovetime = 9999
+
+[State 123, Destroy]
+type = destroyself
+trigger1 = time = 40
+supermovetime = 9999
+;============================
+;Power Epicenter
+;============================
+[Statedef 4001]
+type    = S
+movetype= A
+physics = S
+anim = 6005
+sprpriority = 5
+
+[State 3200, Assert]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 321, var]
+type = varadd
+trigger1 = 1; Time%5
+fv = 1
+value = 0.1
+supermovetime = 9999
+
+[State 1083, Angle]
+type = angledraw
+trigger1 = 1
+value = (time)*-4
+scale = 1,1 ;2.8-fvar(1),2.8-fvar(1)
+supermovetime = 9999
+
+[State 1061, Trans]
+type = trans
+trigger1 = 1
+trans = add
+supermovetime = 9999
+
+[State 123, Destroy]
+type = destroyself
+trigger1 = time = 40
+supermovetime = 9999
+;=========================
+;Power Circles
+;=========================
+[Statedef 4002]
+anim = 6003
+sprpriority = 5
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+value = 1
+scale = (0.1)+(((Time+5)*0.10)),(0.1)+(((Time+5)*0.10))
+
+[State 1062, fade]
+type = palfx
+trigger1 = time = 0
+mul = 350,350,350
+sinadd = -255,-255,-255,50  ;200
+time = 10
+
+[State 3200, Assert]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 =  Time = 10
+
+[State 0, Trans]
+type = Trans
+trigger1 =1
+trans = add
+
+;=========================
+;LV. 3 Effect
+;=========================
+[Statedef 4003]
+anim = 9996
+sprpriority = 5
+
+[State 3050, RedBG]
+type = bgpalfx
+trigger1 = time = 0
+add = 255,0,0
+time = 40
+sinadd = -255,-255,-255,102
+
+[State 3200, Assert]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 123, Destroy]
+type = destroyself
+trigger1 = animtime = 0
+supermovetime = 9999

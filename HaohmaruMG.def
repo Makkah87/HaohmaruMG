@@ -16,6 +16,7 @@ cmd     = haohmaru.cmd   ;Command set
 cns     = haohmaru.cns   ;Constants
 st      = haohmaru.cns   ;States
 st1		= blood.zss
+st2		= super.cns
 stcommon = common1.cns   ;Common states
 sprite  = haohmaru.sff   ;Sprite
 anim    = haohmaru.air   ;Animation

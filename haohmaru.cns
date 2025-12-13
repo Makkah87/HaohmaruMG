@@ -4838,21 +4838,26 @@ value = 1000,5
 volumescale = 100
 channel = 3
 
+[State 3000, PowerSpark]
+type = Helper
+trigger1 = time = 0
+name = "super"
+postype = P1
+pos = -50, -80
+ownpal = 1
+stateno = 4000
+id = 4000
+supermovetime = 9999
+
 [State 3000, Super A]
 type = SuperPause
 trigger1 = time = 0
 pos = -50, -80
-anim = S3005
+anim = -2; S3005
 sound = s3000,10
 poweradd = -1000
 darken = 0
-time = 30
-
-[State 3000, BGeffects]
-type = bgpalfx
-trigger1 = Time = 0
-add = -60,-60,-60
-time = 200
+time = 40
 
 [State 3000, Shadows]
 type = Afterimage
@@ -5070,178 +5075,6 @@ trigger1 = Vel Y >= 0
 value = 1002
 ctrl = 0
 
-;----------------------------------------------------------------------
-; Tenha Denkuu Retsu Zan
-;----------------------------------------------------------------------
-[Statedef 3010]
-type    = S
-movetype= A
-physics = S
-juggle  = 4
-velset = 0,0
-anim = 3010
-ctrl = 0
-sprpriority = 3
-hitcountpersist = 1
-
-[State 3000, Super D]
-type = NotHitBy
-trigger1 = time = 0
-value = SCA
-time = 20
-
-[State 3000, Super D]
-type = NotHitBy
-trigger1 = time = 20
-value = SCA, NT,ST,HT
-time = 42
-
-[State 3010, Super A]
-type = SuperPause
-trigger1 = time = 0
-pos = -10, -80
-anim = S3005
-sound = s3000,10
-poweradd = -3000
-darken = 0
-time = 30
-
-[State 3010,Effect1]
-type = Explod
-trigger1 = animelemtime(8) = 6
-anim = 3012
-id = 3012
-postype = p1
-pos = -21,-28
-bindtime = -1
-sprpriority = 5
-
-[State 3010,Effect2]
-type = Explod
-trigger1 = animelem = 10
-anim = 3011
-id = 3011
-postype = p1
-bindtime = -1
-sprpriority = 5
-
-[State 3010, UPissMeOff]
-type = playsnd
-trigger1 = time = 0
-value = 3000,0
-channel = 1
-volumescale = 100
-
-[State 3010, Effect]
-type = playsnd
-trigger1 = animelem = 10
-value = 3000,4
-volumescale = 100
-
-[State 3010, Step 1]
-type = PosAdd
-trigger1 = animelem = 7
-x = 24
-
-[State 3010, Step 2]
-type = PosAdd
-trigger1 = animelem = 8
-x = 25
-
-[State 3010, Step 3]
-type = PosAdd
-trigger1 = animelem = 9
-x = 13
-
-[State 3010, Step 4] ;total = 83 pixels
-type = PosAdd
-trigger1 = animelem = 10
-x = 22
-
-[State 3010, Step5]
-type = PosAdd
-trigger1 = AnimElem = 14
-x = -16
-
-[State 3010, Step6]
-type = PosAdd
-trigger1 = AnimElem = 15
-x = -20
-
-[State 3010, Step7]
-type = PosAdd
-trigger1 = AnimElem = 16
-x = -22
-
-[State 3010, Step8]
-type = PosAdd
-trigger1 = AnimElem = 17
-x = -20
-
-[State 3010, TakeThis!!]
-type = playsnd
-trigger1 = time = 18
-value = 3000,3
-channel = 1
-volumescale = 100
-
-[State 3010, BGeffects]
-type = bgpalfx
-trigger1 = Time = 0
-add = -60,-60,-60
-time = 80
-
-[State 3010, HitDef]
-type = HitDef
-trigger1 = Time = 0
-attr = S, HA
-animtype  = diagup
-damage    = 465,120
-priority  = 7
-guardflag = MA
-pausetime = 25,25
-sparkno = s8017
-guardsound = s300,3
-Guard.Sparkno = s8031
-sparkxy = -10,-60
-hitsound   = s3000,5
-guardsound = s250,3
-ground.type = Low
-ground.slidetime = 12
-ground.hittime  = 15
-ground.velocity = -17,-12
-air.velocity = -12,-12
-envshake.time = 10
-envshake.ampl = 8
-envshake.freq = 176
-fall.recover = 0
-fall = 1
-getpower = 0
-yaccel = 0.85
-
-[State 3010, Shadows]
-type = Afterimage
-trigger1 = Time = 0
-time = 999
-length = 30
-PalPostBright = 0,0,0
-PalContrast = 160,20,20
-PalAdd      =   0, 0, 0
-PalMul      =  0.9 ,0.9 ,0.9
-FrameGap = 10
-Trans = Add1
-
-[State 3010, Super C]
-type = AfterImageTime
-trigger1 = animelemtime(15)=3
-time = 2
-
-[State 3010, End]
-type = changestate
-trigger1 = animtime = 0
-value = 0
-ctrl = 1
-
 ;======================================================================
 ;MAX Hyper Combos
 ;----------------------------------------------------------------------
@@ -5275,17 +5108,22 @@ channel = 3
 type = SuperPause
 trigger1 = time = 0
 pos = -50, -80
-anim = S3005
+anim = -2
 sound = s3000,10
 poweradd = -3000
 darken = 0
-time = 30
+time = 40
 
-[State 3500, BGeffects]
-type = bgpalfx
-trigger1 = Time = 0
-add = -60,-60,-60
-time = 200
+[State 3000, PowerSpark]
+type = Helper
+trigger1 = time = 0
+name = "super"
+postype = P1
+pos = -50, -80
+ownpal = 1
+stateno = 4000
+id = 4000
+supermovetime = 9999
 
 [State 3010, Shadows]
 type = Afterimage
@@ -5503,6 +5341,188 @@ trigger1 = Vel Y >= 0
 value = 1002
 ctrl = 0
 
+;----------------------------------------------------------------------
+; Tenha Seiouzan
+;----------------------------------------------------------------------
+[Statedef 3550]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+velset = 0,0
+anim = 3010
+ctrl = 0
+sprpriority = 3
+hitcountpersist = 1
+
+[State 3550, Super D]
+type = NotHitBy
+trigger1 = time = 0
+value = SCA
+time = 20
+
+[State 3550, Super D]
+type = NotHitBy
+trigger1 = time = 20
+value = SCA, NT,ST,HT
+time = 42
+
+[State 3550, Super A]
+type = SuperPause
+trigger1 = time = 0
+pos = -10, -80
+anim = -2
+sound = s3000,10
+poweradd = -3000
+darken = 0
+time = 40
+
+[State 3000, PowerSpark]
+type = Helper
+trigger1 = time = 0
+name = "super"
+postype = P1
+pos = 35, -55
+ownpal = 1
+stateno = 4000
+id = 4000
+supermovetime = 9999
+
+[State 3550,Effect1]
+type = Explod
+trigger1 = animelem = 8
+anim = 3012
+id = 3012
+postype = p1
+pos = -21,-28
+bindtime = -1
+sprpriority = 5
+
+[State 3550,Effect2]
+type = Explod
+trigger1 = animelem = 10
+anim = 3011
+id = 3011
+postype = p1
+bindtime = -1
+sprpriority = 5
+
+[State 3550, UPissMeOff]
+type = playsnd
+trigger1 = time = 0
+value = 3000,0
+channel = 1
+volumescale = 100
+
+[State 3550, Effect]
+type = playsnd
+trigger1 = animelem = 10
+value = 3000,4
+volumescale = 100
+
+[State 3550, Step 1]
+type = PosAdd
+trigger1 = animelem = 7
+x = 24
+
+[State 3550, Step 2]
+type = PosAdd
+trigger1 = animelem = 8
+x = 25
+
+[State 3550, Step 3]
+type = PosAdd
+trigger1 = animelem = 9
+x = 13
+
+[State 3550, Step 4] ;total = 83 pixels
+type = PosAdd
+trigger1 = animelem = 10
+x = 22
+
+[State 3550, Step5]
+type = PosAdd
+trigger1 = AnimElem = 14
+x = -16
+
+[State 3550, Step6]
+type = PosAdd
+trigger1 = AnimElem = 15
+x = -20
+
+[State 3550, Step7]
+type = PosAdd
+trigger1 = AnimElem = 16
+x = -22
+
+[State 3550, Step8]
+type = PosAdd
+trigger1 = AnimElem = 17
+x = -20
+
+[State 3550, TakeThis!!]
+type = playsnd
+trigger1 = time = 18
+value = 3000,3
+channel = 1
+volumescale = 100
+
+[State 3550, BGeffects]
+type = bgpalfx
+trigger1 = Time = 0
+add = -60,-60,-60
+time = 80
+
+[State 3550, HitDef]
+type = HitDef
+trigger1 = Time = 0
+attr = S, HA
+animtype  = diagup
+damage    = 465,120
+priority  = 7
+guardflag = MA
+pausetime = 25,25
+sparkno = s8017
+guardsound = s300,3
+Guard.Sparkno = s8031
+sparkxy = -10,-60
+hitsound   = s3000,5
+guardsound = s250,3
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -17,-12
+air.velocity = -12,-12
+envshake.time = 10
+envshake.ampl = 8
+envshake.freq = 176
+fall.recover = 0
+fall = 1
+getpower = 0
+yaccel = 0.85
+
+[State 3550, Shadows]
+type = Afterimage
+trigger1 = Time = 0
+time = 999
+length = 30
+PalPostBright = 0,0,0
+PalContrast = 160,20,20
+PalAdd      =   0, 0, 0
+PalMul      =  0.9 ,0.9 ,0.9
+FrameGap = 10
+Trans = Add1
+
+[State 3550, Super C]
+type = AfterImageTime
+trigger1 = animelemtime(15)=3
+time = 2
+
+[State 3550, End]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
 
 
 ;----------------------------------------------------------------------

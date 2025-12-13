@@ -25,17 +25,17 @@ command.buffer.time = 1
 
 ;-| Super Motions |----------------------------------------------------------------------
 [Command]
-name = "denkuu"
+name = "seiouzan"
 command = ~F, DF, D, DB, B, F, x
 time = 30
 
 [Command]
-name = "denkuu"
+name = "seiouzan"
 command = ~F, DF, D, DB, B, F, y
 time = 30
 
 [Command]
-name = "denkuu"
+name = "seiouzan"
 command = ~F, DF, D, DB, B, F, z
 time = 30
 
@@ -365,11 +365,11 @@ trigger2 = stateno != [3000,3050)
 trigger2 = movecontact
 
 ;----------------------------------------------------------------------
-;Tenha Denkuu Retsu Zan
-[State -1, Tenha Denkuu Retsu Zan]
+;Tenha Seiouzan
+[State -1, Tenha Seiouzan]
 type = ChangeState
-value = 3010
-triggerall = command = "denkuu"
+value = 3550
+triggerall = command = "seiouzan"
 triggerall = power >= 3000
 triggerall = statetype != A
 trigger1 = ctrl
