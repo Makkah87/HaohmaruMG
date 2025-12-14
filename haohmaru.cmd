@@ -101,18 +101,6 @@ command = ~F, D, DF, y+z
 [Command]
 name = "kogetsuEX"
 command = ~F, D, DF, x+z
-
-[Command]
-name = "kogetsuEX"
-command = ~F, D, DF, ~x+y
-
-[Command]
-name = "kogetsuEX"
-command = ~F, D, DF, ~y+z
-
-[Command]
-name = "kogetsuEX"
-command = ~F, D, DF, ~x+z
 ;-| Special Motions |----------------------------------------------------------------------
 
 [Command]

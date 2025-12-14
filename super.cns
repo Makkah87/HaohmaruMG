@@ -11,14 +11,34 @@ anim = 6000
 ctrl = 0
 sprpriority = 5
 
-[State 321, var]
+[State 4000, Zoom]
+type = zoom
+trigger1 = time < 30
+scale = 1.2
+lag = 0.8
+pos = root,pos x, root,pos y
+stagebound = 1
+camerabound = 0
+ignorehitpause = 1
+
+[State 4000, Zoom]
+type = zoom
+trigger1 = time >= 30
+scale = 1.0
+lag = 0.8
+pos = 0,0
+stagebound = 1
+camerabound = 0
+ignorehitpause = 1
+
+[State 4000, var]
 type = varadd
 trigger1 = 1
 v = 1
 value = 2
 supermovetime = 9999
 
-[State 3050, Blue_BG]
+[State 4000, Blue_BG]
 type = bgpalfx
 trigger1 = time = 0
 add = 0,0,200

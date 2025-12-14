@@ -62,15 +62,18 @@ airjump.fwd = 2.5         ;.
 [Movement]
 airjump.num = 0      ;Number of air jumps allowed (opt)
 airjump.height = 32  ;Minimum distance from ground before you can air jump (opt)
-yaccel = .6        ;Vertical acceleration
+yaccel = 0.6;.6        ;Vertical acceleration
 stand.friction = .85  ;Friction coefficient when standing
 crouch.friction = .82 ;Friction coefficient when crouching
 
 [Quotes]
-victory1 = "Airbending slice!"
-victory2 = "Eh...I expected more of a challenge."
+victory1 = "Air-bending slice!"
+victory2 = "I expected more of a challenge."
 victory3 = "Let's go again! This time I'll tie one hand behind my back."
-victory1 = "Not bad. Actually, it was pretty damn bad. Do better next time."
+victory4 = "Not bad. Actually, that was pretty damn bad. Do better next time."
+victory5 = "Run along now before I split you in two."
+victory6 = "You're good, but I'm much better!"
+victory7 = "Huh? A rematch? You're not worth my time..."
 ;----------------------------------------------------------------------
 ; Lose by Time Over
 ; ---------------------------------------------------------------------
@@ -1752,7 +1755,7 @@ volumescale = 100
 [State 710, Voice]
 type = playsnd
 trigger1 = time = 3
-value = 900,1
+value = 900,0
 volumescale = 100
 channel = 1
 
@@ -2422,6 +2425,15 @@ value = 950,0
 volumescale = 100
 channel = 5
 
+[State 7000, Target_PalFX]
+type = palfx
+trigger1 = !time
+time = 9999
+add = 217,61,0
+sinadd = -64,-64,-64,15
+color = 200
+ignorehitpause = 1
+
 [State 900, ShockWave]
 type = Explod
 trigger1 = time = 0
@@ -2469,7 +2481,7 @@ id = 911
 [State 900, PowerGain]
 type = poweradd
 trigger1 = command = "pu1" && command = "pu2"
-value = 7
+value = 8
 
 [State 900, End]
 type = changestate
@@ -2490,6 +2502,13 @@ velset = 0,0
 anim = 912
 ctrl = 0
 sprpriority = 3
+
+[State 901, End PalFX]
+type = PalFX
+trigger1 = Time = 0
+time = 0
+add = 135,65,0
+sinadd = 64,32,5,3
 
 [State 901, ExplodBeGone]
 type = removeexplod
@@ -2529,6 +2548,17 @@ trigger1 = time%2
 freq  = 120
 time  = 2
 ampl  = 2
+
+[State 911, Bind]
+type = posset
+trigger1 = 1
+x = parent, pos x -2
+
+[State 911, Grow]
+type = angledraw
+trigger1 = 1
+value = 0
+scale = 1.2,(power*0.000333333333333333)*1.5
 
 [State 911, NoShadow]
 type = AssertSpecial
@@ -4947,7 +4977,7 @@ sparkangle = random%360
 guardsound = s300,3
 Guard.Sparkno = s8031
 sparkxy = -45,-40
-hitsound   = s250,0
+hitsound   = s250,2
 guardsound = 6,0
 ground.type = low
 ground.slidetime = 30
@@ -5213,13 +5243,13 @@ sparkangle = random%360
 guardsound = s300,3
 Guard.Sparkno = s8031
 sparkxy = -45,-40
-hitsound   = s250,0
+hitsound   = s250,2
 guardsound = 6,0
 ground.type = low
 ground.slidetime = 30
 ground.hittime  = 30
 ground.velocity = -1.2
-air.velocity = -1.2,-5
+air.velocity = -1,-3
 air.fall = 1
 fall.animtype = Hard
 fall.recover = 0
@@ -5264,7 +5294,7 @@ sprpriority = 2
 [State 3501, FuJinZan]
 type = playsnd
 trigger1 = time = 0
-value = 3500,2
+value = 3000,2
 volumescale = 100
 channel = 1
 
@@ -5667,16 +5697,22 @@ type = VelSet
 trigger1 = 1
 x = const(velocity.run.fwd.x)
 
+[State 100, Init SND]
+type = playsnd
+trigger1 = !time
+value = 80,1
+volumescale = 100
+
 [State 100, FootStep]
 type = playsnd
 trigger1 = animelem = 2; = 2 ;|| animelem = 5
-value = 90,4;40,0
+value = 90,0
 volumescale = 100
 
 [State 100, Footstep]
 type = playsnd
 trigger1 = animelem = 5
-value = 90,5
+value = 90,1
 volumescale = 100
 
 [State 100, 2] ;Prevent run from canceling into walk
@@ -6116,7 +6152,6 @@ volumescale = 100
 [State -2, Stop_Pal_FX]
 type = PalFX
 trigger1 = MoveType = H & Time = 0
-trigger1 = prevmovetype = A
 time = 0
 add = 0,0,0
 
