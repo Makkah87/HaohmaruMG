@@ -5492,7 +5492,7 @@ x = -20
 
 [State 3550, TakeThis!!]
 type = playsnd
-trigger1 = time = 18
+trigger1 = animelem = 4
 value = 3000,3
 channel = 1
 volumescale = 100
@@ -6151,7 +6151,10 @@ volumescale = 100
 
 [State -2, Stop_Pal_FX]
 type = PalFX
-trigger1 = MoveType = H & Time = 0
+triggerall = MoveType = H & Time = 0
+trigger1 = prevmovetype = A
+trigger2 = prevstateno = [2000,2999]
+trigger3 = prevstateno = 900
 time = 0
 add = 0,0,0
 
