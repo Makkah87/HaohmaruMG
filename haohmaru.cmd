@@ -45,6 +45,16 @@ command = ~D,DB,B,D,DB,B, x
 time = 30
 
 [Command]
+name = "dankuu"
+command = ~D,DB,B,D,DB,B, y
+time = 30
+
+[Command]
+name = "dankuu"
+command = ~D,DB,B,D,DB,B, z
+time = 30
+
+[Command]
 name = "tenhaL3"
 command = ~D, DF, F, D, DF, x+y
 time = 25

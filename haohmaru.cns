@@ -5118,19 +5118,35 @@ anim = 3020
 ctrl = 0
 sprpriority = 2
 
-[State 3020, Tenha]
+[State 3020, Voice 1]
 type = playsnd
 trigger1 = time = 0
-value = 3000,1
+value = 950,0
 volumescale = 100
 channel = 1
+
+[State 3020, Voice 2]
+type = playsnd
+trigger1 = time = 6
+value = 400,1
+volumescale = 100
+channel = 1
+
+[State 3020, SlashEffect]
+type = Explod
+trigger1 = animelem = 1
+anim = 423
+id = 3423
+postype = p1
+bindtime = -1
+sprpriority = 5
 
 [State 3020, PowerSpark]
 type = Helper
 trigger1 = time = 0
 name = "super"
 postype = P1
-pos = -50, -80
+pos = 35, -40
 ownpal = 1
 stateno = 4000
 id = 4000
@@ -5171,27 +5187,52 @@ attr = S, HA
 animtype  = Hard
 damage    = 42,20
 priority  = 5
-guardflag = MA
+guardflag = M
 pausetime = 12,12
 sparkno = s8017
 sparkangle = random%360
-sparkscale = 0.75,0.75
+sparkscale = 1,1
 guardsound = s300,3
 Guard.Sparkno = s8031
-sparkxy = -20,-110
+sparkxy = -20,-80
 hitsound   = s250,2
 guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = 0,-17
-air.velocity = -2.5,-15
+air.velocity = 0,-17
+maxdist = 50,-30
 envshake.time = 10
 envshake.ampl = 4
 envshake.freq = 176
 fall.recover = 0
 fall = 1
-yaccel = 0.65
+yaccel = 0.8
+
+[State 3020, Tornado]
+type = Explod
+trigger1 = movehit && numexplod(1062) = 0
+anim = 1062
+id = 1062
+postype = p1
+pos = 60,0
+scale = 2,2
+sprpriority = 5
+ignorehitpause = 1
+
+[State 3020, Wind Sound]
+type = playsnd
+trigger1 = movehit && numexplod(1062) = 1
+trigger1 = movehitvar(frame) = 1
+value = 1000,6
+ignorehitpause = 1
+
+[State 3020, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(5)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 3020, Jumpin' Time]
 type = changestate
@@ -5236,7 +5277,7 @@ y = 0.20
 
 [State 3021, Slash Anim]
 type = changeanim
-trigger1 = anim != 3022 && p2dist y > -65 && time > 3 && anim != 3023
+trigger1 = anim != 3022 && p2dist y > -65 && time > 10 && anim != 3023
 value = 3022
 
 [State 3021, Land Anim]
@@ -5254,6 +5295,19 @@ type = posset
 trigger1 = anim = 3023
 Y = 0
 
+[State 3020, Voice 2]
+type = playsnd
+trigger1 = anim = 3022 && animelem = 2
+value = 400,0
+volumescale = 100
+channel = 1
+
+[State 3020, Voice 3]
+type = playsnd
+trigger1 = anim = 3023 && animelem = 1
+value = 400,2
+volumescale = 100
+channel = 1
 
 [State 1021, 5]
 type = HitDef
@@ -5266,13 +5320,15 @@ guardflag = MA
 pausetime = 12,12
 sparkno = s8017
 sparkangle = random%360
-sparkscale = 0.75,0.75
+sparkscale = 1,1
 guardsound = s300,3
 Guard.Sparkno = s8031
-sparkxy = -20,-110
+sparkxy = -20,-30
 hitsound   = s250,2
 guardsound = s250,3
 ground.type = Low
+down.recover = 0
+down.recovertime = 200
 ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = 0,-17
@@ -5283,26 +5339,24 @@ envshake.freq = 176
 fall.recover = 0
 fall = 1
 yaccel = 0.65
-
-
 
 [State 1021, 5]
 type = HitDef
 trigger1 = animelem = 1 && anim = 3023
 attr = S, HA
 animtype  = Hard
-damage    = 42,20
+damage    = 200,20
 priority  = 5
 hitflag = MAFD
 guardflag = MA
-pausetime = 12,12
+pausetime = 8,8
 sparkno = s8017
 sparkangle = random%360
-sparkscale = 0.75,0.75
+sparkscale = 1,1
 guardsound = s300,3
 Guard.Sparkno = s8031
-sparkxy = -20,-110
-hitsound   = s250,2
+sparkxy = -20,0
+hitsound   = s3000,5
 guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
@@ -5316,11 +5370,64 @@ fall.recover = 0
 fall = 1
 yaccel = 0.65
 
+[State 3021, Target_State]
+type = targetstate
+Triggerall = numtarget && anim = 3023
+trigger1 = movehit && target, stateno != 3022
+trigger1 = animelemtime (2) < 0
+value = 3022
+
+
+[State 1003, Stop After Image]
+type = AfterImageTime
+trigger1 = anim = 3023 && !animtime
+time = 1
+
 [State 3021, End]
 type = changestate
 trigger1 = anim = 3023 && !animtime
 value = 0
 ctrl = 1
+
+
+;======================================================================
+;Dankuu Retsu Zan -Victim Ground Hit
+;======================================================================
+[Statedef 3022]
+type    = A
+movetype= H
+physics = N
+ctrl = 0
+sprpriority = 3
+
+[State 1084, Vel]
+type = velset
+trigger1 = time = 1
+x = -4
+y = -10.3
+
+[State 1084, Gravity]
+type = veladd
+trigger1 = 1
+y = 0.8
+
+[State 1083, Changeanim]
+type = changeanim
+trigger1 = time = 0
+value = 5050
+
+[State 1083, Changeanim]
+type = changeanim
+trigger1 = vel y >= 3 && selfanimexist(5060) && anim != 5060
+value = 5060
+
+[State 1083, 4] ;Hit ground
+type = SelfState
+triggerall = time >=10
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 5100 ;Hit ground
+
 
 ;======================================================================
 ;MAX Hyper Combos
