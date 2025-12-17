@@ -5105,6 +5105,223 @@ trigger1 = Vel Y >= 0
 value = 1002
 ctrl = 0
 
+;----------------------------------------------------------------------
+; Tenha Dankuu Retsu Zan - Start
+;----------------------------------------------------------------------
+[Statedef 3020]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+velset = 0,0
+anim = 3020
+ctrl = 0
+sprpriority = 2
+
+[State 3020, Tenha]
+type = playsnd
+trigger1 = time = 0
+value = 3000,1
+volumescale = 100
+channel = 1
+
+[State 3020, PowerSpark]
+type = Helper
+trigger1 = time = 0
+name = "super"
+postype = P1
+pos = -50, -80
+ownpal = 1
+stateno = 4000
+id = 4000
+supermovetime = 9999
+
+[State 3020, Super A]
+type = SuperPause
+trigger1 = time = 0
+pos = -50, -80
+anim = -2; S3005
+sound = s3000,10
+poweradd = -1000
+darken = 0
+time = 40
+
+[State 3020, Shadows]
+type = Afterimage
+trigger1 = Time = 0
+time = 999
+length = 21
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =  0.9,0.9,0.9
+FrameGap = 10
+Trans = Add1
+
+[State 3020, Super D]
+type = NotHitBy
+trigger1 = time = 0
+value = SCA
+time = 16
+
+[State 1021, 5]
+type = HitDef
+trigger1 = Time = 0
+attr = S, HA
+animtype  = Hard
+damage    = 42,20
+priority  = 5
+guardflag = MA
+pausetime = 12,12
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
+guardsound = s300,3
+Guard.Sparkno = s8031
+sparkxy = -20,-110
+hitsound   = s250,2
+guardsound = s250,3
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,-17
+air.velocity = -2.5,-15
+envshake.time = 10
+envshake.ampl = 4
+envshake.freq = 176
+fall.recover = 0
+fall = 1
+yaccel = 0.65
+
+[State 3020, Jumpin' Time]
+type = changestate
+trigger1 = movehit
+value = 3021
+ctrl = 0
+
+[State 3020, End]
+type = changestate
+trigger1 = !animtime
+value = 0
+ctrl = 1
+
+
+;----------------------------------------------------------------------
+; Tenha Dankuu Retsu Zan - Jump
+;----------------------------------------------------------------------
+[Statedef 3021]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+velset = 0,0
+anim = 3021
+ctrl = 0
+sprpriority = 2
+
+[State 3021, Jump Vel]
+type = velset
+trigger1 = animelem = 2
+y = -14
+
+[State 3021, Gravity]
+type = veladd
+trigger1 = animelemtime(2) > 0
+y = 0.59
+
+[State 3021, Acceleration Gravity]
+type = veladd
+trigger1 = anim = 3022
+y = 0.20
+
+[State 3021, Slash Anim]
+type = changeanim
+trigger1 = anim != 3022 && p2dist y > -65 && time > 3 && anim != 3023
+value = 3022
+
+[State 3021, Land Anim]
+type = changeanim
+trigger1 = pos y > 0 && anim = 3022 && anim != 3023
+value = 3023
+
+[State 3021, VelSet]
+type = velset
+trigger1 = anim = 3023
+Y = 0
+
+[State 3021, PosSet]
+type = posset
+trigger1 = anim = 3023
+Y = 0
+
+
+[State 1021, 5]
+type = HitDef
+trigger1 = Time = 0
+attr = S, HA
+animtype  = Hard
+damage    = 42,20
+priority  = 5
+guardflag = MA
+pausetime = 12,12
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
+guardsound = s300,3
+Guard.Sparkno = s8031
+sparkxy = -20,-110
+hitsound   = s250,2
+guardsound = s250,3
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,-17
+air.velocity = 0,15
+envshake.time = 10
+envshake.ampl = 4
+envshake.freq = 176
+fall.recover = 0
+fall = 1
+yaccel = 0.65
+
+
+
+[State 1021, 5]
+type = HitDef
+trigger1 = animelem = 1 && anim = 3023
+attr = S, HA
+animtype  = Hard
+damage    = 42,20
+priority  = 5
+hitflag = MAFD
+guardflag = MA
+pausetime = 12,12
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
+guardsound = s300,3
+Guard.Sparkno = s8031
+sparkxy = -20,-110
+hitsound   = s250,2
+guardsound = s250,3
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,-17
+air.velocity = 0,15
+envshake.time = 10
+envshake.ampl = 4
+envshake.freq = 176
+fall.recover = 0
+fall = 1
+yaccel = 0.65
+
+[State 3021, End]
+type = changestate
+trigger1 = anim = 3023 && !animtime
+value = 0
+ctrl = 1
+
 ;======================================================================
 ;MAX Hyper Combos
 ;----------------------------------------------------------------------
@@ -5249,7 +5466,7 @@ ground.type = low
 ground.slidetime = 30
 ground.hittime  = 30
 ground.velocity = -1.2
-air.velocity = -1,-3
+air.velocity = -1.9,-3
 air.fall = 1
 fall.animtype = Hard
 fall.recover = 0
@@ -6130,8 +6347,9 @@ value = 710 + Var(9) ; <= that's because of the state numbers I chose for my par
 [State -2, Debug data]
 type = displaytoclipboard
 trigger1 = time >= 0
-text = "Movehit = %d, Corner Push =%f, By Master Gouken" 
-params = movehit, map(bloodtime)
+text = "Enemy Anim Type =%d,P2Dist X = %f,P2Dist Y = %f,var(11) = %d,Special State = %f, Target_ID = %f, Bounce = %f,By Makkah/Master Gouken"
+params = enemy,gethitvar(animtype),P2Dist X,P2Dist Y,var(11), map(special_cancel), map(target_id), map(bounce)
+ignorehitpause = 1
 
 [State 1021, Kogetsu_CPush_Reset]
 type = mapset

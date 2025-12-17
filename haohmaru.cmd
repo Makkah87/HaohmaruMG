@@ -339,8 +339,8 @@ time = 1
 [Statedef -1]
 ;======================================================================
 ;----------------------------------------------------------------------
-;Tenha Fujin Zan
-[State -1, Tenha Fujin Zan]
+;Tenha Fujin Zan Max
+[State -1, Tenha Fujin Zan Max]
 type = ChangeState
 value = 3500
 triggerall = command = "tenhaL3"
@@ -350,6 +350,19 @@ trigger1 = ctrl
 trigger2 = statetype != A
 trigger2 = hitdefattr = SC, NA, SA, HA
 trigger2 = stateno != [3000,3050)
+trigger2 = movecontact
+
+;------------------------------------------------------------------------
+;Tenha Dankuu Retsu Zan
+[State -1, Tenha Dankuu Retsu Zan]
+type = ChangeState
+value = 3020
+triggerall = command = "dankuu"
+triggerall = power >= 1000
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = hitdefattr = SC, NA, SA, HA
+trigger2 = stateno != [3050,3100)
 trigger2 = movecontact
 
 ;----------------------------------------------------------------------
