@@ -5134,8 +5134,9 @@ channel = 1
 
 [State 3020, SlashEffect]
 type = Explod
-trigger1 = animelem = 1
+trigger1 = animelem = 4
 anim = 423
+animelem = 2
 id = 3423
 postype = p1
 bindtime = -1
@@ -5203,6 +5204,7 @@ ground.hittime  = 15
 ground.velocity = 0,-17
 air.velocity = 0,-17
 maxdist = 50,-30
+mindist = 0, -60
 envshake.time = 10
 envshake.ampl = 4
 envshake.freq = 176
@@ -5339,6 +5341,8 @@ envshake.freq = 176
 fall.recover = 0
 fall = 1
 yaccel = 0.65
+canrecover = 0
+down.recovertime = 200
 
 [State 1021, 5]
 type = HitDef
@@ -5362,21 +5366,20 @@ ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = 0,-17
-air.velocity = 0,15
+air.velocity = -3.7,-11
 envshake.time = 10
 envshake.ampl = 4
 envshake.freq = 176
 fall.recover = 0
 fall = 1
-yaccel = 0.65
+yaccel = 0.99
 
 [State 3021, Target_State]
 type = targetstate
 Triggerall = numtarget && anim = 3023
 trigger1 = movehit && target, stateno != 3022
-trigger1 = animelemtime (2) < 0
+trigger1 = animelemtime(1) =0
 value = 3022
-
 
 [State 1003, Stop After Image]
 type = AfterImageTime
