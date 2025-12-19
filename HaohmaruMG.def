@@ -5,10 +5,11 @@
 [Info]
 name = "HaohmaruMG"         ;Name of character
 displayname = "Haohmaru"    ;Name of character to display
-versiondate = 04,14,2002    ;Version date of character (MM-DD-YYYY)
+versiondate = 12,18,2025    ;Version date of character (MM-DD-YYYY)
 ikemenversion = 1.0   ;Version of IKEMEN character works on
 author = "Master Gouken"    ;Character author name
 pal.defaults = 6,3,4,2      ;Default palettes in order of preference
+localcoord = 320,240
 
 ; Files for the player
 [Files]

@@ -5297,21 +5297,21 @@ type = posset
 trigger1 = anim = 3023
 Y = 0
 
-[State 3020, Voice 2]
+[State 3021, Voice 2]
 type = playsnd
 trigger1 = anim = 3022 && animelem = 2
 value = 400,0
 volumescale = 100
 channel = 1
 
-[State 3020, Voice 3]
+[State 3021, Voice 3]
 type = playsnd
 trigger1 = anim = 3023 && animelem = 1
 value = 400,2
 volumescale = 100
 channel = 1
 
-[State 1021, 5]
+[State 3021, 5]
 type = HitDef
 trigger1 = Time = 0
 attr = S, HA
@@ -5344,7 +5344,7 @@ yaccel = 0.65
 canrecover = 0
 down.recovertime = 200
 
-[State 1021, 5]
+[State 3021, 5]
 type = HitDef
 trigger1 = animelem = 1 && anim = 3023
 attr = S, HA
@@ -5374,14 +5374,22 @@ fall.recover = 0
 fall = 1
 yaccel = 0.99
 
-[State 3021, Target_State]
+
+[State 3021, Target Hits the Ground]
 type = targetstate
-Triggerall = numtarget && anim = 3023
-trigger1 = movehit && target, stateno != 3022
-trigger1 = animelemtime(1) =0
+Triggerall = numtarget && anim = 3022
+trigger1 = target, pos Y >= 0 && target, stateno != 3022
 value = 3022
 
-[State 1003, Stop After Image]
+[State 3021, Target_Struck by blade]
+type = targetstate
+Triggerall = numtarget && anim = 3023
+trigger1 = movehit && target, stateno != 3023
+trigger1 = animelemtime(1) =0
+value = 3023
+
+
+[State 3021, Stop After Image]
 type = AfterImageTime
 trigger1 = anim = 3023 && !animtime
 time = 1
@@ -5394,37 +5402,64 @@ ctrl = 1
 
 
 ;======================================================================
-;Dankuu Retsu Zan -Victim Ground Hit
+;Dankuu Retsu Zan -Victim Hits the ground: Fuck you to everyone whose AI doesn't respect recovery rules
 ;======================================================================
 [Statedef 3022]
+type    = L
+movetype= H
+physics = N
+ctrl = 0
+sprpriority = 3
+velset = 0,0
+
+[State 3022, PosSet]
+type = posset
+trigger1 = !time
+Y = 0
+
+
+[State 3022, Changeanim]
+type = changeanim
+trigger1 = time = 0
+value = 5170
+
+[State 3022, Changeanim]
+type = changeanim
+trigger1 = anim = 5170 && !animtime
+value = 5110
+
+;======================================================================
+;Dankuu Retsu Zan -Victim Ground Hit
+;======================================================================
+[Statedef 3023]
 type    = A
 movetype= H
 physics = N
 ctrl = 0
 sprpriority = 3
 
-[State 1084, Vel]
+[State 3023, Vel]
 type = velset
 trigger1 = time = 1
-x = -4
-y = -10.3
+x = -2
+y = -17.3
 
-[State 1084, Gravity]
+[State 3023, Gravity]
 type = veladd
 trigger1 = 1
 y = 0.8
 
-[State 1083, Changeanim]
+[State 3023, Changeanim]
 type = changeanim
 trigger1 = time = 0
 value = 5050
 
-[State 1083, Changeanim]
+[State 3023, Changeanim]
 type = changeanim
 trigger1 = vel y >= 3 && selfanimexist(5060) && anim != 5060
 value = 5060
 
-[State 1083, 4] ;Hit ground
+[State 3023, 4] ;Hit ground
 type = SelfState
 triggerall = time >=10
 trigger1 = Vel Y > 0
