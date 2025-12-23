@@ -2,10 +2,23 @@
 ######################################
 ignorehitpause{
 if movetype = A{
-var(100):= hitdefvar(sparkx);
-var(101):= hitdefvar(sparky);
-var(102):= hitdefvar(sparkno);
-var(103):= hitdefvar(hitsound.group);
+map(sparkx):= hitdefvar(sparkx);
+map(sparky):= hitdefvar(sparky);
+map(sparkno):= hitdefvar(sparkno);
+map(hitsnd_group):= hitdefvar(hitsound.group);
+
+if hitdefattr = SCA, NA {mapset {map:"normal_attack"; value :1}
+	mapset {map:"special_attack"; value :0}
+	mapset {map:"super_attack"; value :0}
+}
+if hitdefattr = SCA, SA {mapset {map:"special_attack"; value :1}
+	mapset {map:"normal_attack"; value :0}
+	mapset {map:"super_attack"; value :0}
+}
+if hitdefattr = SCA, HA {mapset {map:"super_attack"; value :1}
+	mapset {map:"special_attack"; value :0}
+	mapset {map:"normal_attack"; value :0}
+}
 }
 }
 #######################################
@@ -14,7 +27,16 @@ ignorehitpause{
 if !p2,hitoverridden && movehitvar(frame) = 1 && movehit && hitdefvar(sparkno) = 8017{
 
 
-helper{id:8000;stateno:8000;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))+pos y;postype:p2;ownpal:1}
+helper{id:8000;stateno:8000;pos:(map(sparkx)),(map(sparky))+pos y;postype:p2;ownpal:1}
+}
+}
+
+##Trading Hits
+ignorehitpause{
+if movetype = H && map(sparkno) = 8017 && prevmovetype = A && !time && p2,movetype = H && numhelper(8000) = 0{
+
+
+helper{id:8000;stateno:8000;pos:(map(sparkx)),(map(sparky))+pos y;postype:p2;ownpal:1}
 }
 }
 
@@ -26,28 +48,29 @@ changeanim{value:-2}
 }
 
 #Normal Attacks
-if root,hitdefattr = SCA, NA && (!time || (time%3=1 && time < 6)){
-explod{anim:8001;pos:(hitdefvar(sparkx)),(hitdefvar(sparky)-p2, pos y);postype:p1;sprpriority:10;vel:0+random%5,-1;accel:0.4,0.9}
+if root,map(normal_attack) && (!time || (time%3=1 && time < 6)){
+explod{anim:8001;pos:(map(sparkx)),(map(sparky)-p2, pos y);postype:p1;sprpriority:10;vel:0+random%5,-1;accel:0.4,0.9}
 
 if (p2,gethitvar(animtype)=2 ||( root,stateno = 220 || root,stateno = 420 || root,stateno = 620)&&root,winko)  && (!time || (time%3=1 && time < 4)){
-explod{anim:8003;pos:(hitdefvar(sparkx)),(hitdefvar(sparky)-p2,pos y);postype:p1;sprpriority:10;vel:0,-4;accel:0.23,0.2;scale:0.5,0.5}
-explod{anim:8002;pos:(hitdefvar(sparkx)),(hitdefvar(sparky)-p2,pos y);postype:p1;sprpriority:10;vel:2.3,-2;accel:0.23,0.2;scale:0.5,0.5}
+explod{anim:8003;pos:(map(sparkx)),(map(sparky)-p2,pos y);postype:p1;sprpriority:10;vel:0,-4;accel:0.23,0.2;scale:0.5,0.5}
+explod{anim:8002;pos:(map(sparkx)),(map(sparky)-p2,pos y);postype:p1;sprpriority:10;vel:2.3,-2;accel:0.23,0.2;scale:0.5,0.5}
 }
 
 }
 
 #Special Attacks
-if root,hitdefattr = SCA, SA && !time{
-explod{anim:8002;pos:(hitdefvar(sparkx)),((hitdefvar(sparky))-p2,pos y)-45;postype:p1;sprpriority:10;vel:-2-random%2.33,-1;accel:-0.5,0.3;scale:0.5,0.5}
-explod{anim:8002;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:2-random%2.33,-2.3;accel:0,0.3;scale:0.7,0.7}
-explod{anim:8003;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:(1.3+random%4)*ifelse(random<500,-1,1),-5.6;accel:0,0.42;scale:0.65,0.65}
+if root,map(special_attack) && !time{
+explod{anim:8002;pos:(map(sparkx)),((map(sparky))-p2,pos y)-45;postype:p1;sprpriority:10;vel:-2-random%2.33,-1;accel:-0.5,0.3;scale:0.5,0.5}
+explod{anim:8002;pos:(map(sparkx)),(map(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:2-random%2.33,-2.3;accel:0,0.3;scale:0.7,0.7}
+explod{anim:8003;pos:(map(sparkx)),(map(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:(1.3+random%4)*ifelse(random<500,-1,1),-5.6;accel:0,0.42;scale:0.65,0.65}
 }
 
 #Super Attacks
-if root,hitdefattr = SCA, HA && !time{
-explod{anim:8003;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:(1.3+random%4)*ifelse(random<500,-1,1),-4;accel:0.23,0.2;scale:0.75,0.75}
-explod{anim:8002;pos:(hitdefvar(sparkx)),((hitdefvar(sparky))-p2,pos y)-45;postype:p1;sprpriority:10;vel:-2-random%2.33,-1;accel:-0.5,0.3;scale:0.5,0.5}
-explod{anim:8002;pos:(hitdefvar(sparkx)),(hitdefvar(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:2-random%2.33,-2.3;accel:0,0.3;scale:0.7,0.7}
+if root,map(super_attack) && !time{
+explod{anim:8003;pos:(map(sparkx)),(map(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:(1.3+random%4)*ifelse(random<500,-1,1),-4;accel:0.23,0.2;scale:0.75,0.75}
+explod{anim:8002;pos:(map(sparkx)),((map(sparky))-p2,pos y)-45;postype:p1;sprpriority:10;vel:-2-random%2.33,-1;accel:-0.5,0.3;scale:0.5,0.5}
+explod{anim:8002;pos:(map(sparkx)),(map(sparky))-p2,pos y;postype:p1;sprpriority:10;vel:2-random%2.33,-2.3;accel:0,0.3;scale:0.7,0.7}
 }
 
-if root, movetype != A{destroyself{}}
+#if root, movetype != A{destroyself{}}
+if time = 15 {destroyself{}}

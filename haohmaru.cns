@@ -5848,8 +5848,8 @@ value = 3026
 [State 3502, Rumble]
 type  = envshake
 triggerall = time >=10
-trigger1 = Vel Y > 0
-trigger1 = Pos Y >= 0
+;trigger1 = Vel Y > 0
+trigger1 = Pos Y >= -20
 freq  = 120
 time  = 5
 mul = 0.9
@@ -5858,8 +5858,8 @@ ampl  = -4
 [State 3502, 4] ;Hit ground
 type = SelfState
 triggerall = time >=10
-trigger1 = Vel Y > 0
-trigger1 = Pos Y >= 0
+;trigger1 = Vel Y > 0
+trigger1 = Pos Y >= -20
 value = 5100 ;Hit ground
 
 
@@ -6647,9 +6647,10 @@ type = PalFX
 triggerall = MoveType = H & Time = 0
 trigger1 = prevmovetype = A
 trigger2 = prevstateno = [2000,2999]
-trigger3 = prevstateno = 900
+trigger3 = gethitvar(isbound)
 time = 0
 add = 0,0,0
+ignorehitpause = 1
 
 [State -2, Stop Super BGeffects]
 type = bgpalfx
