@@ -5249,7 +5249,8 @@ fall.recover = 0
 fall = 1
 yaccel = 0.8
 kill = 0
-guard.kill = 0
+guard.kill = 1
+p2facing = 1
 
 [State 3020, Tornado]
 type = Explod
@@ -5278,7 +5279,7 @@ ignorehitpause = 1
 
 [State 3020, Jumpin' Time]
 type = changestate
-trigger1 = movehit && p2,movetype = H
+trigger1 = !winko && movehit && p2,movetype = H
 value = 3021
 ctrl = 0
 
