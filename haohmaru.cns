@@ -634,7 +634,7 @@ type = HitDef
 trigger1 = Time = 0 && anim = 220
 attr = S, NA
 animtype  = Hard
-damage    = 208,90
+damage    = 208,20
 guardflag = MA
 pausetime = 12,12
 sparkno = s8017
@@ -1803,6 +1803,16 @@ type = AssertSpecial
 trigger1 = 1
 flag = nowalk
 
+[State 720, Poweradd]
+type = poweradd
+trigger1 = !time
+value = ifelse(prevstateno = [720,721],150,100)
+
+[State 720, Poweradd]
+type = guardpointsadd
+trigger1 = !time
+value = 100
+
 [State 720, PalFX]
 type = PalFX
 trigger1 =  time = 0
@@ -1878,6 +1888,16 @@ mul = 256,256,256
 invertall = 0
 color = 256
 
+[State 721, Poweradd]
+type = poweradd
+trigger1 = !time
+value = ifelse(prevstateno = [720,721],150,100)
+
+[State 721, Poweradd]
+type = guardpointsadd
+trigger1 = !time
+value = 100
+
 [State 721, Parry Spark]
 type = Explod
 trigger1 = Time = 0
@@ -1943,6 +1963,16 @@ add = 0,0,255
 mul = 256,256,256
 invertall = 0
 color = 256
+
+[State 722, Poweradd]
+type = poweradd
+trigger1 = !time
+value = ifelse(prevstateno = 722,150,100)
+
+[State 722, Poweradd]
+type = guardpointsadd
+trigger1 = !time
+value = 100
 
 [State 772, gravity]
 type = gravity
@@ -5132,6 +5162,12 @@ value = 400,1
 volumescale = 100
 channel = 1
 
+[State 3020, 1]
+type = PlaySnd
+trigger1 = Time = 6
+value = 210, 2
+volumescale = 100
+
 [State 3020, SlashEffect]
 type = Explod
 trigger1 = animelem = 4
@@ -5179,14 +5215,14 @@ Trans = Add1
 type = NotHitBy
 trigger1 = time = 0
 value = SCA
-time = 16
+time = 8
 
 [State 1021, 5]
 type = HitDef
 trigger1 = Time = 0
 attr = S, HA
 animtype  = Hard
-damage    = 42,20
+damage    = 42,60
 priority  = 5
 guardflag = M
 pausetime = 12,12
@@ -5203,18 +5239,22 @@ ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = 0,-17
 air.velocity = 0,-17
+guard.velocity = -6.0
 maxdist = 50,-30
-mindist = 0, -60
+mindist = 0, ifelse((p2, statetype = A), -60,0)
 envshake.time = 10
 envshake.ampl = 4
 envshake.freq = 176
 fall.recover = 0
 fall = 1
 yaccel = 0.8
+kill = 0
+guard.kill = 0
 
 [State 3020, Tornado]
 type = Explod
-trigger1 = movehit && numexplod(1062) = 0
+trigger1 = movehitvar(frame)=1 && numexplod(1062) = 0 && !p2,hitoverridden
+trigger1 = movehit
 anim = 1062
 id = 1062
 postype = p1
@@ -5238,17 +5278,20 @@ ignorehitpause = 1
 
 [State 3020, Jumpin' Time]
 type = changestate
-trigger1 = movehit
+trigger1 = movehit && p2,movetype = H
 value = 3021
 ctrl = 0
+
+[State 3020, Stop After Image]
+type = AfterImageTime
+trigger1 = !animtime
+time = 1
 
 [State 3020, End]
 type = changestate
 trigger1 = !animtime
 value = 0
 ctrl = 1
-
-
 ;----------------------------------------------------------------------
 ; Tenha Dankuu Retsu Zan - Jump
 ;----------------------------------------------------------------------
@@ -5261,6 +5304,18 @@ velset = 0,0
 anim = 3021
 ctrl = 0
 sprpriority = 2
+
+[State 3021, JumpSND]
+type = PlaySnd
+trigger1 = Time = 5
+value = 80,0
+volumescale = 100
+
+[State 3020, Slash SND]
+type = PlaySnd
+trigger1 = animelem = 2 && anim = 3022
+value = 210, 2
+volumescale = 100
 
 [State 3021, Jump Vel]
 type = velset
@@ -5329,8 +5384,6 @@ sparkxy = -20,-30
 hitsound   = s250,2
 guardsound = s250,3
 ground.type = Low
-down.recover = 0
-down.recovertime = 200
 ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = 0,-17
@@ -5341,8 +5394,8 @@ envshake.freq = 176
 fall.recover = 0
 fall = 1
 yaccel = 0.65
-canrecover = 0
-down.recovertime = 200
+kill = 0
+guard.kill = 0
 
 [State 3021, 5]
 type = HitDef
@@ -5388,7 +5441,6 @@ trigger1 = movehit && target, stateno != 3023
 trigger1 = animelemtime(1) =0
 value = 3023
 
-
 [State 3021, Stop After Image]
 type = AfterImageTime
 trigger1 = anim = 3023 && !animtime
@@ -5399,8 +5451,6 @@ type = changestate
 trigger1 = anim = 3023 && !animtime
 value = 0
 ctrl = 1
-
-
 ;======================================================================
 ;Dankuu Retsu Zan -Victim Hits the ground: Fuck you to everyone whose AI doesn't respect recovery rules
 ;======================================================================
@@ -5417,19 +5467,36 @@ type = posset
 trigger1 = !time
 Y = 0
 
+[State 3022, Rumble]
+type  = envshake
+trigger1 = Time = 0
+freq  = 120
+time  = 5
+mul = 0.9
+ampl  = -4
 
-[State 3022, Changeanim]
+[State 3022, Changeanim - Hit Ground]
 type = changeanim
 trigger1 = time = 0
+value = 5100
+
+[State 3022, Changeanim - Bounce into air]
+type = changeanim
+trigger1 = time = 5
+value = 5160
+
+[State 3022, Changeanim - Settle on Ground]
+type = changeanim
+trigger1 = time = 10
 value = 5170
 
-[State 3022, Changeanim]
+[State 3022, Changeanim - Lay Down]
 type = changeanim
 trigger1 = anim = 5170 && !animtime
 value = 5110
 
 ;======================================================================
-;Dankuu Retsu Zan -Victim Ground Hit
+;Dankuu Retsu Zan -Victim Slashed on Ground
 ;======================================================================
 [Statedef 3023]
 type    = A
@@ -5441,13 +5508,18 @@ sprpriority = 3
 [State 3023, Vel]
 type = velset
 trigger1 = time = 1
-x = -2
-y = -17.3
+x = -6
+y = -14.3
 
 [State 3023, Gravity]
 type = veladd
 trigger1 = 1
 y = 0.8
+
+[State 3023, Custom Flip Anim]
+type = null;changeanim2
+trigger1 = time = 0
+value = 3026
 
 [State 3023, Changeanim]
 type = changeanim
@@ -5459,14 +5531,22 @@ type = changeanim
 trigger1 = vel y >= 3 && selfanimexist(5060) && anim != 5060
 value = 5060
 
+[State 3023, Rumble]
+type  = envshake
+triggerall = time >=10
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+freq  = 120
+time  = 5
+mul = 0.9
+ampl  = -4
+
 [State 3023, 4] ;Hit ground
 type = SelfState
 triggerall = time >=10
 trigger1 = Vel Y > 0
 trigger1 = Pos Y >= 0
 value = 5100 ;Hit ground
-
-
 ;======================================================================
 ;MAX Hyper Combos
 ;----------------------------------------------------------------------
@@ -5727,11 +5807,61 @@ type = VelAdd
 trigger1 = 1
 y = 0.8
 
+[State 3501, P2FlipState]
+type = targetstate
+trigger1 = UniqHitCount = 5
+value = 3502
+
 [State 3501, Decend]
 type = ChangeState
 trigger1 = Vel Y >= 0
 value = 1002
 ctrl = 0
+
+
+;======================================================================
+;Dankuu Retsu Zan -Victim Slashed on Ground
+;======================================================================
+[Statedef 3502]
+type    = A
+movetype= H
+physics = N
+ctrl = 0
+sprpriority = 3
+
+[State 3502, Vel]
+type = velset
+trigger1 = time = 1
+x = -2.1
+y = -11
+
+[State 3502, Gravity]
+type = veladd
+trigger1 = 1
+y = 0.8
+
+[State 3502, Custom Flip Anim]
+type = changeanim2
+trigger1 = time = 0
+value = 3026
+
+[State 3502, Rumble]
+type  = envshake
+triggerall = time >=10
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+freq  = 120
+time  = 5
+mul = 0.9
+ampl  = -4
+
+[State 3502, 4] ;Hit ground
+type = SelfState
+triggerall = time >=10
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 5100 ;Hit ground
+
 
 ;----------------------------------------------------------------------
 ; Tenha Seiouzan
@@ -6312,7 +6442,7 @@ sysvar(1) = floor(vel y)
 type = PlaySnd
 trigger1 = Time = 0
 trigger1 = !SysVar(0)
-value = 5000,11
+value = 5000,12
 
 [State 5110, 7]
 type = GameMakeAnim

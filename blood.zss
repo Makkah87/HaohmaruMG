@@ -1,4 +1,15 @@
 [Statedef -2]
+######################################
+ignorehitpause{
+if movetype = A{
+var(100):= hitdefvar(sparkx);
+var(101):= hitdefvar(sparky);
+var(102):= hitdefvar(sparkno);
+var(103):= hitdefvar(hitsound.group);
+}
+}
+#######################################
+
 ignorehitpause{
 if !p2,hitoverridden && movehitvar(frame) = 1 && movehit && hitdefvar(sparkno) = 8017{
 

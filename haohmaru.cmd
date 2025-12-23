@@ -343,6 +343,11 @@ time = 1
 name = "F"
 command = F
 time = 1
+
+[Command]
+name = "D"
+command = D
+time = 1
 ;----------------------------------------------------------------------
 ; 2. State entry
 ;----------------------------------------------------------------------
@@ -592,7 +597,7 @@ trigger2 = p2movetype != H
 ; Stand parry [Code by Byakko]
 [State -1, Standing Parry]
 type = hitoverride
-triggerall = statetype != A && command = "F"
+triggerall = statetype != A && command = "F"&& !Var(10)
 triggerall = movetype != A
 trigger1 = ctrl || stateno = 720 || stateno = 721 || anim = 912 || stateno=[150,153]
 trigger1 = var(9) := (1 + 3*(stateno = [150,153]))
@@ -604,8 +609,8 @@ slot = 1
 ;----------------------------------------------------------------------
 ; Stand parry a crouching, but high, attack
 [State -1, stp]
-type = hitoverride
-triggerall = statetype != A && command = "F"
+type = null;hitoverride
+triggerall = statetype != A && command = "F"&& !Var(10)
 triggerall = movetype != A
 trigger1 = ctrl || stateno = 720 || stateno = 721 || anim = 912 || stateno=[150,153]
 trigger1 = var(9) := (1 + 3*(stateno = [150,153]))
@@ -617,21 +622,21 @@ slot = 2
 ; Crouch parry
 [State -1, crp]
 type = hitoverride
-triggerall = (statetype = S && command = "holddown") || (statetype = C && command = "F") ; ... yeah, I allow pressing forward 
+triggerall = (statetype = S && command = "D"); ... yeah, I allow pressing forward
 ;_while_ crouching already. Because. Comment ?
-triggerall = movetype != A
+triggerall = movetype != A && !Var(10)
 trigger1 = ctrl || stateno = 720 || stateno = 721 || anim = 912 || stateno = [150,153]
 trigger1 = var(9) := (2 + 3*(stateno = [150,153]))
-attr = CS, AA, AP
+attr = C, AA, AP
 stateno = 721
 time = ifelse((stateno = [150,153]), 6, 8)
 slot = 1
 ;----------------------------------------------------------------------
 ; Crouch parry a standing light attack
 [State -1, crp]
-type = hitoverride
-triggerall = (statetype = S && command = "holddown") || (statetype = C && command = "F")
-triggerall = movetype != A
+type = null;hitoverride
+triggerall = (statetype = S && command = "D")
+triggerall = movetype != A&& !Var(10)
 trigger1 = ctrl || stateno = 720 || stateno = 721 || anim = 912 || stateno = [150,153]
 trigger1 = var(9) := (2 + 3*(stateno = [150,153]))
 attr = S, AA, AP
@@ -642,7 +647,7 @@ slot = 2
 ; Air parry
 [State -1, aip]
 type = hitoverride
-triggerall = statetype = A && command = "F"
+triggerall = statetype = A && command = "F"&& !Var(10)
 triggerall = movetype != A
 trigger1 = ctrl || stateno = 722 || stateno = [154,155]
 trigger1 = var(9) := (3 + 3*(stateno = [154,155]))
@@ -656,6 +661,7 @@ time = ifelse((stateno = [154,155]), 6, 8)
 [State -1, ps]
 type = hitoverride
 ; player has changed state (attack, no control...)
+triggerall = !Var(10)
 trigger1 = !ctrl && stateno != [720,722]
 trigger1 = anim != 912 && stateno != [150,155] 
 ; player has changed state - a stand parry got activated and the char jumps, have to deactivate stand parry...
@@ -669,6 +675,7 @@ slot = 1
 ;----------------------------------------------------------------------
 [State -1, ps]
 type = hitoverride
+triggerall = !Var(10)
 trigger1 = !ctrl && stateno != [720,722]
 trigger1 = anim != 501 && stateno != [150,155]
 trigger2 = statetype = A && var(9) != 3 && var(9) != 6
@@ -677,8 +684,7 @@ trigger4 = statetype = S && (var(9) = 3 || var(9) = 6)
 trigger5 = stateno = [100,110]
 attr = SCA
 time = 0
-slot = 2
-;----------------------------------------------------------------------
+slot = 2;----------------------------------------------------------------------
 ;Stand Light Slash
 [State -1, Stand Light Punch]
 type = ChangeState
