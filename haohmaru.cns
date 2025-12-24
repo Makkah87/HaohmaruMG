@@ -36,7 +36,7 @@ ground.back = 20     ;Player width (back, ground)
 ground.front = 20    ;Player width (front, ground)
 air.back = 16        ;Player width (back, air)
 air.front = 16       ;Player width (front, air)
-height = 60          ;Height of player (for opponent to jump over)
+height = 85          ;Height of player (for opponent to jump over)
 attack.dist = 160    ;Default attack distance
 proj.attack.dist = 90;Default attack distance for projectiles
 proj.doscale = 0     ;Set to 1 to scale projectiles too
@@ -5434,6 +5434,25 @@ type = targetstate
 Triggerall = numtarget && anim = 3022
 trigger1 = target, pos Y >= 0 && target, stateno != 3022
 value = 3022
+
+[State 3020, Tornado]
+type = Explod
+trigger1 = numtarget
+trigger1 = target, stateno = 3022 && target, time = 0
+anim = 8054
+id = 8054
+postype = p2
+pos = 0,0
+scale = 0.5,0.5
+sprpriority = -5
+ignorehitpause = 1
+
+[State 3020, Crash Sound]
+type = playsnd
+trigger1 = numtarget
+trigger1 = target, stateno = 3022 && target, time = 0
+value = 5000,13
+volumescale = 100
 
 [State 3021, Target_Struck by blade]
 type = targetstate
