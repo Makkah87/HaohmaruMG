@@ -39,6 +39,22 @@ name = "seiouzan"
 command = ~F, DF, D, DB, B, F, z
 time = 30
 
+
+[Command]
+name = "dankuuL3"
+command = ~D,DB,B,D,DB,B, x+y
+time = 30
+
+[Command]
+name = "dankuuL3"
+command = ~D,DB,B,D,DB,B, y+z
+time = 30
+
+[Command]
+name = "dankuuL3"
+command = ~D,DB,B,D,DB,B, x+z
+time = 30
+
 [Command]
 name = "dankuu"
 command = ~D,DB,B,D,DB,B, x
@@ -270,6 +286,32 @@ name = "pu2"
 command = /b
 time = 1
 
+;----------------------------------------------
+[command]
+name = "ljpf" ;long jump forward
+command = D, UF
+time = 13
+
+[command]
+name = "ljpf"
+command = DB, UF
+time = 13
+
+[command]
+name = "ljpb" ;long jump forward
+command = D, UB
+time = 13
+
+[command]
+name = "ljpb"
+command = DF, UB
+time =13
+
+[command]
+name = "ljn"
+command = ~D, U
+time = 8
+
 ;-| Dir + Button |----------------------------------------------------------------------
 [Command]
 name = "down_a"
@@ -367,6 +409,18 @@ trigger2 = hitdefattr = SC, NA, SA, HA
 trigger2 = stateno != [3000,3050)
 trigger2 = movecontact
 
+;------------------------------------------------------------------------
+;Tenha Dankuu Retsu Zan Max
+[State -1, Tenha Dankuu Retsu Zan Max]
+type = ChangeState
+value = 3520
+triggerall = command = "dankuuL3"
+triggerall = power >= 3000
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = hitdefattr = SC, NA, SA, HA
+trigger2 = stateno != [3050,3100)
+trigger2 = movecontact
 ;------------------------------------------------------------------------
 ;Tenha Dankuu Retsu Zan
 [State -1, Tenha Dankuu Retsu Zan]

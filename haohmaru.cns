@@ -5,12 +5,13 @@
 ;			Var(1) : Intro Decider
 ;			Var(2) : Win Pose Decider
 ;			Var(3) : Hit Voice Randomizer
-;                       Var(4) : Combo Condition
-;                       Var(5) : Throw Turn
-;                       Var(6) : ----
+;			 Var(4) : Combo Condition
+;			 Var(5) : Throw Turn
+;			 Var(6) : ----
 ;			Var(7) : Juggle Addition
 ;			Var(8) : Senpuu in play
 ;			Var(9) : Parry Variable
+;			Var(12): Long Jump Stuff
 ;======================================================================
 [Data]
 life = 1000               ;Amount of life to start with
@@ -51,10 +52,10 @@ walk.back = -2.4          ;Walk backward
 run.fwd  = 5.7, 0         ;Run forward (x, y)
 run.back = -4.5,-3.8      ;Hop backward (x, y)
 jump.neu = 0,-11.33 ;-7.6   ;Neutral jumping velocity (x, y)
-jump.back = -3.4,-00.33     ;Jump back Speed (x, y)
+jump.back = -3.4,-11.33     ;Jump back Speed (x, y)
 jump.fwd = 3.4,-11.33       ;Jump forward Speed (x, y)
-runjump.back = -6.55,-8.5 ;Running jump speeds (opt)
-runjump.fwd = 6,-8.5      ;.
+runjump.back = -4.88,-11.33 ;Running jump speeds (opt)
+runjump.fwd = 4.88,-11.33     ;.
 airjump.neu = 0,-8.1      ;.
 airjump.back = -4.55      ;Air jump speeds (opt)
 airjump.fwd = 2.5         ;.
@@ -5370,7 +5371,7 @@ channel = 1
 [State 3021, 5]
 type = HitDef
 trigger1 = Time = 0
-attr = S, HA
+attr = A, HA
 animtype  = Hard
 damage    = 42,20
 priority  = 5
@@ -5838,9 +5839,8 @@ trigger1 = Vel Y >= 0
 value = 1002
 ctrl = 0
 
-
 ;======================================================================
-;Dankuu Retsu Zan -Victim Slashed on Ground
+;Tenha Fuujin Zan L3 P2 Flip
 ;======================================================================
 [Statedef 3502]
 type    = A
@@ -5882,6 +5882,382 @@ triggerall = time >=10
 trigger1 = Pos Y >= -20
 value = 5100 ;Hit ground
 
+;======================================================================
+;Tenha Dankuu Retsu Zan Max -Start 
+;======================================================================
+[Statedef 3520]
+type    = S
+movetype= A
+physics = S
+ctrl = 0
+juggle = 0
+sprpriority = 3
+anim =3020
+velset = 0,0
+
+[State 3520, Voice 1]
+type = playsnd
+trigger1 = time = 0
+value = 950,0
+volumescale = 100
+channel = 1
+
+[State 3520, Voice 2]
+type = playsnd
+trigger1 = time = 6
+value = 400,1
+volumescale = 100
+channel = 1
+
+[State 3520, 1]
+type = PlaySnd
+trigger1 = Time = 6
+value = 210, 2
+volumescale = 100
+
+[State 3520, SlashEffect]
+type = Explod
+trigger1 = animelem = 4
+anim = 423
+animelem = 2
+id = 3423
+postype = p1
+bindtime = -1
+sprpriority = 5
+
+[State 3520, PowerSpark]
+type = Helper
+trigger1 = time = 0
+name = "super"
+postype = P1
+pos = 35, -40
+ownpal = 1
+stateno = 4000
+id = 4000
+supermovetime = 9999
+
+[State 3520, Super A]
+type = SuperPause
+trigger1 = time = 0
+pos = -50, -80
+anim = -2; S3005
+sound = s3000,10
+poweradd = -3000
+darken = 0
+time = 40
+
+[State 3010, Shadows]
+type = Afterimage
+trigger1 = Time = 0
+time = 999
+length = 30
+PalPostBright = 0,0,0
+PalContrast = 160,20,20
+PalAdd      =   0, 0, 0
+PalMul      =  0.9 ,0.9 ,0.9
+FrameGap = 10
+Trans = Add1
+
+[State 3520, Super D]
+type = NotHitBy
+trigger1 = time = 0
+value = SCA
+time = 8
+
+[State 3520, 5]
+type = HitDef
+trigger1 = Time = 0
+attr = S, HA
+animtype  = Hard
+damage    = 55,60
+priority  = 5
+guardflag = M
+pausetime = 12,12
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 1,1
+guardsound = s300,3
+Guard.Sparkno = s8031
+sparkxy = -20,-80
+hitsound   = s250,2
+guardsound = s250,3
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,-19
+air.velocity = 0,-17
+guard.velocity = -6.0
+maxdist = 50,-30
+mindist = 0, ifelse((p2, statetype = A), -60,0)
+envshake.time = 10
+envshake.ampl = 4
+envshake.freq = 176
+fall.recover = 0
+fall = 1
+yaccel = 0.8
+kill = 0
+guard.kill = 1
+p2facing = 1
+
+[State 3520, Tornado]
+type = Explod
+trigger1 = movehitvar(frame)=1 && numexplod(1062) = 0 && !p2,hitoverridden
+trigger1 = movehit
+anim = 1062
+id = 1062
+postype = p1
+pos = 60,0
+scale = 2,2
+sprpriority = 5
+ignorehitpause = 1
+
+[State 3520, Wind Sound]
+type = playsnd
+trigger1 = movehit && numexplod(1062) = 1
+trigger1 = movehitvar(frame) = 1
+value = 1000,6
+ignorehitpause = 1
+
+[State 3520, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(5)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 3520, Jumpin' Time]
+type = changestate
+trigger1 = !winko && movehit && p2,movetype = H
+value = 3521
+ctrl = 0
+
+[State 3520, Stop After Image]
+type = AfterImageTime
+trigger1 = !animtime
+time = 1
+
+[State 3520, End]
+type = changestate
+trigger1 = !animtime
+value = 0
+ctrl = 1
+
+;----------------------------------------------------------------------
+; Tenha Dankuu Retsu Zan Max- Jump
+;----------------------------------------------------------------------
+[Statedef 3521]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+velset = 0,0
+anim = 3021
+ctrl = 0
+sprpriority = 2
+
+[State 3521, JumpSND]
+type = PlaySnd
+trigger1 = Time = 5
+value = 80,0
+volumescale = 100
+
+[State 3521, Slash SND]
+type = PlaySnd
+trigger1 = animelem = 2 && anim = 3522
+value = 210, 2
+volumescale = 100
+
+[State 3521, Jump Vel]
+type = velset
+trigger1 = animelem = 2
+y = -17
+
+[State 3521, Gravity]
+type = veladd
+trigger1 = animelemtime(2) > 0
+y = 0.59
+
+[State 3521, Acceleration Gravity]
+type = veladd
+trigger1 = anim = 3522
+y = 0.20
+
+[State 3521, Slash Anim]
+type = changeanim
+trigger1 = anim != 3522 && p2dist y > -65 && time > 10 && anim != 3023
+value = 3522
+
+[State 3521, Land Anim]
+type = changeanim
+trigger1 = pos y > 0 && anim = 3522 && anim != 3023
+value = 3023
+
+[State 3521, VelSet]
+type = velset
+trigger1 = anim = 3023
+Y = 0
+
+[State 3521, PosSet]
+type = posset
+trigger1 = anim = 3023
+Y = 0
+
+[State 3521, Voice 2]
+type = playsnd
+trigger1 = anim = 3522 && animelem = 2
+value = 400,0
+volumescale = 100
+channel = 1
+
+[State 3521, Voice 3]
+type = playsnd
+trigger1 = anim = 3023 && animelem = 1
+value = 400,2
+volumescale = 100
+channel = 1
+
+[State 3521, 5]
+type = HitDef
+trigger1 = Time = 0
+attr = A, HA
+animtype  = Hard
+damage    = 42,20
+priority  = 5
+guardflag = MA
+pausetime = 12,12
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 1,1
+guardsound = s300,3
+Guard.Sparkno = s8031
+sparkxy = -20,-30
+hitsound   = s250,2
+guardsound = s250,3
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,-17
+air.velocity = 0,-12
+envshake.time = 10
+envshake.ampl = 4
+envshake.freq = 176
+fall.recover = 0
+fall = 1
+yaccel = 0.65
+kill = 0
+guard.kill = 0
+
+[State 3521, Spin Slash]
+type = HitDef
+trigger1 = anim = 3522 && animelem = 11 && uniqhitcount <= 7
+attr = S, HA
+animtype  = Hard
+damage    = 17,5
+priority  = 5
+hitflag = MAF
+guardflag = MA
+pausetime = 2,2
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 1,1
+guardsound = s300,3
+Guard.Sparkno = s8031
+sparkxy = -20,-30
+hitsound   = s250,2
+guardsound = s250,3
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,0
+air.velocity = 0,16
+envshake.time = 10
+envshake.ampl = 4
+envshake.freq = 176
+fall.recover = 0
+maxdist = 40,-20
+fall = 1
+yaccel = 0.3
+kill = 0
+guard.kill = 0
+
+[State 3521, Plummet]
+type = modifyhitdef
+trigger1 = uniqhitcount >= 4
+air.velocity = 0,30
+
+
+[State 3521, Final Slash]
+type = HitDef
+trigger1 = animelem = 1 && anim = 3023
+attr = S, HA
+animtype  = Hard
+damage    = 200,20
+priority  = 5
+hitflag = MAFD
+guardflag = MA
+pausetime = 8,8
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 1,1
+guardsound = s300,3
+Guard.Sparkno = s8031
+sparkxy = -20,0
+hitsound   = s3000,5
+guardsound = s250,3
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,-17
+air.velocity = -3.7,-11
+envshake.time = 10
+envshake.ampl = 4
+envshake.freq = 176
+fall.recover = 0
+fall = 1
+yaccel = 0.99
+
+
+[State 3521, Target Hits the Ground]
+type = targetstate
+Triggerall = numtarget && anim = 3522
+trigger1 = target, pos Y >= 0 && target, stateno != 3022
+value = 3022
+
+[State 3521, Shockwave]
+type = Explod
+trigger1 = numtarget
+trigger1 = target, stateno = 3022 && target, time = 0
+anim = 8054
+id = 8054
+postype = p2
+pos = 0,0
+scale = 0.5,0.5
+sprpriority = -5
+ignorehitpause = 1
+
+[State 3521, Crash Sound]
+type = playsnd
+trigger1 = numtarget
+trigger1 = target, stateno = 3022 && target, time = 0
+value = 5000,13
+volumescale = 100
+
+[State 3521, Target_Struck by blade]
+type = targetstate
+Triggerall = numtarget && anim = 3023
+trigger1 = movehit && target, stateno != 3023
+trigger1 = animelemtime(1) =0
+value = 3023
+
+[State 3521, Stop After Image]
+type = AfterImageTime
+trigger1 = anim = 3023 && !animtime
+time = 1
+
+[State 3521, End]
+type = changestate
+trigger1 = anim = 3023 && !animtime
+value = 0
+ctrl = 1
 
 ;----------------------------------------------------------------------
 ; Tenha Seiouzan
@@ -6165,6 +6541,80 @@ type = ChangeState
 trigger1 = !alive
 value = 5050
 
+;---------------------------------------------------------------------------
+; Jump Start
+[Statedef 40]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+facep2 = 1
+
+[State 40, 1]
+type = VarSet
+trigger1 = Time = 0
+sysvar(1) = 0
+
+[State 40, autoturn]
+type = turn
+trigger1 = prevstateno = 52 && p2dist x <= 0
+
+[State 40, long jumpvar]
+type = varset
+trigger1 = (command = "ljpf" || command = "ljpb" || command = "ljn") && time = 0
+trigger2 = !time && prevstateno = 100
+v = 12
+value = 1
+
+[State 40, Shadows]
+type = Afterimage
+trigger1 = Time = 0 && Var(12) = 1
+time = 37
+length = 15
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =  0.9,0.9,0.9
+FrameGap = 7
+Trans = Add1
+
+[State 40, 2]
+type = VarSet
+trigger1 = command = "holdfwd"
+sysvar(1) = 1
+
+[State 40, 3]
+type = VarSet
+trigger1 = command = "holdback"
+sysvar(1) = -1
+
+[State 40, 4]
+type = VelSet
+trigger1 = AnimTime = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = const(velocity.jump.y)
+
+[State 40, 5]
+type = VelSet
+triggerall = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+trigger2 = Var(12) = 1
+x = ifelse(sysvar(1)=1,const(velocity.runjump.fwd.x),ifelse(sysvar(1) = -1,const(velocity.runjump.back.x),0))
+
+[State 40, 5]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+x = const(velocity.runjump.fwd.x)
+
+[State 40, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
 ;----------------------------------------------------------------------
 ; Jump Land
 [Statedef 52]
@@ -6179,6 +6629,12 @@ type = VelSet
 trigger1 = Time = 0
 y = 0
 x = 0
+
+[State 52, longjumpreset]
+type = varset
+trigger1 = time = 0
+v = 12
+value = 0
 
 [State 52, 2]
 type = PosSet
@@ -6655,6 +7111,12 @@ trigger4 = movetype = H
 map = "kogetsu_cp"
 value = 0
 ignorehitpause = 1
+
+[State -2, longjumpreset]
+type = varset
+trigger1 = movetype = H && var(12) = 1
+v = 12
+value = 0  
 
 [State -2, Effect]
 type = playsnd
