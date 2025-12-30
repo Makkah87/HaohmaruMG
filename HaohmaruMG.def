@@ -18,6 +18,7 @@ cns     = haohmaru.cns   ;Constants
 st      = haohmaru.cns   ;States
 st1		= blood.zss
 st2		= super.cns
+st3 	= buffer.zss
 stcommon = common1.cns   ;Common states
 sprite  = haohmaru.sff   ;Sprite
 anim    = haohmaru.air   ;Animation

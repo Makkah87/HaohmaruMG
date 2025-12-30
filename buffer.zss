@@ -1,0 +1,114 @@
+#Command Buffer System
+[StateDef -4]
+ assertspecial{flag: nokovelocity}
+
+############################################################################
+#								Map Table									
+############################################################################
+#								special_cancel
+#								special_cancel_timer
+#								super_cancel
+#								super_cancel_timer
+############################################################################
+
+
+
+if map(special_cancel_timer) > 0 {mapadd {map: "special_cancel_timer"; value:-1}}
+if map(super_cancel_timer) > 0 {mapadd{map: "super_cancel_timer"; value:-1}}
+
+#Special Reset
+if (stateno = [200,699] || map(special_cancel_timer)=0) {mapset {map: "special_cancel"; value:0}}
+#if (stateno = [200,699] || ctrl = 1 || map(special_cancel_timer)=0) {mapset {map: "special_cancel"; value:0}}
+
+#Super Reset
+if (stateno = [200,699] || map(super_cancel_timer)=0) {mapset {map: "super_cancel"; value:0}}
+
+###########################################################################
+#load Special States
+###########################################################################
+							
+#Senpuu Retsu Zan
+	if command = "senpuu1" {mapset {map:"special_cancel"; value:1060}
+							mapset {map:"special_cancel_timer"; value :30}
+							}
+	
+	if command = "senpuu2"{mapset {map:"special_cancel"; value:1065}
+							mapset {map:"special_cancel_timer"; value :30}
+							}
+							
+	if command = "senpuu3"{mapset {map:"special_cancel"; value:1070}
+							mapset {map:"special_cancel_timer"; value :30}
+							}
+
+#Kogetsu Zan
+	if command = "kogetsu1"  {mapset {map:"special_cancel"; value:1000}
+							mapset {map:"special_cancel_timer"; value : 30}
+							}
+	
+	if command = "kogetsu2" {mapset {map:"special_cancel"; value:1010}
+							mapset {map:"special_cancel_timer"; value :30}
+							}
+							
+	if command = "kogetsu3" {mapset {map:"special_cancel"; value:1020}
+							mapset {map:"special_cancel_timer"; value :30}
+							}
+
+							
+#Resshin Zan
+	if command = "ress1" {mapset {map:"special_cancel"; value:1030}
+							mapset {map:"special_cancel_timer"; value :30}
+							}
+	
+	if command = "ress2" {mapset {map:"special_cancel"; value:1040}
+							mapset {map:"special_cancel_timer"; value :30}
+							}
+							
+	if command = "ress3" {mapset {map:"special_cancel"; value:1050}
+							mapset {map:"special_cancel_timer"; value :30}
+							}
+							
+#Senpuu Retsu Zan Feint
+	if command = "tene1" && statetype = S {mapset {map:"special_cancel"; value:1080}
+							mapset {map:"special_cancel_timer"; value :30}
+							}
+
+######################################################################################################
+#Hyper Combos
+######################################################################################################
+
+#Tenha Fuujin Zan
+	if (command = "tenha")&& power >= 1000 {mapset {map:"super_cancel"; value:3000}
+							mapset {map:"super_cancel_timer"; value :30}
+							}							
+#Tenha Dankuu Retsu Zan
+	if command = "dankuu" && power >= 1000 {mapset {map:"super_cancel"; value:3020}
+							mapset {map:"super_cancel_timer"; value :30}
+							}
+
+################################|Level 3s|###########################################################
+#Tenha Seiouzan
+	if command = "seiouzan" && power >= 3000 {mapset {map:"super_cancel"; value:3550}
+							mapset {map:"super_cancel_timer"; value :30}
+							}
+#Tenha Fuujin Zan Max							
+	if command = "tenhaL3" && power >= 3000 {mapset {map:"super_cancel"; value:3500}
+							mapset {map:"super_cancel_timer"; value :30}
+							}
+							
+#Tenha Dankuu Retsu Zan Max
+	if command = "dankuuL3" && power >= 3000 {mapset {map:"uper_cancel"; value:3520}
+							mapset {map:"super_cancel_timer"; value :30}
+							}
+
+
+#############Reversal Buffer
+###Super Attack
+if (power >= 1000 && anim = 5120 && !animtime && statetype != A && map(super_cancel_timer))  && map(super_cancel) {changestate{value:map(super_cancel)}
+	mapset {map:"super_cancel_timer"; value :30}
+}
+
+
+###Special Attack
+if (anim = 5120 && !animtime && statetype != A)  && map(special_cancel){changestate{value:map(special_cancel)}
+	mapset {map:"special_cancel_timer"; value :30}
+}

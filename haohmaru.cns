@@ -3377,7 +3377,7 @@ animtype  = Hard
 damage    = 83, 30
 getpower  = 100
 priority  = 4
-guardflag = MA
+guardflag = H
 hitflag = MAFD
 pausetime = 12,12
 sparkno = s8017
@@ -6556,6 +6556,12 @@ type = VarSet
 trigger1 = Time = 0
 sysvar(1) = 0
 
+[State 40, NoGrab]
+type = nothitby
+trigger1 = !time
+value = SCA, AT
+time = 2
+
 [State 40, autoturn]
 type = turn
 trigger1 = prevstateno = 52 && p2dist x <= 0
@@ -6731,6 +6737,12 @@ anim = 105
 velset = 0,0
 sprpriority = 1
 
+[State 105, NoGrab]
+type = nothitby
+trigger1 = !time
+value = SCA, AT
+time = 3
+
 [State 105, Hop]
 type = playsnd
 trigger1 = animelem = 2
@@ -6788,6 +6800,25 @@ trigger1 = GetHitVar(fall.yvel) = 0
 trigger1 = vel x > 1
 x = 1
 
+[State 5100, BlkShake]
+type = envshake
+trigger1 = !time
+time = 4
+ampl = 6
+freq = 120
+mul = 0.9
+ignorehitpause = 1
+
+[State 5100, LandingDust]
+type = Explod
+trigger1 = Time = 1
+anim = 8052
+id = 8052
+postype = p1
+pos = 0,1
+sprpriority = -5
+scale = 0.5,0.5
+
 [State 5100, EnvShake]
 type = FallEnvShake
 trigger1 = Time = 0
@@ -6832,13 +6863,6 @@ trigger1 = Time = 0
 trigger1 = GetHitVar(fall.yvel) = 0
 value = 5110 ;HIT_LIEDOWN
 
-[State 5100, 8]
-type = GameMakeAnim
-trigger1 = Time = 1
-value = 60 + (sysvar(1) > 5) + (sysvar(1) > 14)
-pos = 0, 0
-under = sysvar(1) <= 14
-
 [State 5100, 9]
 type = HitFallDamage
 trigger1 = Time = 3
@@ -6871,6 +6895,16 @@ time = 20
 type    = L
 movetype= H
 physics = N
+
+[State 5100, LandingDust]
+type = Explod
+trigger1 = Time = 1
+anim = 8052
+id = 8052
+postype = p1
+pos = 0,1
+sprpriority = -5
+scale = 0.5,0.5
 
 [State 5110, EnvShake]
 type = FallEnvShake
@@ -7098,8 +7132,8 @@ value = 710 + Var(9) ; <= that's because of the state numbers I chose for my par
 [State -2, Debug data]
 type = displaytoclipboard
 trigger1 = time >= 0
-text = "Enemy Anim Type =%d,P2Dist X = %f,P2Dist Y = %f,var(11) = %d,Special State = %f, Target_ID = %f, Bounce = %f,By Makkah/Master Gouken"
-params = enemy,gethitvar(animtype),P2Dist X,P2Dist Y,var(11), map(special_cancel), map(target_id), map(bounce)
+text = "Enemy Anim Type =%d,P2Dist X = %f,P2Dist Y = %f,var(11) = %d,Special State = %f, Super_State = %f, Bounce = %f,By Makkah/Master Gouken"
+params = enemy,gethitvar(animtype),P2Dist X,P2Dist Y,var(11), map(special_cancel), map(super_cancel), map(bounce)
 ignorehitpause = 1
 
 [State 1021, Kogetsu_CPush_Reset]
@@ -7214,7 +7248,7 @@ channel = 6
 
 [State -2, Effect begone]
 type = removeexplod
-trigger1 = Movetype = H
+trigger1 = Movetype = H && statetype != L
 
 [State -2, Super C]
 type = AfterImageTime
@@ -7281,17 +7315,6 @@ postype = p1
 pos = 0,1
 sprpriority = -5
 scale = 0.25,0.25
-
-[State -3, LandingDust]
-type = Explod
-trigger1 = stateno = (5100 || 5110)
-trigger1 = Time = 1
-anim = 8052
-id = 8052
-postype = p1
-pos = 0,1
-sprpriority = -5
-scale = 0.50,0.50
 
 [State -3, Cheese Kill Check]
 type = ChangeState
