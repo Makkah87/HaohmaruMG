@@ -488,13 +488,13 @@ trigger1 = var(4) ;Use combo condition (above)
 trigger2 = stateno = 1000 || stateno = 1010 || stateno = 1020
 trigger2 = time <= 2
 ;----------------------------------------------------------------------
-;Senpuu Retsu Zan EX
-;[State -1, Senpuu Retsu Zan EX]
-;type = ChangeState
-;value = 2000
-;triggerall = command = "senpuuEX"
-;triggerall = power >= 330
-;trigger1 = var(4) ;Use combo condition (above)
+Senpuu Retsu Zan EX
+[State -1, Senpuu Retsu Zan EX]
+type = ChangeState
+value = 2000
+triggerall = command = "senpuuEX"
+triggerall = power >= 330
+trigger1 = var(4) ;Use combo condition (above)
 ;----------------------------------------------------------------------
 ;Kogetsu Zan (Light)
 [State -1, Kogetsu Zan (Light)]
