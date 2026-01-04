@@ -96,6 +96,11 @@ time = 1
 [Statedef 180]
 type = S
 
+[State 180, ScoreAdd]
+type = scoreadd
+trigger1 = !time
+value = (life*50)+ifelse(winhyper, 30000,ifelse(winspecial,10000,1000))
+
 [State 180, 1]
 type = ChangeState
 trigger1 = Time = 0
@@ -376,6 +381,7 @@ id = 222
 postype = p1
 bindtime = -1
 sprpriority = 5
+ownpal = 1
 
 [State 200, 1]
 type = HitDef
@@ -400,7 +406,7 @@ ground.hittime  = 15 ;12
 ground.velocity = -6.2
 airguard.velocity = -3.4,-3.3
 air.type = High
-air.velocity = -3.9,-3.3
+air.velocity = -5.9,-3.3
 air.hittime = 12
 yaccel = 0.6
 
@@ -467,6 +473,7 @@ id = 223
 postype = p1
 bindtime = -1
 sprpriority = 5
+ownpal = 1
 ;pos = 35,6
 
 [State 200, SlashEffect]
@@ -477,6 +484,7 @@ id = 224
 postype = p1
 bindtime = -1
 sprpriority = 5
+ownpal = 1
 ;pos = 35,6
 IGNOREHITPAUSE = 0
 
@@ -506,7 +514,7 @@ ground.type = High
 ground.slidetime = 12
 ground.hittime  = 16
 ground.velocity = -10.3
-air.velocity = -5.5,-4
+air.velocity = -7.5,-4
 yaccel = 0.6
 
 [State 210, Close Damage]
@@ -549,6 +557,7 @@ trigger1 = animelem = 5 && Anim = 220
 anim = 225
 id = 225
 postype = p1
+ownpal = 1
 ;bindtime = -1
 sprpriority = 5
 
@@ -560,6 +569,7 @@ id = 226
 postype = p1
 bindtime = -1
 sprpriority = 5
+ownpal = 1
 
 [State 220, Anim_HitPause]
 type = assertspecial
@@ -649,7 +659,7 @@ ground.type = Low
 ground.slidetime = 28
 ground.hittime  = 28
 ground.velocity = -10.2
-air.velocity = -6.5,-5.3
+air.velocity = -7.5,-5.3
 envshake.time = 10
 envshake.ampl = 6
 envshake.freq = 176
@@ -750,7 +760,7 @@ ground.type = Low
 ground.slidetime = 10
 ground.hittime  = 15
 ground.velocity = -5
-air.velocity = -2.5,-3.5
+air.velocity = -5.5,-3.5
 
 [State 230, 3]
 type = ChangeState
@@ -853,7 +863,7 @@ ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = -8.3
 airguard.velocity = -4.5,-4.6
-air.velocity = -5.7,-4.6
+air.velocity = -5.9,-4.6
 yaccel = 0.6
 
 [State 240, 2]
@@ -873,7 +883,7 @@ ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = -6.9
-air.velocity = -6.2,-3.7
+air.velocity = -7.2,-3.7
 yaccel = 0.6
 
 [State 240, 4]
@@ -954,10 +964,11 @@ sparkxy = -10,-60
 hitsound   = s300,2
 guardsound = s300,3
 ground.type = Low
+air.animtype = Back
 ground.slidetime = 20
 ground.hittime  = 25
 ground.velocity = -12.6
-air.velocity = -8.2,-3.2
+air.velocity = -9.2,-3.2
 airguard.velocity = -7.5,-3.2
 envshake.time = 4
 envshake.ampl = 6
@@ -1015,6 +1026,7 @@ id = 421
 postype = p1
 bindtime = -1
 sprpriority = 5
+ownpal = 1
 
 [State 400, Anim_HitPause]
 type = assertspecial
@@ -1056,7 +1068,7 @@ ground.type = Low
 ground.slidetime = 14
 ground.hittime  = 17
 ground.velocity = -6.3
-air.velocity = -4.5,-4
+air.velocity = -5.5,-4
 
 yaccel = 0.6
 [State 400, 4]
@@ -1100,6 +1112,7 @@ id = 422
 postype = p1
 bindtime = -1
 sprpriority = 5
+ownpal = 1
 
 [State 410, 1]
 type = PlaySnd
@@ -1127,7 +1140,7 @@ ground.type = Low
 ground.slidetime = 15
 ground.hittime  = 14
 ground.velocity = -9.7
-air.velocity = -6,-4
+air.velocity = -7.3,-4
 yaccel = 0.6
 
 [State 410, 4]
@@ -1165,6 +1178,7 @@ id = 423
 postype = p1
 bindtime = -1
 sprpriority = 5
+ownpal = 1
 
 [State 410, 1]
 type = PlaySnd
@@ -1393,6 +1407,7 @@ id = 621
 postype = p1
 bindtime = -1
 sprpriority = 5
+ownpal = 1
 
 [State 600, 1]
 type = PlaySnd
@@ -1418,7 +1433,7 @@ ground.type = High
 ground.slidetime = 5
 ground.hittime  = 5
 ground.velocity = -4
-air.velocity = -3.3,-4.8
+air.velocity = -5.3,-4.8
 yaccel = 0.6
 
 [State 600, 3]
@@ -1454,6 +1469,7 @@ id = 622
 postype = p1
 bindtime = -1
 sprpriority = 5
+ownpal = 1
 
 [State 610, 2]
 type = PlaySnd
@@ -1480,7 +1496,7 @@ ground.type = High
 ground.slidetime = 17
 ground.hittime  = 17
 ground.velocity = -5
-air.velocity = -3.7,-5.2
+air.velocity = -5.7,-5.2
 yaccel = 0.6
 ;----------------------------------------------------------------------
 ;Jump Strong Slash
@@ -1510,6 +1526,7 @@ id = 623
 postype = p1
 bindtime = -1
 sprpriority = 5
+ownpal = 1
 
 [State 620, 2]
 type = PlaySnd
@@ -1537,8 +1554,8 @@ ground.type = High
 ground.slidetime = 17
 ground.hittime  = 17
 ground.velocity = -5
-air.velocity = -4,-4
-
+air.velocity = -5,-5.9
+yaccel = 0.6
 
 ;----------------------------------------------------------------------
 ;Jump Light Kick
@@ -1576,7 +1593,7 @@ ground.type = High
 ground.slidetime = 6
 ground.hittime  = 6
 ground.velocity = -4
-air.velocity = -3,-4.3
+air.velocity = -5.3,-4.3
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
@@ -1616,7 +1633,7 @@ ground.type = High
 ground.slidetime = 15
 ground.hittime  = 15
 ground.velocity = -5
-air.velocity = -3.9,-5.3
+air.velocity = -5.9,-5.3
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
@@ -1656,7 +1673,7 @@ ground.type = High
 ground.slidetime = 15
 ground.hittime  = 20
 ground.velocity = -5
-air.velocity = -4.6,-5.7
+air.velocity = -6.2,-5.9
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
@@ -1728,7 +1745,7 @@ sprpriority = 2
 [State 710, VelSet]
 type = velset
 trigger1 = animelem = 2
-x = 5.2
+x = 5.18518518419
 
 [State 710, NoPush]
 type = playerpush
@@ -1798,6 +1815,11 @@ velset = 0,0
 ctrl = 0
 anim = 720
 sprpriority = 2
+
+[State 720, ScoreAdd]
+type = scoreadd
+trigger1 = !time
+value = 3000
 
 [State 720, No-Walkie]
 type = AssertSpecial
@@ -1880,6 +1902,11 @@ ctrl = 0
 anim = 721
 sprpriority = 2
 
+[State 721, ScoreAdd]
+type = scoreadd
+trigger1 = !time
+value = 4000
+
 [State 721, PalFX]
 type = PalFX
 trigger1 =  time = 0
@@ -1955,6 +1982,11 @@ velset = 0,0
 ctrl = 0
 anim = 722
 sprpriority = 2
+
+[State 722, ScoreAdd]
+type = scoreadd
+trigger1 = !time
+value = 5000
 
 [State 722, PalFX]
 type = PalFX
@@ -4409,7 +4441,7 @@ type    = S
 movetype= A
 physics = N
 velset = 0
-anim = 1060
+anim = 2000
 ctrl = 0
 
 [State 2000, EXActivate]
@@ -4426,7 +4458,7 @@ value = -500
 [State 2010, Blink Yellow]
 type = PalFX
 trigger1 = Time = 0
-time = 70
+time = 48
 add = 0,100,0
 sinadd = 64,32,5,3
 
@@ -4441,7 +4473,7 @@ PalMul      = .85,.85,.50
 TimeGap  = 1
 FrameGap = 5
 Trans = Add1
-time = 100
+time = 48
 
 [State 2000, Voice]
 type = PlaySnd
@@ -4452,8 +4484,8 @@ channel = 1
 
 [State 2000, Afterimage]
 type = AfterImageTime
-trigger1 = 1
-time = 2
+trigger1 = !animtime
+time = 0
 
 [State 2000, Wind]
 type = PlaySnd
