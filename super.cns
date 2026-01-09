@@ -211,3 +211,53 @@ ignorehitpause = 1
 type = destroyself
 trigger1 = animtime = 0
 supermovetime = 9999
+
+;======================================================================
+; EX Effect
+;======================================================================
+[Statedef 9010]
+type    = S
+physics = S
+anim = 9997
+ctrl = 0
+sprpriority = 5
+
+[State 9010, FVarSet]
+type = varset
+trigger1 = time = 0
+fv = 1
+value = 0.1
+
+[State 9010, Fvaradd]
+type = varadd
+trigger1 = 1
+fv = 1
+value = 0.5
+supermovetime = 9999
+
+[State 9010, Grow]
+type = angledraw
+trigger1 = 1
+value = (time)*-20
+scale = (fvar(1))*0.10,(fvar(1))*0.10
+
+[State 9010, NOShadow]
+type = assertspecial
+trigger1 = 1
+flag = noshadow
+
+[State 9010, Trans]
+type = trans
+trigger1 = 1
+trans = add
+
+[State 9010, fade]
+type = palfx
+trigger1 = time = 5
+mul = 350,350,350
+sinadd = -255,-255,-255,35
+time = 30
+
+[State 9010, Destroy]
+type = destroyself
+trigger1 = time = 15

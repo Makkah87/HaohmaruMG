@@ -4452,6 +4452,17 @@ trigger1 = time = 5
 value = 2000,0
 volumescale = 100
 
+[State 2000, EX Effect]
+type = Helper
+trigger1 = Time = 0
+name = "EXFlash"
+postype = P1
+pos = 0, -60
+ownpal = 1
+stateno = 9010
+id = 9010
+supermovetime = 9999
+
 [State 2000, -Power]
 type = poweradd
 trigger1 = time = 0
@@ -4722,11 +4733,22 @@ trigger1 = time = 5
 value = 2000,0
 volumescale = 100
 
+[State 2010, EX Effect]
+type = Helper
+trigger1 = Time = 0
+name = "EXFlash"
+postype = P1
+pos = -19, -60
+ownpal = 1
+stateno = 9010
+id = 9010
+supermovetime = 9999
+
 [State 2010, UCantHitMe]
 type = NotHitBy
 trigger1 = time = 0
 value = SCA
-time = 6
+time = 8
 
 [State 1020, SlashEffect]
 type = Explod
@@ -4964,6 +4986,17 @@ trigger1 = time = 5
 value = 2000,0
 volumescale = 100
 
+[State 2020, EX Effect]
+type = Helper
+trigger1 = Time = 0
+name = "EXFlash"
+postype = P1
+pos = 0, -60
+ownpal = 1
+stateno = 9010
+id = 9010
+supermovetime = 9999
+
 [State 2020, -Power]
 type = poweradd
 trigger1 = time = 0
@@ -4993,7 +5026,7 @@ time = 48
 type = NotHitBy
 trigger1 = time = 0
 value = SCA
-time = 10
+time = 15
 
 [State 2020, 3]
 type = HitDef
@@ -5040,8 +5073,8 @@ volumescale = 100
 [State 2020, Jump]
 type = velset
 trigger1 = animelem = 2
-x = 7.3
-y = -13.4
+x = 9.8
+y = -9.4
 
 [State 2020, Gravity]
 type = veladd
@@ -6703,6 +6736,21 @@ physics = S
 sprpriority = 0
 hitcountpersist = 1
 
+
+[State 9000, HyperComboFinish!]
+type = null;Explod
+trigger1 = !time
+anim = 10000
+id = 10000
+postype = left
+bindtime = 99999
+removetime = 30
+pos = 160,120
+sprpriority = -5
+scale = 0.83333333333333333333333333333333,1.0714285714285714285714285714286
+ignorehitpause = 1
+
+
 [State 0, 1]
 type = ChangeAnim
 trigger1 = Anim != 0 && Anim != 5
@@ -6799,7 +6847,13 @@ trigger1 = prevstateno = 100 ;RUN_FWD
 trigger1 = sysvar(1) = 1
 trigger2 = Var(12) = 1
 x = ifelse(sysvar(1)=1,const(velocity.runjump.fwd.x),ifelse(sysvar(1) = -1,const(velocity.runjump.back.x),0))
-y = const(velocity.jump.y)*1.12
+
+[State 40, Neutral Sper Jump]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = sysvar(1) = 0
+trigger1 = var(12)
+y = const(velocity.jump.y)*1.19
 
 [State 40, 5]
 type = VelSet
