@@ -14,7 +14,7 @@
 ;			Var(12): Long Jump Stuff
 ;======================================================================
 [Data]
-life = 1000               ;Amount of life to start with
+life = 972                ;Amount of life to start with
 attack = 100              ;Amount of attack power to start with
 defence = 100             ;Amount of defensive power to start with
 fall.defence_up = 50      ;Amount to raise defence by on fall
@@ -23,13 +23,11 @@ airjuggle = 17            ;Number of juggle points
 sparkno = 3               ;Default spark number
 guard.sparkno = s1105     ;Default spark number
 KO.echo = 0               ;Whether there should be an echo upon death
-volumescale = 100              ;Pretty much self explanitory
+volumescale = 100         ;Pretty much self explanitory
 hitsound.channel = 6	  ;Default channel for hit sounds
 guardsound.channel = 6
 IntPersistIndex = 60      ;Variables with this index and above will not 
 FloatPersistIndex = 40    ;have their values reset to 0 between rounds
-hitsound.channel = 6	  
-guardsound.channel = 6
 ;====================================================================
 
 [Size]
@@ -2179,17 +2177,18 @@ getpower  = 0
 priority  = 4
 guardflag = MA
 hitflag = MAFD
-pausetime = 11,12
-sparkno = s8015+random%4
+pausetime = 12,12
+sparkno = s8000
 sparkxy = -10,-60
 hitsound   = s300,2
 guardsound = s250,3
 ground.type = Low
+dizzypoints = 0
 ground.slidetime = 20
 ground.hittime  = 35
-ground.velocity = -3.5 , 20
+ground.velocity = 0, 20
 guard.velocity = -2
-air.velocity =  -5,20
+air.velocity =  0,20
 airguard.velocity = -5, -4
 envshake.time = 10
 envshake.ampl = 4
@@ -2197,6 +2196,7 @@ envshake.freq = 176
 yaccel = -0.30
 fall = 1
 fall.recover = 0
+fall.yvelocity = -1.7
 
 [State 810, holdfwd - Turn Target 6] ;If was holding fwd before, turn target too
 type = TargetFacing
@@ -6789,12 +6789,6 @@ type = VarSet
 trigger1 = Time = 0
 sysvar(1) = 0
 
-[State 40, SuperJumpSND]
-type = PlaySnd
-trigger1 = Time = 1 && var(12)
-value = 85,2
-volumescale = 100
-
 [State 40, NoGrab]
 type = nothitby
 trigger1 = !time
@@ -6811,6 +6805,12 @@ trigger1 = (command = "ljpf" || command = "ljpb" || command = "ljn") && time = 0
 trigger2 = !time && prevstateno = 100
 v = 12
 value = 1
+
+[State 40, SuperJumpSND]
+type = PlaySnd
+trigger1 = Time = 0 && var(12)
+value = 85,2
+volumescale = 100
 
 [State 40, Shadows]
 type = Afterimage

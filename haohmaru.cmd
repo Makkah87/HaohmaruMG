@@ -635,36 +635,43 @@ trigger1 = statetype = S
 trigger1 = ctrl
 
 ;----------------------------------------------------------------------
-;Skull Crusher
-[State -1, Skull Crusher]
+;Throws
+;----------------------------------------------------------------------
+;Yoko Nage
+[State -1, Yoko Nage]
 type = ChangeState
-value = 800
-triggerall = command = "grab2"
+value = 820
+triggerall = command = "z"
 triggerall = statetype = S
 triggerall = ctrl
 triggerall = stateno != 100
 trigger1 = command = "holdfwd"
+trigger1 = p2bodydist X < 26
 trigger1 = (p2statetype = S) || (p2statetype = C)
 trigger1 = p2movetype != H
 trigger2 = command = "holdback"
+trigger2 = p2bodydist X < 10
+trigger2 = (p2statetype = S) || (p2statetype = C)
+trigger2 = p2movetype != H
+;----------------------------------------------------------------------
+;Koube Kudaki
+[State -1, Koube Kudaki]
+type = ChangeState
+value = 800
+triggerall = command = "c"
+triggerall = statetype = S
+triggerall = ctrl
+triggerall = stateno != 100
+trigger1 = command = "holdfwd"
+trigger1 = p2bodydist X < 26
+trigger1 = (p2statetype = S) || (p2statetype = C)
+trigger1 = p2movetype != H
+trigger2 = command = "holdback"
+trigger2 = p2bodydist X < 10
 trigger2 = (p2statetype = S) || (p2statetype = C)
 trigger2 = p2movetype != H
 
-;----------------------------------------------------------------------
-;Over Head Throw
-[State -1, Over Head Throw]
-type = ChangeState
-value = 820
-triggerall = command = "grab1"
-triggerall = statetype = S
-triggerall = ctrl
-triggerall = stateno != 100
-trigger1 = command = "holdfwd"
-trigger1 = (p2statetype = S) || (p2statetype = C)
-trigger1 = p2movetype != H
-trigger2 = command = "holdback"
-trigger2 = (p2statetype = S) || (p2statetype = C)
-trigger2 = p2movetype != H
+
 ;======================================================================
 ;Parry
 ;----------------------------------------------------------------------

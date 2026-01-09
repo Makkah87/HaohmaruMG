@@ -23,6 +23,7 @@ stcommon = common1.cns   ;Common states
 sprite  = haohmaru.sff   ;Sprite
 anim    = haohmaru.air   ;Animation
 sound   = haohmaru.snd   ;Sound
+movelist = haohmarumovelist.dat
 pal1    = haohmaru1.act  ;Palettes (can have up to 12)
 pal2    = haohmaru2.act
 pal3    = newpal3.act;haohmaru3.act  ;By Chosen_01
