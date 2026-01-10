@@ -222,6 +222,12 @@ anim = 9997
 ctrl = 0
 sprpriority = 5
 
+[State 9010, EXActivate]
+type = playsnd
+trigger1 = time = 0
+value = 2000,0
+volumescale = 100
+
 [State 9010, FVarSet]
 type = varset
 trigger1 = time = 0

@@ -12,6 +12,7 @@
 ;			Var(8) : Senpuu in play
 ;			Var(9) : Parry Variable
 ;			Var(12): Long Jump Stuff
+;			FVar(12): Damage Dampener
 ;======================================================================
 [Data]
 life = 972                ;Amount of life to start with
@@ -249,7 +250,7 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 
-[State 192, Snd 1]
+[State 192, Hawk_Tua]
 type = PlaySnd
 trigger1 = AnimElem = 7
 value = 190,1
@@ -406,7 +407,7 @@ ground.hittime  = 15 ;12
 ground.velocity = -6.2
 airguard.velocity = -3.4,-3.3
 air.type = High
-air.velocity = -5.9,-3.3
+air.velocity = -3.9,-3.3
 air.hittime = 12
 yaccel = 0.6
 
@@ -514,7 +515,7 @@ ground.type = High
 ground.slidetime = 12
 ground.hittime  = 16
 ground.velocity = -10.3
-air.velocity = -7.5,-4
+air.velocity = -5.5,-4
 yaccel = 0.6
 
 [State 210, Close Damage]
@@ -1068,7 +1069,7 @@ ground.type = Low
 ground.slidetime = 14
 ground.hittime  = 17
 ground.velocity = -6.3
-air.velocity = -5.5,-4
+air.velocity = -4.5,-4
 
 yaccel = 0.6
 [State 400, 4]
@@ -1140,7 +1141,7 @@ ground.type = Low
 ground.slidetime = 15
 ground.hittime  = 14
 ground.velocity = -9.7
-air.velocity = -7.3,-4
+air.velocity = -6.3,-4
 yaccel = 0.6
 
 [State 410, 4]
@@ -1433,7 +1434,7 @@ ground.type = High
 ground.slidetime = 5
 ground.hittime  = 5
 ground.velocity = -4
-air.velocity = -5.3,-4.8
+air.velocity = -4.3,-4.8
 yaccel = 0.6
 
 [State 600, 3]
@@ -1496,7 +1497,7 @@ ground.type = High
 ground.slidetime = 17
 ground.hittime  = 17
 ground.velocity = -5
-air.velocity = -5.7,-5.2
+air.velocity = -5.3,-5.2
 yaccel = 0.6
 ;----------------------------------------------------------------------
 ;Jump Strong Slash
@@ -1593,7 +1594,7 @@ ground.type = High
 ground.slidetime = 6
 ground.hittime  = 6
 ground.velocity = -4
-air.velocity = -5.3,-4.3
+air.velocity = -3.7,-4.3
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
@@ -1633,7 +1634,7 @@ ground.type = High
 ground.slidetime = 15
 ground.hittime  = 15
 ground.velocity = -5
-air.velocity = -5.9,-5.3
+air.velocity = -4.6,-5.3
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
@@ -1673,7 +1674,7 @@ ground.type = High
 ground.slidetime = 15
 ground.hittime  = 20
 ground.velocity = -5
-air.velocity = -6.2,-5.9
+air.velocity = -5.2,-5.9
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
@@ -2770,6 +2771,12 @@ sprpriority = 2
 hitdefpersist = 1
 hitcountpersist = 1
 
+[State 1001, SuperJumpSND]
+type = PlaySnd
+trigger1 = !time
+value = 80,0
+volumescale = 100
+
 [State 1001, Anim_HitPause]
 type = assertspecial
 trigger1 = animelemtime(2)<=0
@@ -3027,6 +3034,12 @@ anim = 1001
 sprpriority = 2
 hitcountpersist = 1
 
+[State 1011, SuperJumpSND]
+type = PlaySnd
+trigger1 = !time
+value = 80,0
+volumescale = 100
+
 [State 1011, Anim_HitPause]
 type = assertspecial
 trigger1 = animelemtime(2)<=0
@@ -3222,6 +3235,12 @@ anim = 1001
 sprpriority = 2
 hitcountpersist = 1
 
+[State 1021, SuperJumpSND]
+type = PlaySnd
+trigger1 = !time
+value = 80,0
+volumescale = 100
+
 [State 1021, Anim_HitPause]
 type = assertspecial
 trigger1 = animelemtime(2)<=0
@@ -3321,6 +3340,12 @@ ctrl = 0
 sprpriority = 2
 hitcountpersist = 1
 
+[State 1030, SuperJumpSND]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 80,0
+volumescale = 100
+
 [State 1030, Width]
 type = width
 trigger1 = (animelemtime(1)>=0)
@@ -3340,13 +3365,13 @@ volumescale = 100
 
 [State 1030, Jump]
 type = velset
-trigger1 = time = 0
+trigger1 = animelem = 2
 x = 2.7
 y = -10
 
 [State 1030, Gravity]
 type = veladd
-trigger1 = 1
+trigger1 = animelemtime(2) >=0
 y = 0.90
 
 [State 1030, Land]
@@ -3487,13 +3512,13 @@ volumescale = 100
 
 [State 1040, Jump]
 type = velset
-trigger1 = time = 0
+trigger1 = animelem = 2
 x = 4.5
 y = -13.5
 
 [State 1040, Gravity]
 type = veladd
-trigger1 = 1
+trigger1 = animelemtime(2) >=0
 y = 0.90
 
 [State 1040, Land]
@@ -3515,6 +3540,12 @@ anim = 1045
 ctrl = 0
 sprpriority = 2
 hitcountpersist = 1
+
+[State 1050, SuperJumpSND]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 80,0
+volumescale = 100
 
 [State 1050, UCantHitMe]
 type = NotHitBy
@@ -4446,12 +4477,6 @@ velset = 0
 anim = 2000
 ctrl = 0
 
-[State 2000, EXActivate]
-type = playsnd
-trigger1 = time = 5
-value = 2000,0
-volumescale = 100
-
 [State 2000, EX Effect]
 type = Helper
 trigger1 = Time = 0
@@ -4727,12 +4752,6 @@ anim = 1000
 ctrl = 0
 sprpriority = 2
 
-[State 2010, EXActivate]
-type = playsnd
-trigger1 = time = 5
-value = 2000,0
-volumescale = 100
-
 [State 2010, EX Effect]
 type = Helper
 trigger1 = Time = 0
@@ -4868,6 +4887,11 @@ poweradd = 0
 anim = 2011
 sprpriority = 2
 
+[State 2011, SuperJumpSND]
+type = PlaySnd
+trigger1 = !time
+value = 80,0
+volumescale = 100
 
 [State 2011, Anim_HitPause]
 type = assertspecial
@@ -4977,13 +5001,7 @@ hitcountpersist = 1
 [State 2020, SuperJumpSND]
 type = PlaySnd
 trigger1 = animelem = 2
-value = 85,2
-volumescale = 100
-
-[State 2020, EXActivate]
-type = playsnd
-trigger1 = time = 5
-value = 2000,0
+value = 80,0
 volumescale = 100
 
 [State 2020, EX Effect]
@@ -6705,6 +6723,31 @@ trigger1 = AnimTime = 0
 value = 5150
 
 ;======================================================================
+; K.O Effect
+;======================================================================
+[Statedef 9000]
+type    = S
+physics = S
+anim = -2
+ctrl = 0
+
+
+[State 9000, Helper]
+type = Helper
+trigger1 = !time && winhyper
+helpertype = Normal ;Player
+name = "HCF"
+ID = 10000
+stateno = 10000
+pos = 0,0
+postype = left
+bindtime = 999
+pos = 320,240
+keyctrl = 0
+ownpal = 1
+;======================================================================
+;Death Handler
+;======================================================================
 [Statedef 9999]
 type    = S
 movetype= A
@@ -6713,8 +6756,6 @@ juggle  = 4
 velset = 0,0
 anim = 9999
 ctrl = 0
-sprpriority = 3
-hitcountpersist = 1
 
 [State 9999, reg]
 type = playsnd
@@ -6726,6 +6767,45 @@ volumescale = 100
 type = assertspecial
 trigger1 = 1
 flag = invisible
+
+;======================================================================
+;Hyper Combo Finish
+;======================================================================
+[Statedef 10000]
+type    = S
+anim = 10000
+ctrl = 0
+sprpriority = -100
+
+[State 10000, NoShadow]
+type = assertspecial
+trigger1 = 1
+flag = noshadow
+
+[State 321, var]
+type = varadd
+trigger1 = 1; Time%5
+fv = 1
+value = 0.1
+supermovetime = 9999
+
+[State 10000, Center]
+type = posset
+trigger1 = 1
+X = 0
+Y = -70
+
+[State 1083, Angle]
+type = angledraw
+trigger1 = 1
+value = (time)*-4
+scale = 0.83333333333333333333333333333333,1.0714285714285714285714285714286
+supermovetime = 9999
+
+[State 10000, Unalive]
+type = destroyself
+trigger1= time = 300
+
 ;----------------------------------------------------------------------
 ; Override common states (use same number to override) :
 ;----------------------------------------------------------------------
@@ -6744,11 +6824,14 @@ anim = 10000
 id = 10000
 postype = left
 bindtime = 99999
-removetime = 30
+removetime = 100
 pos = 160,120
 sprpriority = -5
 scale = 0.83333333333333333333333333333333,1.0714285714285714285714285714286
 ignorehitpause = 1
+
+
+
 
 
 [State 0, 1]
@@ -7382,7 +7465,7 @@ text = "Enemy Anim Type =%d,P2Dist X = %f,P2Dist Y = %f,var(11) = %d,Special Sta
 params = enemy,gethitvar(animtype),P2Dist X,P2Dist Y,var(11), map(special_cancel), map(super_cancel), map(bounce)
 ignorehitpause = 1
 
-[State 1021, Kogetsu_CPush_Reset]
+[State -2, Kogetsu_CPush_Reset]
 type = mapset
 trigger1 = p2, statetype = l
 trigger2 = p2, stateno = 0
@@ -7510,10 +7593,41 @@ pos = 38,0
 ownpal = 1
 stateno = 9999
 id = 9999
+
+;Damage dampener
+[State -2, Damage based on hits]
+type=varset
+trigger1= numenemy
+fvar(12)= ifelse(enemynear,gethitvar(hitcount)<3, 24, ifelse(enemynear,gethitvar(hitcount)>=24, 2, 28-enemynear,gethitvar(hitcount))) / 24.0
+ignorehitpause=1
+
+[State -2, Reset var when the opponent recovers]
+type=varset
+trigger1= numenemy
+trigger1= (enemynear,movetype!=H)
+trigger2= !numenemy
+fvar(12)=1
+
+[State -2, Dampener itself]
+type=null;attackmulset
+trigger1= 1
+value=fvar(12)
+ignorehitpause=1
 ;--------------------------------------------------------------------
 ; States that are executed when in self's state file (use statedef-3)
 ;--------------------------------------------------------------------
 [Statedef -3]
+
+[State -2, K.O!]
+type = Helper
+trigger1 = winko && numhelper(9000)=0
+name = "KO"
+postype = P1
+pos = 38,0
+ownpal = 1
+stateno = 9000
+id = 9000
+ignorehitpause = 1
 
 [State -3, Landing Sound]
 type = PlaySnd
