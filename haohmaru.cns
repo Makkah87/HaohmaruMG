@@ -60,6 +60,17 @@ runjump.fwd = 4.88,-11.33     ;.
 airjump.neu = 0,-8.1      ;.
 airjump.back = -4.55      ;Air jump speeds (opt)
 airjump.fwd = 2.5         ;.
+air.gethit.groundlevel = 25           ;Y-position at which a falling player is considered to hit the ground **MUGEN 1.0**
+air.gethit.groundrecover.ground.threshold = -20 ;Y-position below which falling player can use the recovery command **MUGEN 1.0**
+air.gethit.groundrecover.groundlevel = 10   ;Y-position at which player in the ground recovery state touches the ground **MUGEN 1.0**
+air.gethit.airrecover.threshold = -1  ;Y-velocity above which player may use the air recovery command **MUGEN 1.0**
+air.gethit.airrecover.yaccel = .6    ;Vertical acceleration for player in the air recovery state **MUGEN 1.0**
+air.gethit.trip.groundlevel = 15      ;Y-position at which player in the tripped state touches the ground **MUGEN 1.0**
+down.bounce.offset = 0, 20            ;Offset for player bouncing off the ground (x, y) **MUGEN 1.0**
+down.bounce.yaccel = .4               ;Vertical acceleration for player bouncing off the ground **MUGEN 1.0**
+down.bounce.groundlevel = 12          ;Y-position at which player bouncing off the ground touches the ground again **MUGEN 1.0**
+down.friction.threshold = .05         ;If the player's speed drops below this threshold while lying down, stop his movement **MUGEN 1.0**
+
 
 [Movement]
 airjump.num = 0      ;Number of air jumps allowed (opt)
@@ -7137,6 +7148,36 @@ trigger1 = !animtime
 value = 0
 ctrl = 1
 
+;---------------------------------------------------------------------------
+; HIT_TRIP2 (fall through air)
+[Statedef 5071]
+type    = A
+movetype= H
+physics = N
+
+[State 5071, 1]
+type = HitVelSet
+trigger1 = Time = 0
+x = 1
+y = 1
+
+[State 5071, 2] ;Acceleration
+type = VelAdd
+trigger1 = 1
+y = GetHitVar(yaccel)
+
+[State 5071, TripMem]
+type = mapset
+trigger1 = time = 0
+map = "trip_mem"
+value = 1
+
+[State 5071, 3] ;Hit ground
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 15
+type = ChangeState
+value = 5100
+
 ;----------------------------------------------------------------------
 ; HIT_BOUNCE (hit ground)
 [Statedef 5100]
@@ -7246,6 +7287,12 @@ time = 20
 type    = L
 movetype= H
 physics = N
+
+[State -3, TripMemReset]
+type = mapset
+trigger1 = time = 0
+map = "trip_mem"
+value = 0
 
 [State 5100, LandingDust]
 type = Explod
@@ -7475,6 +7522,168 @@ ampl = 140
 type = ChangeState
 trigger1 = var(9) >= 10
 value = 710 + Var(9) ; <= that's because of the state numbers I chose for my parries. Adjust at will.
+
+;---------------------------------------------------------------------------
+; Ground Recover
+;---------------------------------------------------------------------------
+[Statedef 5201]
+type    = A
+movetype= H
+physics = N
+anim = 5200
+
+[State 5201, Voice 2]
+type = playsnd
+trigger1 = !time
+value = 400,0
+volumescale = 100
+channel = 1
+
+[State 5201, NoPush]
+type = playerpush
+trigger1 = 1
+value = 0
+
+[State 5201, 1] ;Turn if not facing opponent
+type = Turn
+trigger1 = Time = 0
+trigger1 = p2dist X < Const720p(-20)
+trigger2 = Time = 30
+trigger2 = p2dist X < Const720p(-20)
+
+[State 5201, HitBy]
+type = hitby
+trigger1 = !time
+value = SCA, AT
+time = 30
+
+[State 5201, 2]
+type = VelSet
+trigger1 = Time = 0
+x = 0
+y = 0
+
+[State 5201, X_Accel]
+type = veladd
+trigger1 = !time
+x = -5
+
+[State 5201, Stand Anim]
+type = changeanim
+trigger1 = time = 30 && anim = 5200
+value = 5201
+
+[State 5201, 3]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 5201, 4]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 5201, 5] ;Blink white
+type = PalFX
+trigger1 = Time = 0
+time = 3
+add = 128,128,128 ;256,256,256
+
+[State 5201, End]
+type = changestate
+trigger1 = !animtime
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Air get-hit (fall recovery in air)
+[Statedef 5210]
+type    = A
+movetype= I
+physics = N
+anim = 5210
+ctrl = 0
+
+[State 5210, Roll]
+type = changestate
+trigger1 = !time && pos y > -30
+value = 5201
+
+[State 5210, 1] ;Blink white
+type = PalFX
+trigger1 = Time = 0
+time = 3
+add = 128,128,128
+
+[State 5210, 1]
+type = PosFreeze
+trigger1 = Time < 4
+
+[State 5210, 2] ;Turn if not facing opponent
+type = Turn
+trigger1 = Time = 0
+trigger1 = p2dist X < Const720p(-80)
+
+[State 5210, 1.0 behavior 1]
+type = VelMul
+trigger1 = Time = 4
+x = Const(velocity.air.gethit.airrecover.mul.x)
+y = Const(velocity.air.gethit.airrecover.mul.y)
+
+[State 5210, 1.0 behavior 2]
+type = VelAdd
+trigger1 = Time = 4
+x = Const(velocity.air.gethit.airrecover.add.x)
+y = Const(velocity.air.gethit.airrecover.add.y)
+
+[State 5210, 2] ;Go up
+type = VelAdd
+trigger1 = Time = 4
+trigger1 = Command = "holdup"
+y = Const(velocity.air.gethit.airrecover.up)
+
+[State 5210, 2] ;Go down
+type = VelAdd
+trigger1 = Time = 4
+trigger1 = Command = "holddown"
+y = Const(velocity.air.gethit.airrecover.down)
+
+[State 5210, 2] ;Go fwd
+type = VelAdd
+trigger1 = Time = 4
+trigger1 = Command = "holdfwd"
+x = Const(velocity.air.gethit.airrecover.fwd)
+
+[State 5210, 2] ;Go back
+type = VelAdd
+trigger1 = Time = 4
+trigger1 = Command = "holdback"
+x = Const(velocity.air.gethit.airrecover.back)
+
+[State 5210, 3]
+type = NotHitBy
+trigger1 = Time = 0
+value = SCA
+time = 15
+
+[State 5210, 4]
+type = CtrlSet
+trigger1 = Time = 20
+value = 1
+
+[State 5210, 5]
+type = VelAdd
+trigger1 = Time >= 4
+y = Const(movement.air.gethit.airrecover.yaccel)
+
+[State 5210, 5] ;Land on ground
+type = ChangeState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 52 ;Jump land
+ctrl = 1
+
 ;--------------------------------------------------------------------
 ; States that are always executed (use statedef -2)
 ;--------------------------------------------------------------------
@@ -7483,8 +7692,8 @@ value = 710 + Var(9) ; <= that's because of the state numbers I chose for my par
 [State -2, Debug data]
 type = displaytoclipboard
 trigger1 = time >= 0
-text = "Enemy Anim Type =%d,P2Dist X = %f,P2Dist Y = %f,var(11) = %d,Special State = %f, Super_State = %f, Bounce = %f,By Makkah/Master Gouken"
-params = enemy,gethitvar(animtype),P2Dist X,P2Dist Y,var(11), map(special_cancel), map(super_cancel), map(bounce)
+text = "Enemy Anim Type =%d,P2Dist X = %f,P2Dist Y = %f,var(11) = %d,Special State = %f, Super_State = %f, Bounce = %f,Swept = %f,By Makkah/Master Gouken"
+params = enemy,gethitvar(animtype),P2Dist X,P2Dist Y,var(11), map(special_cancel), map(super_cancel), map(bounce), map(trip_mem)
 ignorehitpause = 1
 
 [State -2, Kogetsu_CPush_Reset]
@@ -7675,6 +7884,29 @@ postype = p1
 pos = 0,18
 sprpriority = 5
 scale = 0.5,0.5
+
+;==========================
+;Bounce when swept
+[State -3, 3]
+type = HitFallVel
+trigger1 = Stateno = 5101 && Time = 0 && map(trip_mem) = 0
+
+[State -3, Trip fall vel]
+type = velset
+trigger1 = Stateno = 5101 && time = 0 && map(trip_mem) = 1
+y = -3.5
+
+[State -3, Trip Accel]
+type = veladd
+trigger1 = stateno = 5101 && map(trip_mem) = 1
+y = 0.4
+
+[State -3, TripFallMuteki]
+type = nothitby
+trigger1 = stateno = 5101 && time = 0 && map(trip_mem) = 1
+value = SCA
+time = 10
+;==========================
 
 [State -3, JumpDustTrail]
 type = Explod

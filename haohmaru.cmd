@@ -250,7 +250,7 @@ time = 10
 ;-| 2/3 Button Combination |----------------------------------------------------------------------
 [Command]
 name = "recovery";Required (do not remove)
-command = x+y
+command = y+z
 time = 1
 
 [Command]
