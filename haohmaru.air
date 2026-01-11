@@ -4533,6 +4533,19 @@ Interpolate Scale
 8100,0, 0,0, 1, , A
 ; HCF
 [Begin Action 10000]
-10000,3, 0,0, 200, , A, 0.1,0.1
+10000,5, 4,2, 40, , AS255D0, 0.1,0.1
 Interpolate Scale
-10000,3, 0,0, 20, , A, 4,4
+Interpolate Blend
+10000,5, 4,2, 10, , AS256D255, 3,3
+Interpolate Blend
+10000,5, 4,2, 10, , A, 3,3
+Interpolate Blend
+10000,5, 0,0, 10, , AS1D256, 3,3
+[Begin Action 10001]
+10000,5, 0,0, 1, , , 0.3,0.3
+
+; Black Hole
+[Begin Action 10005]
+Interpolate Scale
+10000,1, 0,0, 1, , S, 0.1,0.1
+10000,1, 0,0, 40, , S, 2.5,2.5

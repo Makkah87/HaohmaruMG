@@ -6773,14 +6773,66 @@ flag = invisible
 ;======================================================================
 [Statedef 10000]
 type    = S
-anim = 10000
+anim = -2;10000
 ctrl = 0
 sprpriority = -100
 
+
+[State 9000, HyperComboFinish!]
+type = Explod
+trigger1 = !time
+anim = 10000
+id = 10000
+postype = left
+bindtime = 99999
+removetime = 50
+pos = 160,120
+sprpriority = -11
+;scale = 1.2,1.2;0.83333333333333333333333333333333,1.0714285714285714285714285714286
+ignorehitpause = 1
+
+[State 9000, HyperComboFinish! -- Black Spark]
+type = Explod
+trigger1 = !time
+anim = 10005
+id = 10005
+postype = left
+bindtime = 99999
+removetime = 41
+pos = 160,120
+sprpriority = -10
+;scale = 1.2,1.2;0.83333333333333333333333333333333,1.0714285714285714285714285714286
+ignorehitpause = 1
+
+[State 9000, Boom]
+type = playsnd
+trigger1 = !time
+value = 3000,11
+volumescale = 100
+
+
+[State 0, ModifyExplod]
+type = null; ModifyExplod
+trigger1 = 1&& time*0.01 < 1.8
+ID = 10000
+;angle = (time)*-8
+scale = (time)*0.05,(time)*0.05
+
+
 [State 10000, NoShadow]
 type = assertspecial
-trigger1 = 1
-flag = noshadow
+trigger1 = time <= 49
+flag = NoBarDisplay
+flag2 = nobg
+flag3 = nofg
+
+[State 9000, Special K.O Effect]
+type = bgpalfx
+trigger1 = time = 50
+add = 255,255,255
+sinadd = -255,-255,-255,170
+time = 45
+
 
 [State 321, var]
 type = varadd
@@ -6789,22 +6841,10 @@ fv = 1
 value = 0.1
 supermovetime = 9999
 
-[State 10000, Center]
-type = posset
-trigger1 = 1
-X = 0
-Y = -70
-
-[State 1083, Angle]
-type = angledraw
-trigger1 = 1
-value = (time)*-4
-scale = 0.83333333333333333333333333333333,1.0714285714285714285714285714286
-supermovetime = 9999
 
 [State 10000, Unalive]
 type = destroyself
-trigger1= time = 300
+trigger1= time = 160
 
 ;----------------------------------------------------------------------
 ; Override common states (use same number to override) :
@@ -6815,24 +6855,6 @@ type = S
 physics = S
 sprpriority = 0
 hitcountpersist = 1
-
-
-[State 9000, HyperComboFinish!]
-type = null;Explod
-trigger1 = !time
-anim = 10000
-id = 10000
-postype = left
-bindtime = 99999
-removetime = 100
-pos = 160,120
-sprpriority = -5
-scale = 0.83333333333333333333333333333333,1.0714285714285714285714285714286
-ignorehitpause = 1
-
-
-
-
 
 [State 0, 1]
 type = ChangeAnim
