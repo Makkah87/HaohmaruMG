@@ -660,10 +660,12 @@ animtype  = Hard
 damage    = 208,20
 guardflag = MA
 pausetime = 12,12
+guard.pausetime = 15,15
 sparkno = s8017
 sparkangle = random%360
 sparkscale = 0.5,0.75
 Guard.Sparkno = s8030
+guardpoints = 400
 sparkxy = -33,-50
 hitsound   = s250,2
 guardsound = s300,3
@@ -672,6 +674,7 @@ ground.slidetime = 28
 ground.hittime  = 28
 ground.velocity = -10.2
 air.velocity = -7.5,-5.3
+airguard.velocity = -5.6,-3.4
 envshake.time = 10
 envshake.ampl = 6
 envshake.freq = 176
@@ -685,6 +688,7 @@ animtype  = Hard
 damage    = 125,0
 guardflag = MA
 pausetime = 12,12
+guard.pausetime = 15,15
 sparkno = s8017
 sparkangle = random%360
 sparkscale = 0.5,0.75
@@ -706,7 +710,7 @@ yaccel = 0.6
 type = envshake
 trigger1 = moveguarded = 1
 trigger1 = movehitvar(frame) = 1
-time = 8
+time = 6
 ampl = 6
 freq = 176
 mul = 0.9
@@ -981,7 +985,7 @@ ground.slidetime = 20
 ground.hittime  = 25
 ground.velocity = -12.6
 air.velocity = -9.2,-3.2
-airguard.velocity = -7.5,-3.2
+airguard.velocity = -6.5,-3.2
 envshake.time = 4
 envshake.ampl = 6
 envshake.freq = 140
@@ -1007,6 +1011,7 @@ ground.slidetime = 16
 ground.hittime  = 27
 ground.velocity = -9.66
 air.velocity = -5.2,-7.7
+airguard.velocity = -4.6,-5.4
 yaccel = 0.6
 envshake.mul = 0.6
 
@@ -1567,6 +1572,7 @@ ground.slidetime = 17
 ground.hittime  = 17
 ground.velocity = -5
 air.velocity = -5,-5.9
+airguard.velocity = -3.6,-5.9
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
@@ -1686,10 +1692,11 @@ ground.slidetime = 15
 ground.hittime  = 20
 ground.velocity = -5
 air.velocity = -5.2,-5.9
+airguard.velocity = -3.6,-3.4
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
-;CVS2-style dodge
+;Dodge
 ;----------------------------------------------------------------------
 [Statedef 700]
 type    = S
@@ -1742,7 +1749,7 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 ;----------------------------------------------------------------------
-;CVS2-style Roll
+;Roll
 ;----------------------------------------------------------------------
 [Statedef 710]
 type    = S
@@ -2738,6 +2745,7 @@ sparkangle = random%360
 sparkscale = 0.75,0.75
 guardsound = s300,3
 Guard.Sparkno = s8031
+airguard.ctrltime = 30
 sparkxy = -35,-60
 hitsound   = s250,2
 guardsound = s250,3
@@ -2749,7 +2757,8 @@ air.velocity = -2.1,-7.7
 envshake.time = 10
 envshake.ampl = 2
 envshake.freq = 176
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 25
 fall = 1
 yaccel = 0.65
 
@@ -3016,6 +3025,8 @@ envshake.time = 10
 envshake.ampl = 2
 envshake.freq = 176
 yaccel = 0.6
+fall.recover = 1
+fall.recovertime = 25
 
 [State 1010, BlkShake]
 type = envshake
@@ -3071,6 +3082,7 @@ sparkangle = random%360
 sparkscale = 0.75,0.75
 guardsound = s300,3
 Guard.Sparkno = s8031
+airguard.ctrltime = 30
 sparkxy = -20,-110
 hitsound   = s250,2
 guardsound = s250,3
@@ -3217,6 +3229,8 @@ envshake.time = 10
 envshake.ampl = 2
 envshake.freq = 176
 yaccel = 0.6
+fall.recover = 1
+fall.recovertime = 25
 
 [State 1020, BlkShake]
 type = envshake
@@ -3273,6 +3287,7 @@ sparkscale = 0.75,0.75
 guardsound = s300,3
 Guard.Sparkno = s8031
 sparkxy = -20,-110
+airguard.ctrltime = 30
 hitsound   = s250,2
 guardsound = s250,3
 ground.type = Low

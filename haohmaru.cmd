@@ -26,17 +26,17 @@ command.buffer.time = 1
 ;-| Super Motions |----------------------------------------------------------------------
 [Command]
 name = "seiouzan"
-command = ~F, DF, D, DB, B, F, x
+command = ~F, DF, D, DB, B, F, x+y
 time = 30
 
 [Command]
 name = "seiouzan"
-command = ~F, DF, D, DB, B, F, y
+command = ~F, DF, D, DB, B, F, y+z
 time = 30
 
 [Command]
 name = "seiouzan"
-command = ~F, DF, D, DB, B, F, z
+command = ~F, DF, D, DB, B, F, x+z
 time = 30
 
 
