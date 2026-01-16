@@ -1,41 +1,38 @@
-; Definition file for Haohmaru
-; Contains all the filenames needed for the character
-
 ; Player information
 [Info]
-name = "HaohmaruMG"         ;Name of character
-displayname = "Haohmaru"    ;Name of character to display
-versiondate = 12,18,2025    ;Version date of character (MM-DD-YYYY)
-ikemenversion = 1.0   ;Version of IKEMEN character works on
-author = "Master Gouken"    ;Character author name
-pal.defaults = 6,3,4,2      ;Default palettes in order of preference
+name = "HaohmaruMG" 
+displayname = "Haohmaru"
+versiondate = 12,18,2025
+ikemenversion = 1.0
+author = "Master Gouken" 
+pal.defaults = 6,3,4,2
 localcoord = 320,240
 
 ; Files for the player
 [Files]
-cmd     = haohmaru.cmd   ;Command set
-cns     = haohmaru.cns   ;Constants
-st      = haohmaru.cns   ;States
-st1		= blood.zss
-st2		= super.cns
-st3 	= buffer.zss
-stcommon = common1.cns   ;Common states
-sprite  = haohmaru.sff   ;Sprite
-anim    = haohmaru.air   ;Animation
-sound   = haohmaru.snd   ;Sound
-movelist = haohmarumovelist.dat
-pal1    = haohmaru1.act  ;Palettes (can have up to 12)
-pal2    = haohmaru2.act
-pal3    = newpal3.act;haohmaru3.act  ;By Chosen_01
-pal4    = haohmaru4.act
-pal5    = haohmaru5.act
-pal6    = new pal 6.act;haohmaru6.act  ;Based on pallette by Chosen_01
-pal7    = haohmaru7.act  ;From here on, based on nbc haohmaru's
-pal8    = haohmaru8.act  ;palettes, ripped  by JJWE
-pal9    = haohmaru9.act
-pal10   = haohmaru10.act
-pal11   = haohmaru11.act
-pal12   = haohmaru12.act
+cmd     = Logic/haohmaru.cmd
+cns     = Logic/haohmaru.cns
+st      = Logic/haohmaru.cns
+st1		= Logic/blood.zss
+st2		= Logic/super.cns
+st3 	= Logic/buffer.zss
+stcommon = common1.cns
+sprite  = Assets/haohmaru.sff
+anim    = Logic/haohmaru.air
+sound   = Assets/haohmaru.snd
+movelist = Logic/haohmarumovelist.dat
+pal1    = Assets/haohmaru1.act
+pal2    = Assets/haohmaru2.act
+pal3    = Assets/haohmaru3.act  ;By Chosen_01
+pal4    = Assets/haohmaru4.act
+pal5    = Assets/haohmaru5.act
+pal6    = Assets/haohmaru6.act  ;Based on pallette by Chosen_01
+pal7    = Assets/haohmaru7.act  ;From here on, based on nbc haohmaru's
+pal8    = Assets/haohmaru8.act  ;palettes, ripped  by JJWE
+pal9    = Assets/haohmaru9.act
+pal10   = Assets/haohmaru10.act
+pal11   = Assets/haohmaru11.act
+pal12   = Assets/haohmaru12.act
 
 ; Arcade mode
 ;[Arcade]
