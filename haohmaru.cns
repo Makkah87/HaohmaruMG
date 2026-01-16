@@ -419,6 +419,7 @@ ground.velocity = -6.2
 airguard.velocity = -3.4,-3.3
 air.type = High
 air.velocity = -3.9,-3.3
+airguard.velocity = -3.9,-2.9
 air.hittime = 12
 yaccel = 0.6
 
@@ -527,6 +528,7 @@ ground.slidetime = 12
 ground.hittime  = 16
 ground.velocity = -10.3
 air.velocity = -5.5,-4
+airguard.velocity = -5.5,-2.9
 yaccel = 0.6
 
 [State 210, Close Damage]
@@ -1451,6 +1453,7 @@ ground.slidetime = 5
 ground.hittime  = 5
 ground.velocity = -4
 air.velocity = -4.3,-4.8
+airguard.velocity = -4.3,-2.9
 yaccel = 0.6
 
 [State 600, 3]
@@ -1514,6 +1517,7 @@ ground.slidetime = 17
 ground.hittime  = 17
 ground.velocity = -5
 air.velocity = -5.3,-5.2
+airguard.velocity = -5,-2.9
 yaccel = 0.6
 ;----------------------------------------------------------------------
 ;Jump Strong Slash
@@ -1572,7 +1576,7 @@ ground.slidetime = 17
 ground.hittime  = 17
 ground.velocity = -5
 air.velocity = -5,-5.9
-airguard.velocity = -3.6,-5.9
+airguard.velocity = -5,-2.9
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
@@ -1612,6 +1616,7 @@ ground.slidetime = 6
 ground.hittime  = 6
 ground.velocity = -4
 air.velocity = -3.7,-4.3
+airguard.velocity = -3.7,-2.9
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
@@ -1652,6 +1657,7 @@ ground.slidetime = 15
 ground.hittime  = 15
 ground.velocity = -5
 air.velocity = -4.6,-5.3
+airguard.velocity = -4.6,-2.9
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
@@ -1692,7 +1698,7 @@ ground.slidetime = 15
 ground.hittime  = 20
 ground.velocity = -5
 air.velocity = -5.2,-5.9
-airguard.velocity = -3.6,-3.4
+airguard.velocity = -5.2,-3.4
 yaccel = 0.6
 
 ;----------------------------------------------------------------------
