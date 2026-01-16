@@ -7907,7 +7907,7 @@ sprpriority = 5
 scale = 0.5,0.5
 
 ;==========================
-;Bounce when swept
+;Bounce when swept!
 [State -3, 3]
 type = HitFallVel
 trigger1 = Stateno = 5101 && Time = 0 && map(trip_mem) = 0
