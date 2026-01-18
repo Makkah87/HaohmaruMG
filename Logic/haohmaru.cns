@@ -1073,7 +1073,7 @@ damage    = 28,0
 priority  = 3
 animtype  = Light
 hitflag = MAF
-guardflag = L
+guardflag = M
 pausetime = 8,8
 sparkno = s8017
 sparkangle = random%360
@@ -1144,7 +1144,7 @@ trigger1 = time = 0
 attr = C, NA
 damage    = 69,0
 animtype  = Medium
-hitflag = MAF
+hitflag = MA
 guardflag = M
 pausetime = 10,10
 sparkno = s8017
@@ -1364,7 +1364,7 @@ hitcountpersist = 1
 [State 450, Velset]
 type = velset
 trigger1 = animelem = 5
-x = 12
+x = 15
 
 [State 450, 2]
 type = PlaySnd
@@ -4566,6 +4566,16 @@ envshake.mul = 0.8
 yaccel = 0.6
 air.fall = 1
 
+[State 1100, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 4
+freq = 120
+mul = 0.8
+ignorehitpause = 1
+
 [State 1100, End]
 type = changestate
 trigger1 = !animtime
@@ -4641,6 +4651,16 @@ envshake.mul = 0.8
 yaccel = 0.6
 fall = 1
 
+[State 1110, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 4
+freq = 120
+mul = 0.8
+ignorehitpause = 1
+
 [State 1110, End]
 type = changestate
 trigger1 = !animtime
@@ -4714,6 +4734,16 @@ envshake.dir = 90
 envshake.mul = 0.8
 yaccel = 0.6
 fall = 1
+
+[State 1115, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 4
+freq = 120
+mul = 0.8
+ignorehitpause = 1
 
 [State 1115, End]
 type = changestate
@@ -6989,6 +7019,13 @@ physics = S
 anim = -2
 ctrl = 0
 
+[State 9000, Special K.O Effect]
+type = bgpalfx
+trigger1 = roundstate = 3 && !time && winspecial
+add = 255,255,255
+sinadd = -255,-255,-255,170
+time = 45
+
 
 [State 9000, Helper]
 type = Helper
@@ -8112,7 +8149,7 @@ ignorehitpause=1
 
 [State -2, K.O!]
 type = Helper
-trigger1 = winko && numhelper(9000)=0
+trigger1 = roundstate = 3 && winko && numhelper(9000)=0
 name = "KO"
 postype = P1
 pos = 38,0
