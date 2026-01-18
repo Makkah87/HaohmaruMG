@@ -10,7 +10,7 @@ localcoord = 320,240
 
 ; Files for the player
 [Files]
-cmd     = Logic/haohmaru.cmd
+cmd     = Logic/haohmaru_com.cns
 cns     = Logic/haohmaru.cns
 st      = Logic/haohmaru.cns
 st1		= Logic/blood.zss

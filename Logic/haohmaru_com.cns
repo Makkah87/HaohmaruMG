@@ -166,6 +166,30 @@ name = "kogetsu3"
 command = ~F, D, DF, ~z
 
 [Command]
+name = "gouha1"
+command = ~F, D, DF, a
+
+[Command]
+name = "gouha1"
+command = ~F, D, DF, ~a
+
+[Command]
+name = "gouha2"
+command = ~F, D, DF, b
+
+[Command]
+name = "gouha2"
+command = ~F, D, DF, ~b
+
+[Command]
+name = "gouha3"
+command = ~F, D, DF, c
+
+[Command]
+name = "gouha3"
+command = ~F, D, DF, ~c
+
+[Command]
 name = "senpuu1"
 command = ~D, DF, F, x
 
@@ -535,6 +559,27 @@ trigger1 = var(4) ;Use combo condition (above)
 type = ChangeState
 value = 1020
 triggerall = command = "kogetsu3"
+trigger1 = var(4) ;Use combo condition (above)
+;----------------------------------------------------------------------
+;Gouha (Light)
+[State -1, Gouha (Light)]
+type = ChangeState
+value = 1100
+triggerall = command = "gouha1"
+trigger1 = var(4) ;Use combo condition (above)
+;----------------------------------------------------------------------
+;Gouha (Medium)
+[State -1, Gouha (Medium)]
+type = ChangeState
+value = 1110
+triggerall = command = "gouha2"
+trigger1 = var(4) ;Use combo condition (above)
+;----------------------------------------------------------------------
+;Gouha (Strong)
+[State -1, Gouha (Strong)]
+type = ChangeState
+value = 1115
+triggerall = command = "gouha3"
 trigger1 = var(4) ;Use combo condition (above)
 ;----------------------------------------------------------------------
 ;Senpuu Retsu Zan (light)

@@ -416,7 +416,6 @@ ground.type = High
 ground.slidetime = 12 ;9
 ground.hittime  = 15 ;12
 ground.velocity = -6.2
-airguard.velocity = -3.4,-3.3
 air.type = High
 air.velocity = -3.9,-3.3
 airguard.velocity = -3.9,-2.9
@@ -2205,7 +2204,7 @@ hitflag = MAFD
 pausetime = 12,12
 sparkno = s8000
 sparkxy = -10,-60
-hitsound   = s300,2
+hitsound   = s250,3
 guardsound = s250,3
 ground.type = Low
 dizzypoints = 0
@@ -3788,9 +3787,10 @@ priority  = 4
 guardflag = M
 hitflag = MAD
 pausetime = 0,5
-Sparkno = -1
 Guard.Sparkno = s8031
-sparkxy = -10,-60
+Sparkno = s8004
+sparkscale = 0.5,0.5
+sparkxy = 10,-60
 hitsound   = s1000,7 ;s250,2
 guardsound = s300,3
 guardsound = s250,3
@@ -4034,10 +4034,11 @@ priority  = 4
 guardflag = M
 hitflag = MAD
 pausetime = 0,5
-Sparkno = -1
 Guard.Sparkno = s8031
 guardsound = s300,3
-sparkxy = -10,-60
+Sparkno = s8004
+sparkscale = 0.5,0.5
+sparkxy = 10,-60
 hitsound   = s1000,7
 guardsound = s250,3
 ground.type = Low
@@ -4245,8 +4246,9 @@ hitflag = MAD
 pausetime = 2,12
 Guard.Sparkno = s8031
 guardsound = s300,3
-Sparkno = -1
-sparkxy = -10,-60
+Sparkno = s8004
+sparkscale = 0.5,0.5
+sparkxy = 10,-60
 hitsound   = s1000,7
 guardsound = s250,3
 ground.type = Low
@@ -4495,6 +4497,230 @@ triggerall = time >=10
 trigger1 = Vel Y > 0
 trigger1 = Pos Y >= -39
 value = 5100 ;Hit ground
+
+;----------------------------------------------------------------------
+; Gouha (Weak)
+;---------------------------------------------------------------------- 
+[Statedef 1100]
+type    = S
+movetype= A
+physics = S
+velset = 0,0
+anim = 1090
+ctrl = 0
+
+[State 1100, Woosh]
+type = playsnd
+trigger1 = animelem = 3
+value = 0.3
+
+[State 1100, Slide_SND]
+type = playsnd
+trigger1 = animelem = 3
+value = 3000,6
+
+[State 1100, Voice]
+type = playsnd
+trigger1 = animelem = 3
+value = 400,1
+channel = 1
+
+[State 1100, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 1100, Dash]
+type = velset
+trigger1 = animelem = 3
+x = 12
+
+[State 1100, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+animtype  = Hard
+damage    = 50,15
+guardflag = MA
+pausetime = 8,8
+sparkno = s8004
+sparkscale = 0.5,0.5
+sparkscale = 1,1
+Guard.Sparkno = s8030
+guardpoints = 100
+sparkxy = 10,-50
+hitsound   = s250,3
+guardsound = s300,3
+ground.type = Low
+ground.slidetime = 28
+ground.hittime  = 22
+ground.velocity = -8.7
+air.velocity = -6.5,-5.3
+airguard.velocity = -5.6,-3.4
+envshake.time = 8
+envshake.ampl = 4
+envshake.freq = 120
+envshake.dir = 90
+envshake.mul = 0.8
+yaccel = 0.6
+air.fall = 1
+
+[State 1100, End]
+type = changestate
+trigger1 = !animtime
+value = 0
+ctrl = 1
+
+
+;----------------------------------------------------------------------
+; Gouha (Medium)
+;---------------------------------------------------------------------- 
+[Statedef 1110]
+type    = S
+movetype= A
+physics = S
+velset = 0,0
+anim = 1095
+ctrl = 0
+
+[State 1110, Woosh]
+type = playsnd
+trigger1 = animelem = 3
+value = 0.3
+
+[State 1110, Slide_SND]
+type = playsnd
+trigger1 = animelem = 3
+value = 3000,6
+
+[State 1110, Voice]
+type = playsnd
+trigger1 = animelem = 3
+value = 400,1
+channel = 1
+
+[State 1110, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 1110, Dash]
+type = velset
+trigger1 = animelem = 3
+x = 18
+
+[State 1110, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+animtype  = Hard
+damage    = 70,20
+guardflag = MA
+pausetime = 8,8
+sparkno = s8004
+sparkscale = 0.5,0.5
+sparkscale = 1,1
+Guard.Sparkno = s8030
+guardpoints = 100
+sparkxy = 10,-50
+hitsound   = s250,3
+guardsound = s300,3
+ground.type = Low
+ground.slidetime = 28
+ground.hittime  = 22
+ground.velocity = -2.3,-10
+air.velocity = -2.2,-10.3
+airguard.velocity = -5.6,-3.4
+envshake.time = 8
+envshake.ampl = 4
+envshake.freq = 120
+envshake.dir = 90
+envshake.mul = 0.8
+yaccel = 0.6
+fall = 1
+
+[State 1110, End]
+type = changestate
+trigger1 = !animtime
+value = 0
+ctrl = 1
+
+;----------------------------------------------------------------------
+; Gouha (Strong)
+;---------------------------------------------------------------------- 
+[Statedef 1115]
+type    = S
+movetype= A
+physics = S
+velset = 0,0
+anim = 1100
+ctrl = 0
+
+[State 1115, Woosh]
+type = playsnd
+trigger1 = animelem = 3
+value = 0.3
+
+[State 1115, Slide_SND]
+type = playsnd
+trigger1 = animelem = 3
+value = 3000,6
+
+[State 1115, Voice]
+type = playsnd
+trigger1 = animelem = 3
+value = 400,1
+channel = 1
+
+[State 1115, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 1115, Dash]
+type = velset
+trigger1 = animelem = 3
+x = 22
+
+[State 1115, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+animtype  = Hard
+damage    =120,20
+guardflag = MA
+pausetime = 8,8
+sparkno = s8004
+sparkscale = 0.5,0.5
+sparkscale = 1,1
+Guard.Sparkno = s8030
+guardpoints = 180
+sparkxy = 10,-50
+hitsound   = s250,3
+guardsound = s300,3
+ground.type = Low
+ground.slidetime = 28
+ground.hittime  = 22
+ground.velocity = -5.3,-7.2
+air.velocity = -5.2,-7
+airguard.velocity = -5.6,-3.4
+envshake.time = 8
+envshake.ampl = 4
+envshake.freq = 120
+envshake.dir = 90
+envshake.mul = 0.8
+yaccel = 0.6
+fall = 1
+
+[State 1115, End]
+type = changestate
+trigger1 = !animtime
+value = 0
+ctrl = 1
+
 
 ;======================================================================
 ;EX Moves
@@ -7231,6 +7457,7 @@ postype = p1
 pos = 0,1
 sprpriority = -5
 scale = 0.5,0.5
+ownpal = 1
 
 [State 5100, EnvShake]
 type = FallEnvShake
@@ -7309,11 +7536,17 @@ type    = L
 movetype= H
 physics = N
 
-[State -3, TripMemReset]
+[State 5110, TripMemReset]
 type = mapset
 trigger1 = time = 0
 map = "trip_mem"
 value = 0
+
+[State 5110, Stop Moving]
+type = velset
+trigger1 = !time
+X = 0
+Y = 0
 
 [State 5100, LandingDust]
 type = Explod
@@ -7324,6 +7557,7 @@ postype = p1
 pos = 0,1
 sprpriority = -5
 scale = 0.5,0.5
+ownpal = 1
 
 [State 5110, EnvShake]
 type = FallEnvShake
@@ -7713,8 +7947,8 @@ ctrl = 1
 [State -2, Debug data]
 type = displaytoclipboard
 trigger1 = time >= 0
-text = "Enemy Anim Type =%d,P2Dist X = %f,P2Dist Y = %f,var(11) = %d,Special State = %f, Super_State = %f, Bounce = %f,Swept = %f,By Makkah/Master Gouken"
-params = enemy,gethitvar(animtype),P2Dist X,P2Dist Y,var(11), map(special_cancel), map(super_cancel), map(bounce), map(trip_mem)
+text = "Enemy Anim Type =%d,P2Dist X = %f,P2Dist Y = %f,ground_hit_type = %d,Special State = %f, Super_State = %f, Bounce = %f,Swept = %f,By Makkah/Master Gouken"
+params = enemy,gethitvar(animtype),P2Dist X,P2Dist Y,gethitvar(groundtype), map(special_cancel), map(super_cancel), map(bounce), map(trip_mem)
 ignorehitpause = 1
 
 [State -2, Kogetsu_CPush_Reset]
@@ -7756,6 +7990,12 @@ trigger1 = MoveType = H & Time = 0
 trigger1 = prevmovetype = A
 add = 0,0,0
 time = 0
+
+[State -2, TripMemReset]
+type = mapset
+trigger1 = gethitvar(groundtype) != 3
+map = "trip_mem"
+value = 0
 
 [State -2, Slash begone]
 type = removeexplod
