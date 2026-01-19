@@ -23,6 +23,7 @@ if hitdefattr = SCA, HA {mapset {map:"super_attack"; value :1}
 }
 #######################################
 
+##Generate Blood
 ignorehitpause{
 if !p2,hitoverridden && movehitvar(frame) = 1 && movehit && hitdefvar(sparkno) = 8017{
 
@@ -36,7 +37,7 @@ if !p2,hitoverridden && movehitvar(frame) = 1 && movehit && hitdefvar(sparkno) =
 	}
 }
 
-##Trading Hits
+##Generate Blood -- Trading Hits
 ignorehitpause{
 if movetype = H && map(sparkno) = 8017 && prevmovetype = A && !time && p2,movetype = H && numhelper(8000) = 0{
 
