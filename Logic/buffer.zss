@@ -45,24 +45,24 @@ if (stateno = [200,699] || map(super_cancel_timer)=0) {mapset {map: "super_cance
 							mapset {map:"special_cancel_timer"; value : 30}
 							}
 	
-	if command = "kogetsu2" {mapset {map:"special_cancel"; value:1110}
+	if command = "kogetsu2" {mapset {map:"special_cancel"; value:1010}
 							mapset {map:"special_cancel_timer"; value :30}
 							}
 							
-	if command = "kogetsu3" {mapset {map:"special_cancel"; value:1115}
+	if command = "kogetsu3" {mapset {map:"special_cancel"; value:1020}
 							mapset {map:"special_cancel_timer"; value :30}
 							}
 
 #Gouha
-	if command = "gouha1"  {mapset {map:"special_cancel"; value:1000}
+	if command = "gouha1"  {mapset {map:"special_cancel"; value:1100}
 							mapset {map:"special_cancel_timer"; value : 30}
 							}
 	
-	if command = "gouha2" {mapset {map:"special_cancel"; value:1010}
+	if command = "gouha2" {mapset {map:"special_cancel"; value:1110}
 							mapset {map:"special_cancel_timer"; value :30}
 							}
 							
-	if command = "gouha3" {mapset {map:"special_cancel"; value:1020}
+	if command = "gouha3" {mapset {map:"special_cancel"; value:1115}
 							mapset {map:"special_cancel_timer"; value :30}
 							}
 							
