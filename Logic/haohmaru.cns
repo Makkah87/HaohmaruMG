@@ -7026,7 +7026,6 @@ add = 255,255,255
 sinadd = -255,-255,-255,170
 time = 45
 
-
 [State 9000, Helper]
 type = Helper
 trigger1 = !time && winhyper
@@ -8244,11 +8243,15 @@ v = 3
 range = 0,2
 
 [State -3, GetHurt Sound]
-type = PlaySnd
-triggerall = Random < 330
+type = playsnd
 triggerall = Time = 1
 triggerall = Alive = 1
-trigger1 = StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070 
+trigger1 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) && Random < 330 && enemynear, hitdefattr = SCA, NA
+trigger2 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) && enemynear, hitdefattr = SCA, HA, HP
+trigger3 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) && enemynear, hitdefattr = SCA, SA, SP && random < 600
+trigger4 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) &&prevstateno = [200,3999]
+trigger5 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) && enemynear, stateno = [3000,3999]
+trigger6 = prevmovetype = A
 value = 5000, var(3)
 channel = 1
 
