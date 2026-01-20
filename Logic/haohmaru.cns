@@ -421,6 +421,7 @@ air.velocity = -3.9,-3.3
 airguard.velocity = -3.9,-2.9
 air.hittime = 12
 yaccel = 0.6
+forcenofall = 1
 
 [State 200, Voice]
 type = PlaySnd
@@ -530,6 +531,7 @@ ground.velocity = -10.3
 air.velocity = -5.5,-4
 airguard.velocity = -5.5,-2.9
 yaccel = 0.6
+forcenofall = 1
 
 [State 210, Close Damage]
 type = modifyhitdef
@@ -783,6 +785,7 @@ ground.slidetime = 10
 ground.hittime  = 11
 ground.velocity = -5
 air.velocity = -5.5,-3.5
+forcenofall = 1
 
 [State 230, 3]
 type = ChangeState
@@ -907,6 +910,7 @@ ground.hittime  = 12
 ground.velocity = -6.9
 air.velocity = -7.2,-3.7
 yaccel = 0.6
+forcenofall = 1
 
 [State 240, 4]
 type = ChangeState
@@ -1092,8 +1096,9 @@ ground.slidetime = 14
 ground.hittime  = 14
 ground.velocity = -6.3
 air.velocity = -4.5,-4
-
+forcenofall = 1
 yaccel = 0.6
+
 [State 400, 4]
 type = ChangeState
 trigger1 = AnimTime = 0
@@ -1165,6 +1170,7 @@ ground.hittime  = 18
 ground.velocity = -9.7
 air.velocity = -6.3,-4
 yaccel = 0.6
+forcenofall = 1
 
 [State 410, 4]
 type = ChangeState
@@ -1403,6 +1409,8 @@ ground.velocity = -3.5,-6
 air.velocity = -3.7,-6.9
 fall = 1
 yaccel = 0.6
+fall.recover = 1
+fall.recovertime = 15
 
 [State 450, 4]
 type = ChangeState
@@ -1460,6 +1468,7 @@ ground.velocity = -4
 air.velocity = -4.3,-4.8
 airguard.velocity = -4.3,-2.9
 yaccel = 0.6
+forcenofall = 1
 
 [State 600, 3]
 type = CtrlSet
@@ -1623,6 +1632,7 @@ ground.velocity = -4
 air.velocity = -3.7,-4.3
 airguard.velocity = -3.7,-2.9
 yaccel = 0.6
+forcenofall = 1
 
 ;----------------------------------------------------------------------
 ;Jump Medium Kick
@@ -2769,7 +2779,7 @@ envshake.time = 10
 envshake.ampl = 2
 envshake.freq = 176
 fall.recover = 1
-fall.recovertime = 25
+fall.recovertime = 36
 fall = 1
 yaccel = 0.65
 
@@ -3037,7 +3047,7 @@ envshake.ampl = 2
 envshake.freq = 176
 yaccel = 0.6
 fall.recover = 1
-fall.recovertime = 25
+fall.recovertime = 36
 
 [State 1010, BlkShake]
 type = envshake
@@ -3105,7 +3115,8 @@ air.velocity = -2.5,-13.7
 envshake.time = 10
 envshake.ampl = 4
 envshake.freq = 176
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 62
 fall = 1
 yaccel = 0.6
 
@@ -3241,7 +3252,7 @@ envshake.ampl = 2
 envshake.freq = 176
 yaccel = 0.6
 fall.recover = 1
-fall.recovertime = 25
+fall.recovertime = 35
 
 [State 1020, BlkShake]
 type = envshake
@@ -3309,7 +3320,8 @@ air.velocity = -2.5,-15
 envshake.time = 10
 envshake.ampl = 4
 envshake.freq = 176
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 63
 fall = 1
 yaccel = 0.65
 
@@ -3816,7 +3828,8 @@ fall.envshake.ampl = 4
 fall.envshake.freq = 176
 yaccel = 0.6
 fall = 1
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 52
 
 [State 1061, End]
 type = destroyself
@@ -4063,7 +4076,8 @@ fall.envshake.ampl = 4
 fall.envshake.freq = 176
 yaccel = 0.60
 fall = 1
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 54
 
 [State 1066, End]
 type = destroyself
@@ -4273,7 +4287,8 @@ fall.envshake.ampl = 4
 fall.envshake.freq = 176
 yaccel = 0.75
 fall = 1
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 65
 fall.damage = 10
 
 [State 1071, End]
@@ -4572,6 +4587,8 @@ envshake.dir = 90
 envshake.mul = 0.8
 yaccel = 0.6
 air.fall = 1
+fall.recover = 1
+fall.recovertime = 23
 
 [State 1100, BlkShake]
 type = envshake
@@ -4632,7 +4649,7 @@ x = 18
 type = HitDef
 trigger1 = Time = 0
 attr = S, SA
-animtype  = Hard
+animtype  = diagup
 damage    = 70,20
 guardflag = MA
 pausetime = 8,8
@@ -4647,8 +4664,9 @@ guardsound = s300,3
 ground.type = Low
 ground.slidetime = 28
 ground.hittime  = 22
-ground.velocity = -2.3,-10
-air.velocity = -2.2,-10.3
+ground.velocity = 2.7,-11.3
+p2facing = facing*-1
+air.velocity = 2.5,-10.3
 airguard.velocity = -5.6,-3.4
 envshake.time = 8
 envshake.ampl = 4
@@ -4657,6 +4675,7 @@ envshake.dir = 90
 envshake.mul = 0.8
 yaccel = 0.6
 fall = 1
+fall.recover = 0
 
 [State 1110, BlkShake]
 type = envshake
@@ -4731,8 +4750,8 @@ guardsound = s300,3
 ground.type = Low
 ground.slidetime = 28
 ground.hittime  = 22
-ground.velocity = -5.3,-7.2
-air.velocity = -5.2,-7
+ground.velocity = -5.8,-7.2
+air.velocity = -5.8,-7
 airguard.velocity = -5.6,-3.4
 envshake.time = 8
 envshake.ampl = 4
@@ -4741,6 +4760,8 @@ envshake.dir = 90
 envshake.mul = 0.8
 yaccel = 0.6
 fall = 1
+fall.recover = 1
+fall.recovertime = 25
 
 [State 1115, BlkShake]
 type = envshake
