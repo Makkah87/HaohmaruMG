@@ -42,8 +42,8 @@ height = 85          ;Height of player (for opponent to jump over)
 attack.dist = 160    ;Default attack distance
 proj.attack.dist = 90;Default attack distance for projectiles
 proj.doscale = 0     ;Set to 1 to scale projectiles too
-head.pos = -5, -90   ;Approximate position of head
-mid.pos = -5, -60    ;Approximate position of midsection
+head.pos = 5, -77   ;Approximate position of head
+mid.pos = -5, -46   ;Approximate position of midsection
 shadowoffset = 0     ;Number of pixels to vertically offset the shadow
 draw.offset = 0,0    ;Player drawing offset in pixels (x, y)
 
@@ -531,7 +531,6 @@ ground.velocity = -10.3
 air.velocity = -5.5,-4
 airguard.velocity = -5.5,-2.9
 yaccel = 0.6
-forcenofall = 1
 
 [State 210, Close Damage]
 type = modifyhitdef
@@ -665,6 +664,7 @@ attr = S, NA
 animtype  = Hard
 damage    = 208,20
 guardflag = MA
+hitflag = MA
 pausetime = 12,12
 guard.pausetime = 15,15
 sparkno = s8017
@@ -694,6 +694,7 @@ attr = S, NA
 animtype  = Hard
 damage    = 125,0
 guardflag = MA
+hitflag = MA
 pausetime = 12,12
 guard.pausetime = 15,15
 sparkno = s8017
@@ -3492,7 +3493,7 @@ sparkno = s8017
 sparkangle = random%360
 sparkscale = 0.75,0.75
 Guard.Sparkno = s8031
-sparkxy = -10,-40
+sparkxy = -10,0
 hitsound   = s250,2
 guardsound = s250,3
 ground.type = Low
@@ -4556,7 +4557,7 @@ ignorehitpause = 1
 [State 1100, Dash]
 type = velset
 trigger1 = animelem = 3
-x = 12
+x = 14.5
 
 [State 1100, 2]
 type = HitDef
@@ -4580,6 +4581,7 @@ ground.hittime  = 22
 ground.velocity = -8.7
 air.velocity = -6.5,-5.3
 airguard.velocity = -5.6,-3.4
+guard.velocity = -7
 envshake.time = 8
 envshake.ampl = 4
 envshake.freq = 120
@@ -4588,7 +4590,7 @@ envshake.mul = 0.8
 yaccel = 0.6
 air.fall = 1
 fall.recover = 1
-fall.recovertime = 23
+fall.recovertime = 25
 
 [State 1100, BlkShake]
 type = envshake
@@ -4668,6 +4670,7 @@ ground.velocity = 2.7,-11.3
 p2facing = facing*-1
 air.velocity = 2.5,-10.3
 airguard.velocity = -5.6,-3.4
+guard.velocity = -9.5
 envshake.time = 8
 envshake.ampl = 4
 envshake.freq = 120
@@ -4753,6 +4756,7 @@ ground.hittime  = 22
 ground.velocity = -5.8,-7.2
 air.velocity = -5.8,-7
 airguard.velocity = -5.6,-3.4
+guard.velocity = -12.3
 envshake.time = 8
 envshake.ampl = 4
 envshake.freq = 120
@@ -4761,7 +4765,7 @@ envshake.mul = 0.8
 yaccel = 0.6
 fall = 1
 fall.recover = 1
-fall.recovertime = 25
+fall.recovertime = ifelse(p2, statetype != A,30,34)
 
 [State 1115, BlkShake]
 type = envshake
