@@ -1,6 +1,7 @@
 #Command Buffer System
 [StateDef -4]
  assertspecial{flag: nokovelocity}
+var(100):= (hitdefvar(hitdamage)*0.2)*-1;
 
 ############################################################################
 #								Map Table									

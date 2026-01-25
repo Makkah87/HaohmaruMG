@@ -16,6 +16,7 @@ st      = Logic/haohmaru.cns
 st1		= Logic/blood.zss
 st2		= Logic/super.cns
 st3 	= Logic/buffer.zss
+st4     = Logic/Haohmaru.zss
 stcommon = common1.cns
 sprite  = Assets/haohmaru.sff
 anim    = Logic/haohmaru.air
