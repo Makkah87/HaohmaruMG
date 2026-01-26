@@ -5,9 +5,9 @@
 ;			Var(1) : Intro Decider
 ;			Var(2) : Win Pose Decider
 ;			Var(3) : Hit Voice Randomizer
-;			 Var(4) : Combo Condition
-;			 Var(5) : Throw Turn
-;			 Var(6) : ----
+;			 Var(4) : -------
+;			Var(5) : Throw Turn
+;			Var(6) : ----
 ;			Var(7) : Juggle Addition
 ;			Var(8) : Senpuu in play
 ;			Var(9) : Parry Variable
@@ -8022,8 +8022,8 @@ ctrl = 1
 [State -2, Debug data]
 type = displaytoclipboard
 trigger1 = time >= 0
-text = "var(4) =%d,P2Dist X = %f,P2Dist Y = %f,ground_hit_type = %d,Special State = %f, Super_State = %f, Target ID = %f,By Makkah/Master Gouken"
-params = var(4),P2Dist X,P2Dist Y,gethitvar(groundtype), map(special_cancel), map(super_cancel), map(target_id)
+text = "damage_scale =%f,P2Dist X = %f,P2Dist Y = %f,ground_hit_type = %d,Special State = %f, Super_State = %f, Target ID = %f,By Makkah/Master Gouken"
+params = map(damage_scale),P2Dist X,P2Dist Y,gethitvar(groundtype), map(special_cancel), map(super_cancel), map(target_id)
 ignorehitpause = 1
 
 [State -2, Kogetsu_CPush_Reset]
@@ -8161,25 +8161,6 @@ ownpal = 1
 stateno = 9999
 id = 9999
 
-;Damage dampener
-[State -2, Damage based on hits]
-type=varset
-trigger1= numenemy
-fvar(12)= ifelse(enemynear,gethitvar(hitcount)<3, 24, ifelse(enemynear,gethitvar(hitcount)>=24, 2, 28-enemynear,gethitvar(hitcount))) / 24.0
-ignorehitpause=1
-
-[State -2, Reset var when the opponent recovers]
-type=varset
-trigger1= numenemy
-trigger1= (enemynear,movetype!=H)
-trigger2= !numenemy
-fvar(12)=1
-
-[State -2, Dampener itself]
-type=null;attackmulset
-trigger1= 1
-value=fvar(12)
-ignorehitpause=1
 ;--------------------------------------------------------------------
 ; States that are executed when in self's state file (use statedef-3)
 ;--------------------------------------------------------------------

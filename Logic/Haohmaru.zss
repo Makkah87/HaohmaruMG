@@ -27,3 +27,50 @@ ignorehitpause{
 		}
 	}
 }
+
+##|Damage Dampener|##
+##Attack State Scale Factor -- Normals and Specials##
+if !time && (stateno = [200, 650]) || (stateno = 1000 || stateno = 1010 || stateno = 1020) || (stateno = [1030,1050] && stateno != 1031) || stateno = [1100,1115]{
+	MapAdd{
+		map: "scale_factor";
+		value: 1;
+	}
+}
+
+##Attack State Scale Factor -- EX and Supers##
+if !time && (stateno = 2010) || stateno = 2020 || stateno = 3000 || stateno = 3020 || stateno = 3500 || stateno = 3520 && stateno = 3550{
+	MapAdd{
+		map: "scale_factor";
+		value: 2;
+	}
+}
+
+##Reset
+if movetype != A {
+	MapSet{
+		map: "scale_factor";
+		value: 0;
+	}
+
+	MapSet{
+		map: "damage_scale";
+		value: 10;
+	}
+}
+
+##|Decrease Damage Percentage|##
+if map(scale_factor) > 2{
+	MapAdd{
+		map: "damage_scale";
+		value: 10 - (map(scale_factor))+1;
+	}
+}
+
+##|Implement Damage Scale|##
+AttackMulSet{
+	value: (map(damage_scale)*10)/100;
+	# Damage: 0.0;
+	# DizzyPoints: 0.0;
+	# GuardPoints: 0.0;
+	# RedLife: 0.0;
+}
