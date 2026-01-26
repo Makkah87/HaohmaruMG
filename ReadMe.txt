@@ -4,7 +4,7 @@
 =======================================================================
 Story
 -----------------------------------------------------------------------
-While travelling through a bamboo forest in feudal Japan, Haohmaru is pounced upon by five demonic warriors. Haoh draws his sword, and with great skill, manages to slay them all. Upon his victory, Haoh senses another demonic presence. He looks behind him, and discovers that Amakusa has been resurrected. Exhausted from his previous battle, Haoh charges bravely at the sorcerer. Amakusa quickly casts as a spell, which paralizes Haohmaru and causes him to be consumed by a giant vortex, which transports him to another dimension. While in this new world, he is approached by Suave Dude, the sponsor of the great M.U.G.E.N tournament. Suave, promises Haoh, that if he wins this tournament, he will transport him back to his own dimension, so that he may exact his revenge. Haohmaru graciously accepts his offer, and prepares himself mentally and physically, for the upcoming slaughter.
+While travelling through a bamboo forest, Haohmaru is pounced upon by five demonic warriors. He draws his sword, and with great skill, manages to slay them all. Upon his victory, He senses another demonic presence. He looks behind him and discovers that Amakusa has been resurrected. Exhausted from his previous battle, Haoh charges bravely at the sorcerer. Amakusa quickly casts as a spell which paralizes Haohmaru and causes him to be consumed by a giant vortex which transports him to another dimension. While in this new world, he is approached by Suave Dude, the sponsor of the great M.U.G.E.N tournament. Suave, promisesthat if he wins this tournament, he will transport him back to his own dimension. Haohmaru graciously accepts his offer and prepares himself mentally and physically, for the upcoming slaughter.
 -----------------------------------------------------------------------
 ---------------
 System
@@ -17,29 +17,35 @@ Power Charge: MP+MK
 
 Parry: Tap F immediately before being hit (Can be done in the air). 
 
+Low Parry: Tap D immediately before being hit by a low attack.
+
 ---------------
 Special
 ===============
 Senpuu Retsu Zan : QCF + P
 
-Senpuu Tene : QCF + K (Counter)
+Senpuu Retsu Zan (Feint) : QCF + K (Counter)
  -Holding up, during the defensive posture will result in a Kogetsu Zan
 
 Kogetsu Zan : dp + P
 
 Resshin Zan : QCB + P
 
+Gouha: dp + K
+
 ----------------
 Super Arts
 ================
 Tenha FuJin Zan : QCFx2 + P
 
-Tenha Denkuu Retsu Zan : HCB, F + P
+Tenha Denkuu Retsu Zan: QCBx2 + P
+
+Sei Ou Zan : HCB, F + P
 
 ---------------
 Notes
 ---------------
-Haohmaru is slow, to say the very least. Try to keep the opponent, within range of your slashes, and combo where possible. Don't forget, about the new feature added to the Fake Senpuu Retsu Zan. If you find yourself conered, and being overwhelmed, that counter attack will come in handy.
+
 
 Credits
 ---------------
@@ -50,9 +56,9 @@ Credits
 -Capcom and SNK for creating CVS, and SNK specifically for Haohmaru and
  Samurai Spirits.
 
--Z Sabre User, whose Haohmaru I used as a reference.
+-Z Sabre User, whose Haohmaru I used as an initial reference.
 
--WArusaki3 whose cvs characters inspired me to experiment with the  "width" sctrl (though I never actually looked at his code). We will   miss you forever.
+-WArusaki3, who I stole some sprites and sounds from.
 
 -The DreamSlayer, for his CVS2 sprite rips.
 
@@ -66,10 +72,10 @@ Credits
 
 -To everyone at the guild, who gave support and showed interest in him.
 
--Kung Fu Man for mirroring my creations on Random Select and for the "cheese kill" code.
+-Kung Fu Man for the "cheese kill" code.
 
 -Valodim, for providing free web hosting. Thanks Val :D.
 
 -JJWE aka Neo Gouki, for his Neo Geo Battle Collesium Haohmaru palette rips.
 
--Oh and anyone else I may have forgotten...please forgive me, my memory stinks, and I would never intentionally omit you.
+-Anyone else I may have forgotten...please forgive me, my memory stinks, and I would never intentionally omit you.

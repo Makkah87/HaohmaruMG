@@ -28,25 +28,54 @@ ignorehitpause{
 	}
 }
 
+
 ##|Damage Dampener|##
+
+if map(scale_factor) > 0 && NumHelper(4000) = 0 {
+	MapAdd{
+		map: "scale_factor_timer";
+		value: -1;
+	}
+}
+
+	if map(scale_factor_timer) < 0 {
+		MapSet{
+			map: "scale_factor_timer";
+			value: 0;
+		}
+	}
+
+
 ##Attack State Scale Factor -- Normals and Specials##
-if !time && (stateno = [200, 650]) || (stateno = 1000 || stateno = 1010 || stateno = 1020) || (stateno = [1030,1050] && stateno != 1031) || stateno = [1100,1115]{
+if time = 1 &&(stateno = [200,699] || (stateno = 1000 || stateno = 1010 || stateno = 1020) || (stateno = [1030,1050] && stateno != 1031) || stateno = [1100,1115]){
 	MapAdd{
 		map: "scale_factor";
 		value: 1;
 	}
+
+		MapSet{
+		map: "scale_factor_timer";
+		value: 40;
+	}
 }
 
-##Attack State Scale Factor -- EX and Supers##
-if !time && (stateno = 2010) || stateno = 2020 || stateno = 3000 || stateno = 3020 || stateno = 3500 || stateno = 3520 && stateno = 3550{
+##Attack State Scale Factor -- EX##
+if time = 1 && ((stateno = 2010) || stateno = 2020){
 	MapAdd{
 		map: "scale_factor";
 		value: 2;
 	}
+	
+		MapSet{
+		map: "scale_factor_timer";
+		value: 25;
+	}
 }
 
+##Super Scale Factor is set in the super spark Helper
+
 ##Reset
-if movetype != A {
+if map(scale_factor_timer) = 0 && movetype != A{
 	MapSet{
 		map: "scale_factor";
 		value: 0;
@@ -54,21 +83,21 @@ if movetype != A {
 
 	MapSet{
 		map: "damage_scale";
-		value: 10;
+		value: 1;
 	}
 }
 
 ##|Decrease Damage Percentage|##
 if map(scale_factor) > 2{
-	MapAdd{
+	MapSet{
 		map: "damage_scale";
-		value: 10 - (map(scale_factor))+1;
+		value: 1 - ((map(scale_factor)-1)*0.1);
 	}
 }
 
 ##|Implement Damage Scale|##
 AttackMulSet{
-	value: (map(damage_scale)*10)/100;
+	value: (map(damage_scale));
 	# Damage: 0.0;
 	# DizzyPoints: 0.0;
 	# GuardPoints: 0.0;

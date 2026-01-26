@@ -83,10 +83,12 @@ crouch.friction = .82 ;Friction coefficient when crouching
 victory1 = "Air-bending slice!"
 victory2 = "I expected more of a challenge."
 victory3 = "Let's go again! This time I'll tie one hand behind my back."
-victory4 = "Not bad. Actually, that was pretty damn bad. Do better next time."
+victory4 = "You should learn to dodge."
 victory5 = "Run along now before I split you in two."
 victory6 = "You're good, but I'm much better!"
-victory7 = "Huh? A rematch? You're not worth my time..."
+victory7 = "A rematch? You're not worth my time..."
+victory8 = "Next time I won't hold back."
+victory9 = "Maybe you should try being a farmer."
 ;----------------------------------------------------------------------
 ; Lose by Time Over
 ; ---------------------------------------------------------------------
@@ -8022,8 +8024,8 @@ ctrl = 1
 [State -2, Debug data]
 type = displaytoclipboard
 trigger1 = time >= 0
-text = "damage_scale =%f,P2Dist X = %f,P2Dist Y = %f,ground_hit_type = %d,Special State = %f, Super_State = %f, Target ID = %f,By Makkah/Master Gouken"
-params = map(damage_scale),P2Dist X,P2Dist Y,gethitvar(groundtype), map(special_cancel), map(super_cancel), map(target_id)
+text = "damage_scale =%f,scale_factor =%f,P2Dist X = %f,P2Dist Y = %f,ground_hit_type = %d,Special State = %f, Super_State = %f, Target ID = %f,By Makkah/Master Gouken"
+params = map(damage_scale),map(scale_factor),P2Dist X,P2Dist Y,gethitvar(groundtype), map(special_cancel), map(super_cancel), map(target_id)
 ignorehitpause = 1
 
 [State -2, Kogetsu_CPush_Reset]

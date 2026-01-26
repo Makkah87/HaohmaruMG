@@ -31,6 +31,19 @@ stagebound = 1
 camerabound = 0
 ignorehitpause = 1
 
+[State 4000, Super Scale Factor]
+type = ParentMapAdd
+trigger1 = !time
+map = "scale_factor"
+value = 2
+
+[State 4000, Super Scale Factor]
+type = ParentMapSet
+trigger1 = !time
+map = "scale_factor_timer"
+value = 30
+supermovetime = 999
+
 [State 4000, var]
 type = varadd
 trigger1 = 1
