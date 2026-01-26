@@ -438,13 +438,13 @@ type = ChangeState
 value = 3500
 triggerall = command = "tenhaL3"
 triggerall = power >= 3000
-trigger1 = statetype = S
+triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = statetype != A
-trigger2 = hitdefattr = SC, NA, SA, HA
-trigger2 = stateno != [3000,3050)
-trigger2 = movecontact
-
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
+trigger5 = (stateno = 210 && anim = 211) || stateno = 410 || stateno = 420 || (stateno = 240) && movecontact
+trigger6 = stateno = [1000,2999] && movecontact
 ;------------------------------------------------------------------------
 ;Tenha Dankuu Retsu Zan Max
 [State -1, Tenha Dankuu Retsu Zan Max]
@@ -454,9 +454,11 @@ triggerall = command = "dankuuL3"
 triggerall = power >= 3000
 triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = hitdefattr = SC, NA, SA, HA
-trigger2 = stateno != [3050,3100)
-trigger2 = movecontact
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
+trigger5 = (stateno = 210 && anim = 211) || stateno = 410 || stateno = 420 || (stateno = 240) && movecontact
+trigger6 = stateno = [1000,2999] && movecontact
 ;------------------------------------------------------------------------
 ;Tenha Dankuu Retsu Zan
 [State -1, Tenha Dankuu Retsu Zan]
@@ -466,10 +468,12 @@ triggerall = command = "dankuu"
 triggerall = power >= 1000
 triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = hitdefattr = SC, NA, SA, HA
-trigger2 = stateno != [3050,3100)
-trigger2 = movecontact
-
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
+trigger5 = (stateno = 210 && anim = 211) || stateno = 410 || stateno = 420 || (stateno = 240) && movecontact
+trigger6 = stateno = [1000,2999] && movecontact
+trigger7 = stateno = 3000 && movecontact
 ;----------------------------------------------------------------------
 ;Tenha Seiouzan
 [State -1, Tenha Seiouzan]
@@ -479,10 +483,11 @@ triggerall = command = "seiouzan"
 triggerall = power >= 3000
 triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = hitdefattr = SC, NA, SA, HA
-trigger2 = stateno != [3050,3100)
-trigger2 = movecontact
-
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
+trigger5 = (stateno = 210 && anim = 211) || stateno = 410 || stateno = 420 || (stateno = 240) && movecontact
+trigger6 = stateno = [1000,2999] && movecontact
 ;----------------------------------------------------------------------
 ;Tenha Fujin Zan
 [State -1, Tenha Fujin Zan]
@@ -490,29 +495,14 @@ type = ChangeState
 value = 3000
 triggerall = command = "tenha"
 triggerall = power >= 1000
-trigger1 = statetype = S
+triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = statetype != A
-trigger2 = hitdefattr = SC, NA, SA, HA
-trigger2 = stateno != [3000,3050)
-trigger2 = movecontact
-;====================================================================
-;This is not a move, but it sets up var(4) to be 1 if conditions are right
-;for a combo into a special move (used below).
-;Since a lot of special moves rely on the same conditions, this reduces
-;redundant logic.
-[State -1, Combo condition Reset]
-type = VarSet
-trigger1 = 1
-var(4) = 0
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
+trigger5 = (stateno = 210 && anim = 211) || stateno = 410 || stateno = 420 || (stateno = 240) && movecontact
+trigger6 = stateno = [1000,2999] && movecontact
 
-[State -1, Combo condition Check]
-type = VarSet
-trigger1 = statetype != A
-trigger1 = ctrl
-trigger2 = (stateno = [200,299]) || (stateno = [400,499])
-trigger2 = movecontact
-var(4) = 1
 ;----------------------------------------------------------------------
 ;Kogetsu Zan Zan EX
 [State -1, Kogetsu Zan Zan EX]
@@ -520,9 +510,13 @@ type = ChangeState
 value = 2010
 triggerall = command = "kogetsuEX"
 triggerall = power >= 500
-trigger1 = var(4) ;Use combo condition (above)
-trigger2 = stateno = 1000 || stateno = 1010 || stateno = 1020
-trigger2 = time <= 2
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
+trigger5 = stateno = 1000 || stateno = 1010 || stateno = 1020
+trigger5 = time <= 2
 ;----------------------------------------------------------------------
 ;Senpuu Retsu Zan EX
 [State -1, Senpuu Retsu Zan EX]
@@ -530,7 +524,11 @@ type = ChangeState
 value = 2000
 triggerall = command = "senpuuEX"
 triggerall = power >= 500
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Resshin Zan EX
 [State -1, Senpuu Retsu Zan EX]
@@ -538,70 +536,110 @@ type = ChangeState
 value = 2020
 triggerall = command = "resshinEX"
 triggerall = power >= 500
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Kogetsu Zan (Light)
 [State -1, Kogetsu Zan (Light)]
 type = ChangeState
 value = 1000
 triggerall = command = "kogetsu1"
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Kogetsu Zan (Medium)
 [State -1, Kogetsu Zan (Medium)]
 type = ChangeState
 value = 1010
 triggerall = command = "kogetsu2"
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Kogetsu Zan (Hard)
 [State -1, Kogetsu Zan (Hard)]
 type = ChangeState
 value = 1020
 triggerall = command = "kogetsu3"
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Gouha (Light)
 [State -1, Gouha (Light)]
 type = ChangeState
 value = 1100
 triggerall = command = "gouha1"
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Gouha (Medium)
 [State -1, Gouha (Medium)]
 type = ChangeState
 value = 1110
 triggerall = command = "gouha2"
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Gouha (Strong)
 [State -1, Gouha (Strong)]
 type = ChangeState
 value = 1115
 triggerall = command = "gouha3"
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Senpuu Retsu Zan (light)
 [State -1, Senpuu Retsu Zan (light)]
 type = ChangeState
 value = 1060
 triggerall = command = "senpuu1" && var(8) = 0
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Senpuu Retsu Zan (Medium)
 [State -1, Senpuu Retsu Zan (Medium)]
 type = ChangeState
 value = 1065
 triggerall = command = "senpuu2" && var(8) = 0
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Senpuu Retsu Zan (Strong)
 [State -1, Senpuu Retsu Zan (Strong)]
 type = ChangeState
 value = 1070
 triggerall = command = "senpuu3" && var(8) = 0
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Senpuu Tene (SLow)
 [State -1, Senpuu Tene (Low)]
@@ -610,27 +648,42 @@ value = 1080
 triggerall = command = "tene1"
 triggerall = statetype != A
 trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Resshin Zan (light)
 [State -1, Resshin Zan (light)]
 type = ChangeState
 value = 1030
 triggerall = command = "ress1"
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Resshin Zan (Medium)
 [State -1, Resshin Zan (Medium)]
 type = ChangeState
 value = 1040
 triggerall = command = "ress2"
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Resshin Zan (Strong)
 [State -1, Resshin Zan (Strong)]
 type = ChangeState
 value = 1050
 triggerall = command = "ress3"
-trigger1 = var(4) ;Use combo condition (above)
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;======================================================================
 ;----------------------------------------------------------------------
@@ -819,8 +872,6 @@ triggerall = command = "x"
 triggerall = command != "holddown"
 trigger1 = statetype = S
 trigger1 = ctrl
-;trigger2 = stateno = 200
-;trigger2 = time > 6
 ;----------------------------------------------------------------------
 ;Stand Mid Slash
 [State -1, Stand Strong Punch]
@@ -830,8 +881,6 @@ triggerall = command = "y"
 triggerall = command != "holddown"
 trigger1 = statetype = S
 trigger1 = ctrl
-trigger2 = (stateno = 200) && time > 5
-trigger3 = (stateno = 230) && time > 6
 ;----------------------------------------------------------------------
 ;Stand Strong Slash
 [State -1, Stand Strong Punch]
@@ -841,8 +890,6 @@ triggerall = command = "z"
 triggerall = command != "holddown"
 trigger1 = statetype = S
 trigger1 = ctrl
-trigger2 = (stateno = 200 || stateno = 210) && movecontact
-trigger3 = (stateno = 230 || stateno = 240) && movecontact
 ;----------------------------------------------------------------------
 ;Stand Light Kick
 [State -1, Stand Light Kick]
@@ -852,8 +899,6 @@ triggerall = command = "a"
 triggerall = command != "holddown"
 trigger1 = statetype = S
 trigger1 = ctrl
-trigger2 = (stateno = 200) && time > 7
-trigger3 = (stateno = 230) && time > 9
 ;----------------------------------------------------------------------
 ;Standing Medium Kick
 [State -1, Standing Medium Kick]
@@ -863,8 +908,6 @@ triggerall = command = "b"
 triggerall = command != "holddown"
 trigger1 = statetype = S
 trigger1 = ctrl
-trigger2 = (stateno = 200) && movecontact
-trigger3 = (stateno = 230) && movecontact
 ;----------------------------------------------------------------------
 ;Standing Strong Kick
 [State -1, Standing Strong Kick]
@@ -874,8 +917,6 @@ triggerall = command = "c"
 triggerall = command != "holddown"
 trigger1 = statetype = S
 trigger1 = ctrl
-trigger2 = (stateno = 200 || stateno = 240 || stateno = 210) && movecontact
-trigger3 = (stateno = 230) && movecontact
 ;----------------------------------------------------------------------
 ;Taunt
 [State -1, Taunt]
@@ -884,7 +925,6 @@ value = 195
 triggerall = command = "start"
 trigger1 = statetype != A
 trigger1 = ctrl
-
 ;----------------------------------------------------------------------
 ;Crouching Light Slash
 [State -1, Crouching Light Punch]
@@ -894,7 +934,6 @@ triggerall = command = "x"
 triggerall = command = "holddown"
 trigger1 = statetype = C
 trigger1 = ctrl
-;trigger2 = stateno = 400 && time > 4
 ;----------------------------------------------------------------------
 ;Crouching Mid Slash
 [State -1, Crouching Mid Slash]
@@ -904,7 +943,6 @@ triggerall = command = "y"
 triggerall = command = "holddown"
 trigger1 = statetype = C
 trigger1 = ctrl
-trigger2 = (stateno = 400) || (stateno = 430) && movecontact
 ;----------------------------------------------------------------------
 ;Crouching Strong Slash
 [State -1, Crouching Strong Slash]
@@ -914,8 +952,6 @@ triggerall = command = "z"
 triggerall = command = "holddown"
 trigger1 = statetype = C
 trigger1 = ctrl
-trigger2 = (stateno = 400) || (stateno = 430 || stateno = 410)
-trigger2 = (time > 9) || (movecontact)
 ;----------------------------------------------------------------------
 ;Crouching Light Kick
 [State -1, Crouching Light Kick]
@@ -925,8 +961,8 @@ triggerall = command = "a"
 triggerall = command = "holddown"
 trigger1 = statetype = C
 trigger1 = ctrl
-trigger2 = (stateno = 400) || (stateno = 430)
-trigger2 = (time > 9) || (movecontact && time > 5)
+trigger2 = (stateno = 430)  && movecontact
+;trigger3 = (time > 9) || (movecontact && time > 5)
 
 ;----------------------------------------------------------------------
 ;Crouching Medium Kick
@@ -937,8 +973,6 @@ triggerall = command = "b"
 triggerall = command = "holddown"
 trigger1 = statetype = C
 trigger1 = ctrl
-trigger2 = (stateno = 400) || (stateno = 430)
-trigger2 = (time > 9) || (movecontact && time > 5)
 ;----------------------------------------------------------------------
 ;Crouching Strong Kick
 [State -1, Crouching Strong Kick]
@@ -948,8 +982,6 @@ triggerall = command = "c"
 triggerall = command = "holddown"
 trigger1 = statetype = C
 trigger1 = ctrl
-trigger2 = (stateno = 400) || (stateno = 430) || (stateno = 440)
-trigger2 = movecontact
 ;----------------------------------------------------------------------
 ;Jump Light Slash
 [State -1, Jump Light Slash]

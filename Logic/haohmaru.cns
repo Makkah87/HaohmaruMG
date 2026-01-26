@@ -7343,6 +7343,13 @@ physics = S
 anim = 100
 sprpriority = 1
 
+[State 100, No_Crouch]
+type = AssertSpecial
+trigger1 = 1
+flag = nocrouch
+flag2 = nostandguard
+flag3 = nocrouchguard
+
 [State 100, 1]
 type = VelSet
 trigger1 = 1
@@ -8015,8 +8022,8 @@ ctrl = 1
 [State -2, Debug data]
 type = displaytoclipboard
 trigger1 = time >= 0
-text = "Enemy Anim Type =%d,P2Dist X = %f,P2Dist Y = %f,ground_hit_type = %d,Special State = %f, Super_State = %f, Target ID = %f,By Makkah/Master Gouken"
-params = enemy,gethitvar(animtype),P2Dist X,P2Dist Y,gethitvar(groundtype), map(special_cancel), map(super_cancel), map(target_id)
+text = "var(4) =%d,P2Dist X = %f,P2Dist Y = %f,ground_hit_type = %d,Special State = %f, Super_State = %f, Target ID = %f,By Makkah/Master Gouken"
+params = var(4),P2Dist X,P2Dist Y,gethitvar(groundtype), map(special_cancel), map(super_cancel), map(target_id)
 ignorehitpause = 1
 
 [State -2, Kogetsu_CPush_Reset]
