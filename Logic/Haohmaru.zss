@@ -55,7 +55,7 @@ if time = 1 &&(stateno = [200,699] || (stateno = 1000 || stateno = 1010 || state
 
 		MapSet{
 		map: "scale_factor_timer";
-		value: 40;
+		value: 30;
 	}
 }
 

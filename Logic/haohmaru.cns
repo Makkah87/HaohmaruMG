@@ -2782,7 +2782,7 @@ envshake.time = 10
 envshake.ampl = 2
 envshake.freq = 176
 fall.recover = 1
-fall.recovertime = 36
+fall.recovertime = 43
 fall = 1
 yaccel = 0.65
 
@@ -3119,7 +3119,7 @@ envshake.time = 10
 envshake.ampl = 4
 envshake.freq = 176
 fall.recover = 1
-fall.recovertime = 62
+fall.recovertime = 63
 fall = 1
 yaccel = 0.6
 
@@ -3324,7 +3324,7 @@ envshake.time = 10
 envshake.ampl = 4
 envshake.freq = 176
 fall.recover = 1
-fall.recovertime = 63
+fall.recovertime = 65
 fall = 1
 yaccel = 0.65
 
