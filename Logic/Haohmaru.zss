@@ -30,7 +30,7 @@ ignorehitpause{
 
 
 ##|Damage Dampener|##
-
+#Decrease Timer
 if map(scale_factor) > 0 && NumHelper(4000) = 0 {
 	MapAdd{
 		map: "scale_factor_timer";
@@ -47,7 +47,7 @@ if map(scale_factor) > 0 && NumHelper(4000) = 0 {
 
 
 ##Attack State Scale Factor -- Normals and Specials##
-if time = 1 &&(stateno = [200,699] || (stateno = 1000 || stateno = 1010 || stateno = 1020) || (stateno = [1030,1050] && stateno != 1031) || stateno = [1100,1115]){
+if time = 1 && (stateno = [200,699] || (stateno = 1000 || stateno = 1010 || stateno = 1020) || (stateno = [1030,1050] && stateno != 1031) || stateno = [1100,1115]){
 	MapAdd{
 		map: "scale_factor";
 		value: 1;
@@ -98,8 +98,4 @@ if map(scale_factor) > 2{
 ##|Implement Damage Scale|##
 AttackMulSet{
 	value: (map(damage_scale));
-	# Damage: 0.0;
-	# DizzyPoints: 0.0;
-	# GuardPoints: 0.0;
-	# RedLife: 0.0;
 }
