@@ -75,7 +75,8 @@ if time = 1 && ((stateno = 2010) || stateno = 2020){
 ##Super Scale Factor is set in the super spark Helper
 
 ##Reset
-if map(scale_factor_timer) = 0 && movetype != A{
+#map(scale_factor_timer) = 0 || 
+if p2,movetype != H && movetype != A{
 	MapSet{
 		map: "scale_factor";
 		value: 0;

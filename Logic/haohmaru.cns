@@ -38,7 +38,7 @@ ground.back = 20     ;Player width (back, ground)
 ground.front = 20    ;Player width (front, ground)
 air.back = 16        ;Player width (back, air)
 air.front = 16       ;Player width (front, air)
-height = 85          ;Height of player (for opponent to jump over)
+height = 75          ;Height of player (for opponent to jump over)
 attack.dist = 160    ;Default attack distance
 proj.attack.dist = 90;Default attack distance for projectiles
 proj.doscale = 0     ;Set to 1 to scale projectiles too
@@ -52,7 +52,7 @@ walk.fwd  = 2.9           ;Walk forward
 walk.back = -2.4          ;Walk backward
 run.fwd  = 5.7, 0         ;Run forward (x, y)
 run.back = -4.5,-3.8      ;Hop backward (x, y)
-jump.neu = 0,-11.33 ;-7.6   ;Neutral jumping velocity (x, y)
+jump.neu = 0,-11.33	  ;Neutral jumping velocity (x, y)
 jump.back = -3.4,-11.33     ;Jump back Speed (x, y)
 jump.fwd = 3.4,-11.33       ;Jump forward Speed (x, y)
 runjump.back = -4.88,-11.33 ;Running jump speeds (opt)
@@ -1375,6 +1375,18 @@ anim = 450
 sprpriority = 2
 hitcountpersist = 1
 
+[State 450, Voice]
+type = PlaySnd
+trigger1 = animelem = 5
+value = 400, ifelse(random < 200,0,1)
+volumescale = 100
+channel = 1
+
+[State 450, Slide_SND]
+type = playsnd
+trigger1 = animelem = 5
+value = 3000,6
+
 [State 450, Velset]
 type = velset
 trigger1 = animelem = 5
@@ -1382,7 +1394,7 @@ x = 15
 
 [State 450, 2]
 type = PlaySnd
-trigger1 = Time = 13
+trigger1 = animelem = 5
 value = 0, 3
 
 [State 440, Anim_HitPause]
