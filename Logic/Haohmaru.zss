@@ -30,7 +30,7 @@ ignorehitpause{
 
 
 ##|Damage Dampener|##
-#Decrease Timer
+#Decrease Timer (Timer is no longer used for resets, but I'm keeping this in case I need it for something)
 if map(scale_factor) > 0 && NumHelper(4000) = 0 {
 	MapAdd{
 		map: "scale_factor_timer";

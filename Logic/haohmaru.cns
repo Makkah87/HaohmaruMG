@@ -7637,17 +7637,6 @@ trigger1 = !time
 X = 0
 Y = 0
 
-[State 5100, LandingDust]
-type = Explod
-trigger1 = Time = 1
-anim = 8052
-id = 8052
-postype = p1
-pos = 0,1
-sprpriority = -5
-scale = 0.5,0.5
-ownpal = 1
-
 [State 5110, EnvShake]
 type = FallEnvShake
 trigger1 = Time = 0
@@ -7695,14 +7684,6 @@ type = PlaySnd
 trigger1 = Time = 0
 trigger1 = !SysVar(0)
 value = 5000,12
-
-[State 5110, 7]
-type = GameMakeAnim
-trigger1 = Time = 0
-trigger1 = !SysVar(0)
-value = 60 + (sysvar(1) > 5) + (sysvar(1) > 14)
-pos = 0, 0
-under = sysvar(1) <= 14
 
 [State 5110, 8]
 type = VelSet
