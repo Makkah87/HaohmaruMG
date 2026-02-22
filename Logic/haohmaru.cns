@@ -1747,7 +1747,7 @@ sprpriority = -1
 [State 700, Shadows]
 type = Afterimage
 trigger1 = Time = 0
-time = 300
+time = 28
 length = 10
 PalBright   =   0,  0,  0
 PalContrast = 128,128,128
@@ -1779,9 +1779,202 @@ type = NotHitBy
 trigger1 = time >= 1 && animtime
 value = SCA
 
+[State 700, Reprisal Attacks -- Slash]
+type = changestate
+triggerall = animelemtime(3) >= 0 && animelemtime(4) < 0
+trigger1 = command = "x"
+trigger2 = command = "y"
+trigger3 = command = "z"
+value = 701
+
+[State 700, Reprisal Attacks -- Kick]
+type = changestate
+triggerall = animelemtime(3) >= 0 && animelemtime(4) < 0
+trigger1 = command = "a"
+trigger2 = command = "b"
+trigger3 = command = "c"
+value = 702
+
+[State 700, Dodge Again]
+type = changestate
+triggerall = animelemtime(4) >= 0
+trigger1 = command = "dodge"
+value = 701
+
 [State 700, End]
 type = ChangeState
 trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;----------------------------------------------------------------------
+;Dodge Reprisal - Slash
+;----------------------------------------------------------------------
+[Statedef 701]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 211
+sprpriority = -1
+
+[State 701, Disableshadows]
+type = AfterImageTime
+trigger1 = !time
+Time = 0
+
+[State 701, UCantHitMe]
+type = NotHitBy
+trigger1 = time >= 1 && animtime
+value = SCA
+
+[State 701, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+trigger1 = anim = 211
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 701, Voice]
+type = PlaySnd
+trigger1 = Time = 2
+value = 400, 1
+volumescale = 100
+channel = 1
+
+[State 701, SlashEffect]
+type = Explod
+trigger1 = animelem = 2
+anim = 224
+id = 22444
+postype = p1
+bindtime = -1
+sprpriority = 5
+ownpal = 1
+IGNOREHITPAUSE = 0
+removeongethit = 1
+
+[State 701, 1]
+type = PlaySnd
+trigger1 = Time = 4
+value = 210, 1
+volumescale = 100
+
+[State 701, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NA
+animtype  = Medium
+damage    = 69,0
+guardflag = MA
+pausetime = 10,10
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.5,0.6
+Guard.Sparkno = s8030
+sparkxy = -10,-60
+hitsound   = s250,1
+guardsound = s300,3
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+guard.hittime = 24
+ground.velocity = -10.3
+air.velocity = -5.5,-4
+airguard.velocity = -5.5,-2.9
+yaccel = 0.6
+
+[State 701, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;----------------------------------------------------------------------
+;Dodge Reprisal - Kick
+;----------------------------------------------------------------------
+[Statedef 702]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 250
+sprpriority = -1
+
+[State 702, Disableshadows]
+type = AfterImageTime
+trigger1 = !time
+Time = 0
+
+[State 702, UCantHitMe]
+type = NotHitBy
+trigger1 = time >= 1 && animtime
+value = SCA
+
+[State 702, Voice]
+type = PlaySnd
+trigger1 = Time = 4
+value = 400, 1
+volumescale = 100
+channel = 1
+
+[State 702, Step1]
+type = posadd
+trigger1 = animelem = 3
+x = 10
+
+[State 702, Step2]
+type = posadd
+trigger1 = animelem = 6
+x = 6
+
+[State 702, Step3]
+type = posadd
+trigger1 = animelem = 7
+x = 15
+
+[State 702, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(5)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 702, Woosh]
+type = PlaySnd
+trigger1 = Time = 5
+value = 0, 2
+volumescale = 100
+
+[State 702, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NA
+animtype  = Hard
+damage    = 83,0
+guardflag = MA
+pausetime = 12,12
+sparkno = s8000
+Guard.Sparkno = s8030
+sparkxy = -10,-60
+hitsound   = s300,2
+guardsound = s300,3
+ground.type = Low
+air.animtype = Back
+ground.slidetime = 20
+ground.hittime  = 18
+ground.velocity = -6.1, -5.6
+air.velocity = -9.2,-3.2
+airguard.velocity = -6.5,-3.2
+fall = 1
+yaccel = 0.6
+
+[State 702, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;----------------------------------------------------------------------
@@ -2788,8 +2981,8 @@ guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -2.1,-8.2
-air.velocity = -2.1,-7.7
+ground.velocity = -2.1,-12.7
+air.velocity = -2.1,-11.7
 envshake.time = 10
 envshake.ampl = 2
 envshake.freq = 176
