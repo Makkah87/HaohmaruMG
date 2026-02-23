@@ -42,7 +42,6 @@ type = ParentMapSet
 trigger1 = !time
 map = "scale_factor_timer"
 value = 30
-supermovetime = 999
 
 [State 4000, var]
 type = varadd

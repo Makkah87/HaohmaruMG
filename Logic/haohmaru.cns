@@ -2738,10 +2738,10 @@ value = 950,0
 volumescale = 100
 channel = 5
 
-[State 7000, Target_PalFX]
+[State 900, PalFX]
 type = palfx
 trigger1 = !time
-time = 876973
+time = 9999
 add = 217,61,0
 sinadd = -64,-64,-64,15
 color = 200
@@ -8238,8 +8238,7 @@ volumescale = 100
 
 [State -2, Stop_Pal_FX]
 type = PalFX
-triggerall = MoveType = H & Time = 1
-triggerall = PalFXVar(Time) = 876973
+triggerall = MoveType = H & Time = 0
 trigger1 = prevstateno = [2000,2999]
 trigger2 = gethitvar(isbound)
 trigger3 = prevstateno = [1002,1003]
