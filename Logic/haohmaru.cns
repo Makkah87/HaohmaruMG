@@ -2741,7 +2741,7 @@ channel = 5
 [State 7000, Target_PalFX]
 type = palfx
 trigger1 = !time
-time = 9999
+time = 876973
 add = 217,61,0
 sinadd = -64,-64,-64,15
 color = 200
@@ -8238,7 +8238,8 @@ volumescale = 100
 
 [State -2, Stop_Pal_FX]
 type = PalFX
-triggerall = MoveType = H & Time = 0
+triggerall = MoveType = H & Time = 1
+triggerall = PalFXVar(Time) = 876973
 trigger1 = prevstateno = [2000,2999]
 trigger2 = gethitvar(isbound)
 trigger3 = prevstateno = [1002,1003]
@@ -8371,7 +8372,7 @@ triggerall = Time = 1
 trigger1 = stateno = 52 ;Jump land
 value = 40,0 ;80, 1 ;40,0
 volumescale = 100
-
+  
 [State -3, Jumping Sound]
 type = PlaySnd
 triggerall = Time = 1 && !var(12)
