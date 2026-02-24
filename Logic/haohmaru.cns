@@ -8236,6 +8236,13 @@ trigger1 = animelemtime(23) = 2 && anim = 0
 value = 0,0
 volumescale = 100
 
+[State -2, 1st Priority]
+type = AssertSpecial
+trigger1 = stateno = 900
+trigger2 = stateno = [2000,2999]
+trigger3 = prevstateno = 900 || prevstateno = [2000,2999]
+flag = runfirst
+
 [State -2, Stop_Pal_FX]
 type = PalFX
 triggerall = MoveType = H & Time = 0
