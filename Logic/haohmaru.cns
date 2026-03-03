@@ -3075,6 +3075,29 @@ juggle  = 4
 anim = 1002
 sprpriority = 2
 
+[State 2020, PalFX_Tick_Counter]
+type = MapAdd
+trigger1 = 1 && PrevStateNo = 2011
+map = "palfx_timer"
+value = 1
+ignorehitpause = 1
+
+[State 2020, PalFX_Tick_Counter_Reset] 
+type = MapSet
+triggerall = PrevStateNo = 2011
+trigger1 = !time
+trigger2 = Map(palfx_timer) > 100
+map = "palfx_timer"
+value = 30
+ignorehitpause = 1
+
+[State 2020, Blink Green]
+type = PalFX
+trigger1 = 1 && PrevStateNo = 2011
+time = 1
+mul = 256, 256, 256
+add = 0, floor((sin(map(palfx_timer)*10)+1)*100), 0
+ignorehitpause = 1
 
 [State 1002, Corner_Push]
 type = posadd
@@ -5020,14 +5043,7 @@ type = poweradd
 trigger1 = time = 0
 value = -500
 
-[State 2010, Blink Yellow]
-type = PalFX
-trigger1 = Time = 0
-time = 48
-add = 0,100,0
-sinadd = 64,32,5,3
-
-[State 2010, Afterimage]
+[State 2000, Afterimage]
 type = AfterImage
 trigger1 = Time = 0
 length = 15
@@ -5106,6 +5122,7 @@ pos = 38,0
 ownpal = 1
 stateno = 2001
 id = 2001
+ownpal = 1
 
 [State 2000, 7]
 type = ChangeState
@@ -5377,13 +5394,6 @@ freq = 120
 mul = 0.9
 ignorehitpause = 1
 
-[State 2010, Blink Yellow]
-type = PalFX
-trigger1 = Time = 0
-time = 120
-add = 0,100,0
-sinadd = 64,32,5,3
-
 [State 2010, Afterimage]
 type = AfterImage
 trigger1 = Time = 0
@@ -5546,13 +5556,6 @@ supermovetime = 9999
 type = poweradd
 trigger1 = time = 0
 value = -500
-
-[State 2020, Blink Yellow]
-type = PalFX
-trigger1 = Time = 0
-time = 48
-add = 0,100,0
-sinadd = 64,32,5,3
 
 [State 2020, Afterimage]
 type = AfterImage
@@ -8236,20 +8239,12 @@ trigger1 = animelemtime(23) = 2 && anim = 0
 value = 0,0
 volumescale = 100
 
-[State -2, 1st Priority]
-type = AssertSpecial
-trigger1 = stateno = 900
-trigger2 = stateno = [2000,2999]
-trigger3 = prevstateno = 900 || prevstateno = [2000,2999]
-flag = runfirst
+
 
 [State -2, Stop_Pal_FX]
 type = PalFX
 triggerall = MoveType = H & Time = 0
-trigger1 = prevstateno = [2000,2999]
-trigger2 = gethitvar(isbound)
-trigger3 = prevstateno = [1002,1003]
-trigger4 = prevstateno = [900,999]
+trigger1 = prevstateno = [900,999]
 time = 0
 add = 0,0,0
 ignorehitpause = 1

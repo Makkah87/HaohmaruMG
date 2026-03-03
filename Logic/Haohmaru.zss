@@ -99,3 +99,27 @@ if map(scale_factor) > 2{
 AttackMulSet{
 	value: (map(damage_scale));
 }
+
+###########|EX PalFX Flash|###########
+ignorehitpause{
+		if stateno = [2000,2999]{
+			MapAdd{
+				map: "palfx_timer";
+				value: 1;
+			}
+
+			##Timer Reset
+			if !time || Map(palfx_timer) > 100{
+				MapSet{
+					map: "palfx_timer";
+					value: 30;
+				}
+			}
+
+					PalFX{
+						time: 1;
+						add:  0, floor((sin(map(palfx_timer)*10)+1)*100), 0;
+						mul: 256, 256, 256;
+					}
+		}
+}
