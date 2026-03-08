@@ -1,18 +1,17 @@
-;		   Haohmaru v2.0a Beta by Master Gouken
+;		   Haohmaru v2.0b Beta by Master Gouken
 ;======================================================================
 ;                            Variable Table		
 ;======================================================================
 ;			Var(1) : Intro Decider
-;			Var(2) : Win Pose Decider
-;			Var(3) : Hit Voice Randomizer
-;			 Var(4) : -------
+;			Var(2) : -------
+;			Var(3) : -------
+;			Var(4) : -------
 ;			Var(5) : Throw Turn
-;			Var(6) : ----
+;			Var(6) : ------
 ;			Var(7) : Juggle Addition
 ;			Var(8) : Senpuu in play
 ;			Var(9) : Parry Variable
 ;			Var(12): Long Jump Stuff
-;			FVar(12): Damage Dampener
 ;======================================================================
 [Data]
 life = 972                ;Amount of life to start with
@@ -8474,7 +8473,7 @@ trigger3 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070
 trigger4 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) &&prevstateno = [200,3999]
 trigger5 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) && enemynear, stateno = [3000,3999]
 trigger6 = prevmovetype = A && movetype = H
-value = 5000, var(3)
+value = 5000, random&3
 channel = 1
 
 [State -3, Fall hit sound]
