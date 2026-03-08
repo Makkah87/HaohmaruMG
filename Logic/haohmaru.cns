@@ -4879,7 +4879,7 @@ x = 18
 
 [State 1110, 2]
 type = HitDef
-trigger1 = Time = 0
+trigger1 = Time = 0 && map(gouha_juggle) = 1
 attr = S, SA
 animtype  = back
 damage    = 70,20
@@ -4909,6 +4909,12 @@ envshake.mul = 0.8
 yaccel = 0.6
 fall = 1
 fall.recover = 0
+
+[State 1110, MapSet]
+type = MapSet
+trigger1 = movehit
+map = "gouha_juggle"
+value = 0
 
 [State 1110, BlkShake]
 type = envshake
@@ -8226,6 +8232,12 @@ trigger4 = movetype = H
 map = "kogetsu_cp"
 value = 0
 ignorehitpause = 1
+
+[State -2, MapSet]
+type = MapSet
+trigger1 = p2, movetype != H
+map = "gouha_juggle"
+value = 1
 
 [State -2, longjumpreset]
 type = varset
