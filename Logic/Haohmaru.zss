@@ -102,7 +102,7 @@ AttackMulSet{
 
 ###########|EX PalFX Flash|###########
 ignorehitpause{
-		if stateno = [2000,2999] && !IsHelper{
+		if stateno = [2000,2999] && !IsHelper && !InCustomState{
 			MapAdd{
 				map: "palfx_timer";
 				value: 1;
