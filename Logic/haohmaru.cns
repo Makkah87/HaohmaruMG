@@ -5640,6 +5640,319 @@ trigger1 = Pos Y >= 15 && time > 10
 value = 1031
 ctrl = 0
 
+;----------------------------------------------------------------------
+; Gouha EX
+;---------------------------------------------------------------------- 
+[Statedef 2030]
+type    = S
+movetype= A
+physics = S
+velset = 0,0
+anim = 1100
+ctrl = 0
+
+[State 2020, EX Effect]
+type = Helper
+trigger1 = Time = 0
+name = "EXFlash"
+postype = P1
+pos = 0, -60
+ownpal = 1
+stateno = 9010
+id = 9010
+supermovetime = 9999
+
+[State 2020, Muteki]
+type = NotHitBy
+trigger1 = !time
+value2 = SCA
+time = 4
+
+[State 2030, -Power]
+type = poweradd
+trigger1 = time = 0
+value = -500
+
+[State 2030, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 15
+PalBright   =  60, 60,  0
+PalContrast =  70, 170, 20
+PalAdd      = 0,0,0
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 5
+Trans = Add1
+time = 20
+
+[State 2030, Woosh]
+type = playsnd
+trigger1 = animelem = 3
+value = 0.3
+
+[State 2030, Slide_SND]
+type = playsnd
+trigger1 = animelem = 3
+value = 3000,6
+
+[State 2030, Voice]
+type = playsnd
+trigger1 = animelem = 3
+value = 400,1
+channel = 1
+
+[State 2030, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 2030, Dash]
+type = velset
+trigger1 = animelem = 3
+x = 23
+
+[State 2030, 2]
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+animtype  = Hard
+damage    =120,20
+guardflag = MA
+pausetime = 8,8
+sparkno = s8004
+sparkscale = 0.5,0.5
+sparkscale = 1,1
+Guard.Sparkno = s8032
+guardpoints = 180
+sparkxy = 10,-50
+hitsound   = s250,3
+guardsound = s300,3
+ground.type = Low
+ground.slidetime = 28
+ground.hittime  = 22
+ground.velocity = -5.8,-7.2
+air.velocity = -5.8,-7
+airguard.velocity = -5.6,-3.4
+guard.velocity = -12.3
+envshake.time = 8
+envshake.ampl = 4
+envshake.freq = 120
+envshake.dir = 90
+envshake.mul = 0.8
+yaccel = 0.6
+fall = 1
+fall.recover = 1
+fall.recovertime = ifelse(p2, statetype != A,30,34)
+
+[State 2030, Wall Bounce]
+type = targetstate
+trigger1 = movehit = 1
+value = 2040
+
+[State 2030, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 8
+ampl = 4
+freq = 120
+mul = 0.8
+ignorehitpause = 1
+
+[State 2030, End]
+type = changestate
+trigger1 = !animtime
+value = 0
+ctrl = 1
+
+;------------------------------------------------------------------------
+; Wall Bounce - shaking from the hit
+;------------------------------------------------------------------------
+[Statedef 2040]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 2040, Anim] ;Custom animation
+type = ChangeAnim2
+trigger1 = 1
+value = 4020
+
+[State 2040, State]
+type = ChangeState
+trigger1 = Time = 1
+value = 2041
+
+;----------------------------------------------------------------------------
+; Wall Bounce - flying through the air
+;----------------------------------------------------------------------------
+[Statedef 2041]
+type    = A
+movetype= H
+physics = N
+
+[State 2041, Velocity]
+type = VelSet
+trigger1 = Time = 0
+x = -7
+y = -12
+
+[State 2041, Gravity]
+type = VelAdd
+trigger1 = 1
+y = 0.7
+
+[State 2041, No scroll]
+type = ScreenBound
+triggerall = Pos y < -60
+trigger1 = BackEdgeBodyDist < 130
+trigger2 = FrontEdgeBodyDist < 130
+value = 1
+movecamera = 0,1
+
+[State 2041, Hit wall]
+type = ChangeState
+triggerall = Pos y < -60
+trigger1 = BackEdgeBodyDist <= 40
+trigger2 = FrontEdgeBodyDist <= 40
+value = 2042
+
+[State 2041, Hit ground]
+type = SelfState
+trigger1 = (Vel y > 0) && (Pos y >= 0)
+value = 5100
+
+;--------------------------------------------------------------------------
+; Wall Bounce - hit wall
+;--------------------------------------------------------------------------
+[Statedef 2042]
+type    = A
+movetype= H
+physics = N
+
+[State 2042, Turn]
+type = Turn
+trigger1 = (Time = 0) && (FrontEdgeBodyDist <= 60)
+
+[State 2042, Pos]
+type = PosAdd
+trigger1 = Time = 0
+x = 30 - BackEdgeBodyDist
+
+[State 2042, Stop moving]
+type = PosFreeze
+trigger1 = 1
+x = 1
+y = 1
+
+[State 2042, EarthShake]
+type = envshake
+trigger1 = !time
+time = 6
+ampl = 6
+freq = 130
+dir = 90
+mul = 0.6
+ignorehitpause = 1
+
+
+[State 2042, No scroll]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 0,1
+
+[State 2042, Spark]
+type = Explod
+trigger1 = Time = 0
+anim = F72
+pos = 0, floor (screenpos y) - 100
+postype = back
+sprpriority = 3
+
+[State 2042, Anim]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 4021
+
+[State 2042, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = F7,0
+
+[State 2042, State]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 2043
+
+;------------------------------------------------------------------------
+; Wal Bounce - bounce off wall
+; -----------------------------------------------------------------------
+[Statedef 2043]
+type    = A
+movetype= H
+physics = N
+
+[State 2043, 1]
+type = null;NotHitBy
+trigger1 = 1
+value = , NA, NP
+
+[State 2043, Vel Y]
+type = VelSet
+trigger1 = Time = 0
+y = -12
+
+[State 2043, Vel X]
+type = VelSet
+trigger1 = Time = 0
+x = 4.8
+
+[State 2043, Turn]
+type = Turn
+trigger1 = (Time = 0) && (BackEdgeDist < 120)
+
+[State 2043, Gravity]
+type = VelAdd
+trigger1 = 1
+y = 0.7
+
+[State 2043, Anim 5050] ;Self falling animation
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = !SelfAnimExist(5052)
+value = 5050
+
+[State 2043, Anim 5052] ;Self falling animation (diagup type)
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = SelfAnimExist(5052)
+value = 5052
+
+[State 2043, Anim 5060] ;Coming down - normal
+type = ChangeAnim
+trigger1 = Vel Y > -8
+trigger1 = Anim = 5050
+trigger1 = SelfAnimExist(5060)
+persistent = 0
+value = 5060
+
+[State 2043, Anim 5062] ;Coming down - diagup type
+type = ChangeAnim
+trigger1 = Vel Y > -8
+trigger1 = Anim = 5052
+trigger1 = SelfAnimExist(5062)
+persistent = 0
+value = 5062
+
+[State 2043, Hit ground]
+type = SelfState
+trigger1 = (Vel y > 0) && (Pos y >= 0)
+value = 5100
+
 ;======================================================================
 ; Hyper Combos
 ;----------------------------------------------------------------------
@@ -8456,12 +8769,6 @@ trigger1 = !alive
 ;trigger1 = statetype != A
 value = 5950
 ignorehitpause = 1
-
-[State -3, Randomizer]
-type = varRandom
-trigger1 = StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070 || StateNo = 5100
-v = 3
-range = 0,2
 
 [State -3, GetHurt Sound]
 type = playsnd

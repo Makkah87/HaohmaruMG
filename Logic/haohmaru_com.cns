@@ -129,6 +129,18 @@ name = "kogetsuEX"
 command = ~F, D, DF, x+z
 
 [Command]
+name = "gouhaEX"
+command = ~F, D, DF, a+b
+
+[Command]
+name = "gouhaEX"
+command = ~F, D, DF, a+c
+
+[Command]
+name = "gouhaEX"
+command = ~F, D, DF, b+c
+
+[Command]
 name = "resshinEX"
 command = ~D, DB, B, x+y
 
@@ -517,6 +529,18 @@ trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && mov
 trigger4 = stateno = 430 || stateno = 440 && MoveContact
 trigger5 = stateno = 1000 || stateno = 1010 || stateno = 1020
 trigger5 = time <= 2
+;----------------------------------------------------------------------
+;Gouha EX
+[State -1, Senpuu Retsu Zan EX]
+type = ChangeState
+value = 2030
+triggerall = command = "gouhaEX"
+triggerall = power >= 500
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
 ;----------------------------------------------------------------------
 ;Senpuu Retsu Zan EX
 [State -1, Senpuu Retsu Zan EX]
