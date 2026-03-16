@@ -7,19 +7,22 @@ map(sparky):= hitdefvar(sparky);
 map(sparkno):= hitdefvar(sparkno);
 map(hitsnd_group):= hitdefvar(hitsound.group);
 
-if hitdefattr = SCA, NA {mapset {map:"normal_attack"; value :1}
-	mapset {map:"special_attack"; value :0}
-	mapset {map:"super_attack"; value :0}
-}
-if hitdefattr = SCA, SA {mapset {map:"special_attack"; value :1}
-	mapset {map:"normal_attack"; value :0}
-	mapset {map:"super_attack"; value :0}
-}
-if hitdefattr = SCA, HA {mapset {map:"super_attack"; value :1}
-	mapset {map:"special_attack"; value :0}
-	mapset {map:"normal_attack"; value :0}
-}
-}
+if hitdefattr = SCA, NA {
+	map(normal_attack):= 1;
+	map(special_attack):= 0;
+	map(super_attack):= 0;
+	}
+if hitdefattr = SCA, SA {
+	map(special_attack):= 1;
+	map(normal_attack):= 0;
+	map(super_attack):= 0;
+	}
+if hitdefattr = SCA, HA {
+	map(super_attack):= 1;
+	map(special_attack):= 0;
+	map(normal_attack):= 0;
+		}
+	}
 }
 #######################################
 
@@ -83,16 +86,16 @@ if (( root,stateno = 220 || root,stateno = 420 || root,stateno = 620))  && (!tim
 			id:8003
 			}
 		}
-#Medium Splash
-explod{
-	anim:8002;
-	pos:(map(sparkx)),(map(sparky)-p2,pos y);
-	postype:p1;
-	sprpriority:10;
-	vel:2.3*ifelse(random<500,-1,1),-2;
-	accel:0.23,0.2;
-	scale:0.5,0.5
-	}
+			#Medium Splash
+			explod{
+				anim:8002;
+				pos:(map(sparkx)),(map(sparky)-p2,pos y);
+				postype:p1;
+				sprpriority:10;
+				vel:2.3*ifelse(random<500,-1,1),-2;
+				accel:0.23,0.2;
+				scale:0.5,0.5
+				}
 }
 }
 

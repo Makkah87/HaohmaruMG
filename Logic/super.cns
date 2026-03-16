@@ -35,7 +35,7 @@ ignorehitpause = 1
 type = ParentMapAdd
 trigger1 = !time
 map = "scale_factor"
-value = 2
+value = ifelse(root,prevstateno = [3000,3999],1,2)
 
 [State 4000, Super Scale Factor]
 type = ParentMapSet

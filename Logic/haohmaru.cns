@@ -4534,7 +4534,7 @@ trigger4 = movehit = 2 && p2,movetype != H
 value = 1062
 
 ;----------------------------------------------------------------------
-;Senpuu Tene
+;Senpuu Retsu Zan Feint
 ;----------------------------------------------------------------------
 [Statedef 1080]
 type    = S
@@ -5952,6 +5952,247 @@ value = 5062
 type = SelfState
 trigger1 = (Vel y > 0) && (Pos y >= 0)
 value = 5100
+
+;----------------------------------------------------------------------
+;Senpuu Retsu Zan Feint EX
+;----------------------------------------------------------------------
+[Statedef 2050]
+type    = S
+movetype= A
+physics = N
+juggle  = 6
+velset = 0,0
+anim = 2050
+ctrl = 0
+sprpriority = 2
+
+[State 2050, EX Effect]
+type = Helper
+trigger1 = Time = 0
+name = "EXFlash"
+postype = P1
+pos = 0, -60
+ownpal = 1
+stateno = 9010
+id = 9010
+supermovetime = 9999
+
+[State 2050, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 15
+PalBright   =  60, 60,  0
+PalContrast =  70, 170, 20
+PalAdd      = 0,0,0
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 5
+Trans = Add1
+time = 20
+
+[State 2050, Afterimage]
+type = AfterImageTime
+trigger1 = !animtime
+time = 0
+
+[State 2050, Reversaldef]
+type = ReversalDef
+trigger1 = Time >= 0 && command = "holdup"
+reversal.attr = SCA,NA,SA
+pausetime = 15,30
+sparkno = -1
+hitsound   = s300,3
+p1stateno = 1020
+
+[State 2050, Reversaldef]
+type = ReversalDef
+trigger1 = Time >= 0 && command != "holdup"
+reversal.attr = SCA,NA,SA
+pausetime = 5,30
+sparkno = -1
+hitsound   = s300,3
+p1stateno = 2051
+
+[State 2050, Voice]
+type = playsnd
+trigger1 = time = 0
+value = 1000,2
+volumescale = 100
+channel = 1
+
+[State 2050, End]
+type = changestate
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;----------------------------------------------------------------------
+;Senpuu Tene -React-
+;----------------------------------------------------------------------
+[Statedef 2051]
+type    = S
+movetype= A
+physics = N
+velset = 0,0
+anim = 1081
+ctrl = 0
+sprpriority = 2
+
+[State 2000, Afterimage]
+type = AfterImageTime
+trigger1 = !animtime
+time = 0
+
+[State 2051, Step1]
+type = posadd
+trigger1 = animelem = 3
+x = 10
+
+[State 2051, Step2]
+type = posadd
+trigger1 = animelem = 6
+x = 6
+
+[State 2051, Hitdef]
+type = HitDef
+trigger1 = Time = 1
+attr = S, SA
+animtype  = Hard
+damage    = 60, 20
+getpower  = 0
+priority  = 4
+guardflag = MA
+hitflag = MAFD
+pausetime = 12,12
+Sparkno = s8004
+sparkscale = 0.5,0.5
+sparkxy = -10,-60
+hitsound   = s300,2
+guardsound = s250,3
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 35
+ground.velocity = -20 , 0
+guard.velocity = -2
+air.velocity = -20,0
+airguard.velocity = -5, -4
+envshake.time = 4
+envshake.ampl = 4
+envshake.freq = 140
+envshake.dir = 90
+envshake.mul = 0.6
+
+[State 2051, Hitdef2]
+type = HitDef
+trigger1 = time = 25
+attr = S, SA
+animtype  = Hard
+damage    = 60, 20
+getpower  = 0
+priority  = 4
+guardflag = MA
+hitflag = MAFD
+pausetime = 11,12
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 0.75,0.75
+sparkxy = -10,-60
+hitsound   = s250,2
+guardsound = s250,3
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 35
+ground.velocity =  0,0
+airguard.velocity = -5, -4
+envshake.time = 4
+envshake.ampl = 4
+envshake.freq = 140
+envshake.dir = 90
+envshake.mul = 0.6
+
+[State 3120, Crumple]
+type = targetstate
+trigger1 = numtarget
+trigger1 = movehit = 1 && target, stateno != 2053
+trigger1 = time > 24
+value = 2053
+ignorehitpause = 1
+
+[State 2051, Anim]
+type = changeanim
+trigger1 = time = 25 && anim != 1082
+value = 1082
+ctrl = 1
+
+[State 2051, PosAdd]
+type = posadd
+trigger1 = time = 25 && anim = 1082
+x = (p2dist x)+60
+
+[State 2051, End]
+type = changestate
+trigger1 = animtime = 0 && anim = 1082
+value = 0
+ctrl = 1
+
+;======================================================================
+; Custom State
+;======================================================================
+[Statedef 2053]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 3121, Pos Add]
+type = posset
+trigger1 = !time
+y = 0
+
+[State 2053, PosAdd]
+type = velset
+trigger1 = !time
+x = 13
+
+[State 3121, Anim Change 5950 Exists]
+type = ChangeAnim
+trigger1 = !time && selfanimexist(5950) && anim != 5950
+value = 5950
+
+[State 3121, Lay]
+type = changeanim2
+trigger1 = anim = 5950 && !animtime
+value = 5150
+
+[State 3121, Get Up or Lay Dead]
+type = selfstate
+trigger1 = anim = 5150 && time = 160
+value = ifelse(alive,5120,5150)
+
+
+
+[State 3121, Anim Change 5950 Does NOT Exist (hit shake)]
+type = ChangeAnim2
+trigger1 = !time && !selfanimexist(5950) && anim != 2053
+value = 2053
+
+[State 3121, Fall Anim]
+type = ChangeAnim2
+trigger1 = anim = 2053 && time = 50
+value = 2054
+
+[State 3121, Lay]
+type = ChangeAnim2
+trigger1 = anim = 2054 && !animtime && anim != 5150
+value = 5150
+
+[State 3121, Get Up or Lay Dead]
+type = selfstate
+trigger1 = anim = 5150 && time = 160
+value = ifelse(alive,5120,5150)
+
 
 ;======================================================================
 ; Hyper Combos
