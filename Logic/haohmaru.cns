@@ -5966,6 +5966,11 @@ anim = 2050
 ctrl = 0
 sprpriority = 2
 
+[State 2050, -Power]
+type = poweradd
+trigger1 = time = 0
+value = -500
+
 [State 2050, EX Effect]
 type = Helper
 trigger1 = Time = 0
@@ -6038,7 +6043,7 @@ anim = 1081
 ctrl = 0
 sprpriority = 2
 
-[State 2000, Afterimage]
+[State 2051, Afterimage]
 type = AfterImageTime
 trigger1 = !animtime
 time = 0
@@ -6081,6 +6086,12 @@ envshake.ampl = 4
 envshake.freq = 140
 envshake.dir = 90
 envshake.mul = 0.6
+forcestand = 1
+
+[State 2051, Snap]
+type = TargetBind
+trigger1 = movehitvar(frame) = 1 && anim != 1082
+pos = (p2, pos x), 0
 
 [State 2051, Hitdef2]
 type = HitDef
@@ -6110,7 +6121,7 @@ envshake.freq = 140
 envshake.dir = 90
 envshake.mul = 0.6
 
-[State 3120, Crumple]
+[State 2051, Crumple]
 type = targetstate
 trigger1 = numtarget
 trigger1 = movehit = 1 && target, stateno != 2053
@@ -6146,51 +6157,51 @@ velset = 0,0
 ctrl = 0
 sprpriority = 2
 
-[State 3121, Pos Add]
+[State 2053, Pos Add]
 type = posset
 trigger1 = !time
 y = 0
 
-[State 2053, PosAdd]
+[State 2053, VelSet]
 type = velset
 trigger1 = !time
 x = 13
 
-[State 3121, Anim Change 5950 Exists]
+[State 2053, Anim Change 5950 Exists]
 type = ChangeAnim
 trigger1 = !time && selfanimexist(5950) && anim != 5950
 value = 5950
 
-[State 3121, Lay]
+[State 2053, Lay]
 type = changeanim2
 trigger1 = anim = 5950 && !animtime
 value = 5150
 
-[State 3121, Get Up or Lay Dead]
+[State 2053, Get Up or Lay Dead]
 type = selfstate
-trigger1 = anim = 5150 && time = 160
+trigger1 = anim = 5150 && time = 120
 value = ifelse(alive,5120,5150)
 
 
 
-[State 3121, Anim Change 5950 Does NOT Exist (hit shake)]
+[State 2053, Anim Change 5950 Does NOT Exist (hit shake)]
 type = ChangeAnim2
 trigger1 = !time && !selfanimexist(5950) && anim != 2053
 value = 2053
 
-[State 3121, Fall Anim]
+[State 2053, Fall Anim]
 type = ChangeAnim2
 trigger1 = anim = 2053 && time = 50
 value = 2054
 
-[State 3121, Lay]
+[State 2053, Lay]
 type = ChangeAnim2
 trigger1 = anim = 2054 && !animtime && anim != 5150
 value = 5150
 
-[State 3121, Get Up or Lay Dead]
+[State 2053, Get Up or Lay Dead]
 type = selfstate
-trigger1 = anim = 5150 && time = 160
+trigger1 = anim = 5150 && time = 120
 value = ifelse(alive,5120,5150)
 
 
