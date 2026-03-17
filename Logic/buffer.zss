@@ -22,8 +22,10 @@ if (stateno = [200,699] || map(special_cancel_timer)=0) {mapset {map: "special_c
 #Super Reset
 if (stateno = [200,699] || map(super_cancel_timer)=0) {mapset {map: "super_cancel"; value:0}}
 
+
+
 ###########################################################################
-#load Special States
+#Special Moves
 ###########################################################################
 							
 #Senpuu Retsu Zan
@@ -83,6 +85,33 @@ if (stateno = [200,699] || map(super_cancel_timer)=0) {mapset {map: "super_cance
 							mapset {map:"special_cancel_timer"; value :30}
 							}
 
+###########################################################################
+#EX Special Moves
+###########################################################################
+#Kogetsu Zan EX
+	if command = "kogetsuEX"  && power >= 500 {mapset {map:"special_cancel"; value:2010}
+							mapset {map:"special_cancel_timer"; value : 30}
+							}
+
+#Senpuu Retsu Zan EX
+	if command = "senpuuEX"  && power >= 500 {mapset {map:"special_cancel"; value:2000}
+							mapset {map:"special_cancel_timer"; value : 30}
+							}
+
+#Resshin Zan EX
+	if command = "resshinEX"  && power >= 500 {mapset {map:"special_cancel"; value:2020}
+							mapset {map:"special_cancel_timer"; value : 30}
+							}
+
+#Gouha EX
+	if command = "gouhaEX"  && power >= 500 {mapset {map:"special_cancel"; value:2030}
+							mapset {map:"special_cancel_timer"; value : 30}
+							}
+
+#RSenpuu Retsu Zan Feint EX
+	if command = "teneEX"  && power >= 500 {mapset {map:"special_cancel"; value:2050}
+							mapset {map:"special_cancel_timer"; value : 30}
+							}
 ######################################################################################################
 #Hyper Combos
 ######################################################################################################
@@ -107,7 +136,7 @@ if (stateno = [200,699] || map(super_cancel_timer)=0) {mapset {map: "super_cance
 							}
 							
 #Tenha Dankuu Retsu Zan Max
-	if command = "dankuuL3" && power >= 3000 {mapset {map:"uper_cancel"; value:3520}
+	if command = "dankuuL3" && power >= 3000 {mapset {map:"super_cancel"; value:3520}
 							mapset {map:"super_cancel_timer"; value :30}
 							}
 
