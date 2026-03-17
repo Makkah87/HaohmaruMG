@@ -1970,6 +1970,7 @@ air.velocity = -9.2,-3.2
 airguard.velocity = -6.5,-3.2
 fall = 1
 yaccel = 0.6
+fall.recover = 0
 
 [State 702, 5]
 type = ChangeState
@@ -9042,7 +9043,7 @@ trigger3 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070
 trigger4 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) &&prevstateno = [200,3999]
 trigger5 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) && enemynear, stateno = [3000,3999]
 trigger6 = prevmovetype = A && movetype = H
-value = 5000, random&3
+value = 5000, random&2
 channel = 1
 
 [State -3, Fall hit sound]
@@ -9050,7 +9051,7 @@ type = playsnd
 triggerall = Time = 1
 triggerall = Alive = 1
 trigger1 = StateNo = 5100 && Random < 500
-value = 5000,ifelse(random > 500,0,4)
+value = 5000,ifelse(random > 500,0,1)
 
 [State 1071, NoJuggle]
 type = varset
