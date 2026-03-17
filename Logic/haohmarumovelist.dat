@@ -32,6 +32,6 @@ _!Dodge Attack					^P/^K
 Power Charge					^B_+^Y
 Guard Cancel High				(during guard) _F_+^2P
 Guard Cancel Low				(during guard) _F_+^2K
-Fall Recovery					(when allowed)^P
-Roll Recovery					(while falling from a hit)^K
+Fall Recovery					(when allowed)^MP_+^HP
+Roll Recovery					(When allowed and close to the ground)^MP_+^HP
 Taunt							^S
