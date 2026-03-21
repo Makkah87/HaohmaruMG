@@ -89,7 +89,7 @@ supermovetime = 9999
 
 [State 1060, Lv. 3 Effects]
 type = Helper
-triggerall = parent, stateno = (3020, 3999]
+triggerall = parent, stateno = [3500, 3999]
 trigger1 = Time = 0;AnimElem = 2, 1
 name = "fiyah"
 postype = P1

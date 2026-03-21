@@ -115,6 +115,52 @@ name = "tenha"
 command = ~D, DF, F, D, DF, ~z
 time = 20
 
+
+[Command]
+name = "zankuuL3"
+command = ~D, DF, F, D, DF, a+b
+time = 25
+
+[Command]
+name = "zankuuL3"
+command = ~D, DF, F, D, DF, b+c
+time = 25
+
+[Command]
+name = "zankuuL3"
+command = ~D, DF, F, D, DF, a+c
+time = 25
+
+[Command]
+name = "zankuu"
+command = ~D, DF, F, D, DF, a
+time = 20
+
+[Command]
+name = "zankuu"
+command = ~D, DF, F, D, DF, ~a
+time = 20
+
+[Command]
+name = "zankuu"
+command = ~D, DF, F, D, DF, b
+time = 20
+
+[Command]
+name = "zankuu"
+command = ~D, DF, F, D, DF, ~b
+time = 20
+
+[Command]
+name = "zankuu"
+command = ~D, DF, F, D, DF, c
+time = 20
+
+[Command]
+name = "zankuu"
+command = ~D, DF, F, D, DF, ~c
+time = 20
+
 ;-|EX Special Motions|---------------------------------------------------------------------
 [Command]
 name = "kogetsuEX"
@@ -518,6 +564,21 @@ trigger6 = stateno = [1000,2999] && movecontact
 type = ChangeState
 value = 3000
 triggerall = command = "tenha"
+triggerall = power >= 1000
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
+trigger5 = (stateno = 210 && anim = 211) || stateno = 410 || stateno = 420 || (stateno = 240) && movecontact
+trigger6 = stateno = [1000,2999] && movecontact
+
+;----------------------------------------------------------------------
+;Zankuu Rengeki
+[State -1, Zankuu Rengeki]
+type = ChangeState
+value = 3030
+triggerall = command = "zankuu"
 triggerall = power >= 1000
 triggerall = statetype != A
 trigger1 = ctrl

@@ -2997,7 +2997,6 @@ Guard.Sparkno = s8032
 airguard.ctrltime = 30
 sparkxy = -35,-60
 hitsound   = s250,2
-guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
@@ -3287,7 +3286,6 @@ guardsound = s300,3
 Guard.Sparkno = s8032
 sparkxy = -40,-60
 hitsound   = s250,1
-guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
@@ -3357,7 +3355,6 @@ Guard.Sparkno = s8032
 airguard.ctrltime = 30
 sparkxy = -20,-110
 hitsound   = s250,2
-guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
@@ -3492,7 +3489,6 @@ guardsound = s300,3
 Guard.Sparkno = s8032
 sparkxy = -40,-60
 hitsound   = s250,1
-guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
@@ -3745,7 +3741,7 @@ sparkscale = 0.75,0.75
 Guard.Sparkno = s8032
 sparkxy = -10,0
 hitsound   = s250,2
-guardsound = s250,3
+guardsound = s300,3
 ground.type = Low
 fall.animtype = hard
 ground.slidetime = 20
@@ -5398,7 +5394,6 @@ guardsound = s300,3
 Guard.Sparkno = s8032
 sparkxy = -40,-60
 hitsound   = s250,1
-guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
@@ -5478,7 +5473,6 @@ guardsound = s300,3
 Guard.Sparkno = s8032
 sparkxy = -20,-110
 hitsound   = s250,2
-guardsound = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
@@ -6925,6 +6919,424 @@ triggerall = time >=10
 trigger1 = Vel Y > 0
 trigger1 = Pos Y >= 0
 value = 5100 ;Hit ground
+
+;----------------------------------------------------------------------
+; Zankuu Rengeki
+;----------------------------------------------------------------------
+[Statedef 3030]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+velset = 0,0
+anim = 3030
+ctrl = 0
+sprpriority = 2
+
+[State 3030, Muteki]
+type = nothitby
+trigger1 = !time
+value = SCA
+time = 12
+
+[State 3030, Voice]
+type = playsnd
+trigger1 = time = 0
+value = 950,0
+volumescale = 100
+channel = 1
+
+[State 3030, AirType]
+type = StateTypeSet
+trigger1 = animelem = 3
+statetype = A
+
+[State 3030, Voice]
+type = playsnd
+trigger1 = animelem = 2
+value = 1000,3
+volumescale = 100
+channel = 1
+
+[State 3030, PowerSpark]
+type = Helper
+trigger1 = time = 0
+name = "super"
+postype = P1
+pos = -32, -120
+ownpal = 1
+stateno = 4000
+id = 4000
+supermovetime = 9999
+
+[State 3030, Super A]
+type = SuperPause
+trigger1 = time = 0
+pos = -50, -80
+anim = -2; S3005
+sound = s3000,10
+poweradd = -1000
+darken = 0
+time = 40
+
+[State 3030, Shadows]
+type = Afterimage
+trigger1 = Time = 0
+time = 999
+length = 21
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =  0.9,0.9,0.9
+FrameGap = 10
+Trans = Add1
+
+[State 3030, Super D]
+type = NotHitBy
+trigger1 = time = 0
+value = SCA
+time = 16
+
+[State 3030, 3]
+type = HitDef
+trigger1 = time = 0
+trigger2 = animelem = 11
+attr = A, HA
+damage = 20,5
+guardflag = H
+animtype = hard
+priority = 4
+pausetime = 3,3
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 1,1
+Guard.Sparkno = s8032
+sparkxy = -10,-20
+hitsound   = s250,2
+guardsound = s300,3
+animtype = Med
+ground.type = High
+ground.slidetime = 17
+ground.hittime  = 17
+ground.velocity = -5
+air.velocity = -1,-6.3
+yaccel = 0.6
+air.fall = 1
+
+[State 3030,3]
+type = varset
+trigger1 = numtarget
+trigger1 = target, statetype = A && movehit
+var(0) = 1
+
+
+[State 3030, BlkShake]
+type = envshake
+trigger1 = moveguarded = 1
+trigger1 = movehitvar(frame) = 1
+time = 2
+ampl = 6
+freq = 120
+mul = 0.9
+ignorehitpause = 1
+
+[State 3030, Jump]
+type = velset
+trigger1 = animelem = 3
+x = 9.8
+y = -9.4
+
+[State 3030, Gravity]
+type = veladd
+trigger1 = animelemtime(3) >0
+y = 0.99
+
+[State 3030, Land]
+type = ChangeState
+trigger1 = Pos Y >= 15 && time > 10
+value = 3031
+ctrl = 0
+
+;======================================================================
+;Resshin Zan -Land to Combo-
+;======================================================================
+[Statedef 3031]
+type    = S
+movetype= A
+physics = N
+velset = 0,0
+anim = 1031
+sprpriority = 2
+hitcountpersist = 1
+
+[State 3031, Width]
+type = width
+trigger1 = (animelemtime(1)>=0)
+value = 18,0
+
+[State 3031, Rumble]
+type  = envshake
+trigger1 = Time = 0
+freq  = 120
+time  = 20
+ampl  = -4
+
+[State 3031, Posset]
+type = posset
+trigger1 = time = 0
+Y = 0
+
+[State 3031, SmashEffect]
+type = Explod
+trigger1 = time = 0
+anim = 1032
+id = 1032
+postype = p1
+pos = 60,0
+sprpriority = 4
+
+[State 3031, SmashSpeckle]
+type = Explod
+trigger1 = time = 5
+anim = 1033
+id = 1033
+pos = 60,0
+postype = p1
+sprpriority = 5
+
+[State 3031, Resshin Hitdef]
+type = HitDef
+trigger1 = Time = 0
+attr = S, HA
+animtype  = Hard
+damage    = 20, 5
+priority  = 4
+guardflag = H
+hitflag = MAFD
+pausetime = 3,3
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 1,1
+Guard.Sparkno = s8032
+sparkxy = -10,0
+hitsound   = s250,2
+guardsound = s300,3
+ground.type = Low
+fall.animtype = hard
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2.5
+guard.velocity = -7
+air.velocity =  -2.5, -6
+airguard.velocity = -5, -4
+guard.hittime = 15
+envshake.time = 6
+envshake.ampl = 4
+envshake.freq = 150
+fall.xvelocity = -1.6
+fall.yvelocity = -3
+yaccel = 0.60
+air.fall = 1
+fall.recover = 0
+
+[State 3031, Effect]
+type = playsnd
+trigger1 = time = 0
+value = 1000,4
+volumescale = 100
+
+[State 3031, Combo]
+type = changeanim
+trigger1 = (movecontact || var(0)) && anim != 3050 && anim != 3055
+value = 3050
+
+[State 3031, Combo Hitdef]
+type = HitDef
+trigger1 = animelem = 2
+trigger2 = animelem = 11
+attr = S, HA
+animtype  = Hard
+damage    = 20, 5
+priority  = 4
+guardflag = H
+hitflag = MAFD
+pausetime = 8,8
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 1,1
+Guard.Sparkno = s8032
+sparkxy = -10,-60
+hitsound   = s250,2
+guardsound = s300,3
+ground.type = High
+fall.animtype = hard
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2.5
+guard.velocity = -7
+air.velocity =  -2.5, -4.6
+airguard.velocity = -5, -4
+guard.hittime = 15
+envshake.time = 6
+envshake.ampl = 4
+envshake.freq = 150
+fall.xvelocity = -1.6
+fall.yvelocity = -3
+yaccel = 0.60
+air.fall = 1
+fall.recover = 0
+
+[State 3031, Lo-Hi]
+type = modifyhitdef
+trigger1 = animelem = 11
+ground.type = low
+
+[State 3031, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(4)<=0
+trigger2 = animelemtime(4) >=0 && animelemtime(12) <=0
+flag = animatehitpause
+ignorehitpause = 1
+
+[State 3031, Finisher]
+type = changeanim
+trigger1 = !animtime && anim = 3050
+value = 3055
+
+[State 3030, Voice]
+type = playsnd
+trigger1 = anim = 3055 && animelem = 1
+value = 400,3
+volumescale = 100
+channel = 1
+
+[State 3031, Helper]
+type = Helper
+trigger1 = anim = 3055 && animelem = 5
+name = "slasher"
+ID = 3032
+stateno = 3032
+pos = 0,50
+postype = P1
+ownpal = 1
+
+[State 3031, Stop After Image]
+type = AfterImageTime
+trigger1 = !animtime
+time = 1
+
+[State 3031, End]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;======================================================================
+;Projectile
+;======================================================================
+[Statedef 3032]
+type    = A
+movetype= A
+physics = N
+anim = 3060
+sprpriority = 5
+velset = 2,0
+
+[State 3032, Invul]
+type = nothitby
+trigger1 = !time
+value = SCA
+time = 32
+
+[State 3030, SlashSND]
+type = playsnd
+trigger1 = animelem = 3
+value = 1000,5
+volumescale = 100
+channel = 3
+
+[State 3032, Combo Hitdef]
+type = HitDef
+trigger1 = 1
+attr = S, HA
+animtype  = Hard
+damage    = 15, 3
+priority  = 4
+guardflag = MA
+hitflag = MAFD
+pausetime = 3,3
+sparkno = s8017
+sparkangle = random%360
+sparkscale = 1,1
+Guard.Sparkno = s8032
+sparkxy = -10,-120
+hitsound   = s250,2
+guardsound = s300,3
+ground.type = Low
+fall.animtype = hard
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2.5
+guard.velocity = -7
+air.velocity =  -2.5, -2
+airguard.velocity = -5, -4
+guard.hittime = 15
+envshake.time = 6
+envshake.ampl = 4
+envshake.freq = 150
+fall.xvelocity = -1.6
+fall.yvelocity = -3
+yaccel = 0.60
+air.fall = 1
+fall.recover = 0
+
+[State 3032, Damage]
+type = targetlifeadd
+trigger1 = movehit = 1
+value = -10
+
+[State 3032, SparkX]
+type = parentmapset
+trigger1 = !time
+map = "sparkx"
+value = hitdefvar(sparkx)
+
+[State 3032, SparkX]
+type = parentmapset
+trigger1 = !time
+map = "sparky"
+value = -300
+
+[State 3032, Blood]
+type = helper
+trigger1 = movehit && movehitvar(frame) = 1
+stateno = 8000
+id = 8000
+pos =(parent,map(sparkx)),(parent, map(sparky))+pos y
+postype = p2
+ownpal = 1
+ignorehitpause = 1
+
+[State 3032, Lo-Hi]
+type = modifyhitdef
+trigger1 = random > 500
+ground.type = high
+
+[State 3032, Finale]
+type = modifyhitdef
+trigger1 = Time > 25
+fall.animtype  = Diagup
+ground.velocity = -5.5,-9.7
+guard.velocity = -7
+air.velocity =  -5.5, -9.7
+fall = 1
+yaccel = 0.84
+
+[State 3032, DestroySelf]
+type = DestroySelf
+trigger1 = time = 30
+ignorehitpause = 1
+
 ;======================================================================
 ;MAX Hyper Combos
 ;----------------------------------------------------------------------
@@ -9029,7 +9441,6 @@ type = ChangeState
 trigger1 = prevstateno = 130 || prevstateno = 131 || prevstateno = [150,153]
 trigger1 = Stateno = [5000,5050]
 trigger1 = !alive
-;trigger1 = statetype != A
 value = 5950
 ignorehitpause = 1
 
@@ -9040,7 +9451,7 @@ triggerall = Alive = 1
 trigger1 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) && Random < 330 && enemynear, hitdefattr = SCA, NA
 trigger2 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) && enemynear, hitdefattr = SCA, HA, HP
 trigger3 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) && enemynear, hitdefattr = SCA, SA, SP && random < 600
-trigger4 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) &&prevstateno = [200,3999]
+trigger4 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) && prevstateno = [200,3999]
 trigger5 = (StateNo = 5000 || StateNo = 5010 || StateNo = 5020 || StateNo = 5070) && enemynear, stateno = [3000,3999]
 trigger6 = prevmovetype = A && movetype = H
 value = 5000, random&2
