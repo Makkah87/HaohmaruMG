@@ -530,6 +530,20 @@ trigger4 = stateno = 430 || stateno = 440 && MoveContact
 trigger5 = (stateno = 210 && anim = 211) || stateno = 410 || stateno = 420 || (stateno = 240) && movecontact
 trigger6 = stateno = [1000,2999] && movecontact
 ;------------------------------------------------------------------------
+;Zankuu Rengeki Max
+[State -1, Zankuu Rengeki Max]
+type = ChangeState
+value = 3530
+triggerall = command = "zankuuL3"
+triggerall = power >= 3000
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 || stateno = 400 || stateno = 230 && movecontact
+trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && movecontact
+trigger4 = stateno = 430 || stateno = 440 && MoveContact
+trigger5 = (stateno = 210 && anim = 211) || stateno = 410 || stateno = 420 || (stateno = 240) && movecontact
+trigger6 = stateno = [1000,2999] && movecontact
+;----------------------------------------------------------------------
 ;Tenha Dankuu Retsu Zan
 [State -1, Tenha Dankuu Retsu Zan]
 type = ChangeState
