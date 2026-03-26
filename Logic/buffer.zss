@@ -119,7 +119,13 @@ if (stateno = [200,699] || map(super_cancel_timer)=0) {mapset {map: "super_cance
 #Tenha Fuujin Zan
 	if (command = "tenha")&& power >= 1000 {mapset {map:"super_cancel"; value:3000}
 							mapset {map:"super_cancel_timer"; value :30}
-							}							
+							}		
+							
+#Zankuu Rengeki
+	if (command = "zankuu")&& power >= 1000 {mapset {map:"super_cancel"; value:3030}
+							mapset {map:"super_cancel_timer"; value :30}
+							}
+
 #Tenha Dankuu Retsu Zan
 	if command = "dankuu" && power >= 1000 {mapset {map:"super_cancel"; value:3020}
 							mapset {map:"super_cancel_timer"; value :30}
@@ -132,6 +138,11 @@ if (stateno = [200,699] || map(super_cancel_timer)=0) {mapset {map: "super_cance
 							}
 #Tenha Fuujin Zan Max							
 	if command = "tenhaL3" && power >= 3000 {mapset {map:"super_cancel"; value:3500}
+							mapset {map:"super_cancel_timer"; value :30}
+							}
+
+#Zankuu Rengeki Max
+	if (command = "zankuuL3") && power >= 1000 {mapset {map:"super_cancel"; value:3530}
 							mapset {map:"super_cancel_timer"; value :30}
 							}
 							

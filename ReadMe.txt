@@ -1,7 +1,9 @@
 =======================================================================
-		   Haohmaru V1.0 Beta by Master Gouken
-		     E-mail: Ikuzotomugen@yahoo.com
+		   Haohmaru V2.0 by Makkah/Master Gouken
 =======================================================================
+
+PLEASE NOTE THAT THIS CHARACTER IS NO LONGER COMPATIABLE WITH MUGEN. SORRY/
+
 Story
 -----------------------------------------------------------------------
 While travelling through a bamboo forest, Haohmaru is pounced upon by five demonic warriors. He draws his sword, and with great skill, manages to slay them all. Upon his victory, He senses another demonic presence. He looks behind him and discovers that Amakusa has been resurrected. Exhausted from his previous battle, Haoh charges bravely at the sorcerer. Amakusa quickly casts as a spell which paralizes Haohmaru and causes him to be consumed by a giant vortex which transports him to another dimension. While in this new world, he is approached by Suave Dude, the sponsor of the great M.U.G.E.N tournament. Suave, promisesthat if he wins this tournament, he will transport him back to his own dimension. Haohmaru graciously accepts his offer and prepares himself mentally and physically, for the upcoming slaughter.
@@ -11,21 +13,22 @@ System
 ===============
 Dodge : LP+LK
 
+Dodge Attack: P or K during dodge
+
 Roll: F+LP+LK
 
 Power Charge: MP+MK
 
-Parry: Tap F immediately before being hit (Can be done in the air). 
+Parry: Tap F immediately before being hit (Can be done in the air) 
 
-Low Parry: Tap D immediately before being hit by a low attack.
+Low Parry: Tap D immediately before being hit by a low attack
 
 ---------------
 Special
 ===============
 Senpuu Retsu Zan : QCF + P
 
-Senpuu Retsu Zan (Feint) : QCF + K (Counter)
- -Holding up, during the defensive posture will result in a Kogetsu Zan
+Senpuu Retsu Zan (Feint) : QCF + K (EX version counters)
 
 Kogetsu Zan : dp + P
 
@@ -34,18 +37,23 @@ Resshin Zan : QCB + P
 Gouha: dp + K
 
 ----------------
-Super Arts
+Super Arts (Use 2 Attack buttons for Max versions)
 ================
 Tenha FuJin Zan : QCFx2 + P
 
 Tenha Denkuu Retsu Zan: QCBx2 + P
 
-Sei Ou Zan : HCB, F + P
+Zankuu Rengeki: QCFx2 + K
+
+Sei Ou Zan : HCB, F + PP (Level 3 Only)
 
 ---------------
 Notes
 ---------------
-
+--Haohmaru is pretty slow, but with proper timing and spacing you'll slay any opponent.
+--Reversals are buffered on wake up. Use this to your advantage.
+--Zankuu Rengeki is good for dealing with projectile spam.
+--Stand HP deals massive damage, but don't abuse it. Poor timing can be devastating.
 
 Credits
 ---------------
