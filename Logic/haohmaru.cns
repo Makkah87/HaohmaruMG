@@ -139,6 +139,12 @@ trigger1 = AnimElem = 3
 value = 180,0
 volumescale = 100
 
+[State 191, Snd 1]
+type = PlaySnd
+trigger1 = AnimElem = 9
+value = 180,4
+volumescale = 100
+
 [State 191, Snd 2]
 type = PlaySnd
 trigger1 = AnimElem = 17
@@ -201,7 +207,7 @@ trigger1 = time = 0
 v = 1
 value = ifelse(random < 500,1,2)
 
-[State 191, Varset]
+[State 191, VS Demonic Opponent]
 type = varset
 triggerall = time = 0
 trigger1 = enemy, name = "Shin Gouki"
@@ -223,6 +229,18 @@ trigger16 = enemy, authorname = "Master Gouken" && enemy, name = "AkumaMG"
 v = 1
 value = 3
 
+[State 191, VS Sword Weilding Women]
+type = varset
+triggerall = time = 0
+trigger1 = enemy, name = "Nakoruru"
+trigger2 = enemy, name = "Hibiki"
+trigger3 = enemy, name = "Baiken"
+trigger4 = enemy, name = "Rera"
+trigger5 = enemy, name = "Charlotte"
+trigger6 = enemy, name = "Rimururu"
+v = 1
+value = 4
+
 [State 191, 1]
 type = ChangeState
 trigger1 = Time = 0 && var(1) = 1
@@ -237,6 +255,11 @@ value = 194
 type = ChangeState
 trigger1 = Time = 0 && var(1) = 3
 value = 193
+
+[State 191, Demon]
+type = ChangeState
+trigger1 = Time = 0 && var(1) = 4
+value = 195
 
 ;--------------------------------------------------------------------
 ; Introduction -Lets have a fair fight
@@ -335,6 +358,41 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 
+;--------------------------------------------------------------------
+; Introduction - You shouldn't play with such things
+;--------------------------------------------------------------------
+[Statedef 195]
+type = S
+ctrl = 0
+anim = 194
+velset = 0,0
+
+[State 194, Voice]
+type = playsnd
+trigger1 = time = 0
+value = 190, 4
+volumescale = 100
+
+[State 194, Unsheeth]
+type = playsnd
+trigger1 = animelemtime(26) = 2
+value = 0,0
+volumescale = 100
+
+[State 194, 2]
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State 194, set]
+type = posset
+trigger1 = animtime = 0
+y = 0
+
+[State 194, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
 ;--------------------------------------------------------------------
 ; Taunt
 ;--------------------------------------------------------------------
@@ -845,10 +903,10 @@ x = -8
 [State 240, posadd]
 type = PosAdd
 trigger1 = AnimElem = 8 && anim = 240
-x = -8
+x = -9
 
 [State 240, posadd]
-type = PosAdd
+type = null;PosAdd
 trigger1 = AnimElem = 9 && anim = 240
 x = 10
 
@@ -2415,37 +2473,6 @@ type = Turn
 trigger1 = var(5)
 trigger1 = AnimElem = 1
 
-[State 1081, Hitdef]
-type = HitDef
-trigger1 = Time = 1
-attr = S, NT
-animtype  = Hard
-damage    = 146, 0
-getpower  = 0
-priority  = 4
-guardflag = MA
-hitflag = MAFD
-pausetime = 12,12
-sparkno = s8000
-sparkxy = -10,-60
-hitsound   = s250,3
-guardsound = s250,3
-ground.type = Low
-dizzypoints = 0
-ground.slidetime = 20
-ground.hittime  = 35
-ground.velocity = 0, 20
-guard.velocity = -2
-air.velocity =  0,20
-airguard.velocity = -5, -4
-envshake.time = 10
-envshake.ampl = 4
-envshake.freq = 176
-yaccel = -0.30
-fall = 1
-fall.recover = 0
-fall.yvelocity = -1.7
-
 [State 810, holdfwd - Turn Target 6] ;If was holding fwd before, turn target too
 type = TargetFacing
 trigger1 = var(5)
@@ -2455,7 +2482,42 @@ value = -1
 [State 810, Hurt 11]
 type = TargetLifeAdd
 trigger1 = AnimElem = 8
-value = -78
+value = -146
+
+[State 810, HitSnd]
+type = playsnd
+trigger1 = animelem = 8
+value = 250,3
+channel = 3
+
+[State 810, Explod]
+type = Explod
+trigger1 = animelem = 8
+anim = 8000
+ID = 8000
+pos = 50,-40
+postype = P1
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = 1,1
+sprpriority = 8
+ownpal = 1
+
+[State 810, BlkShake]
+type = envshake
+trigger1 = animelem = 8
+time = 4
+ampl = 6
+freq = 120
+mul = 0.9
+ignorehitpause = 1
+
+[State 810, Fall]
+type = targetstate
+trigger1 = animelem = 8
+value = 5100
 
 [State 810, State End]
 type = ChangeState
@@ -2549,6 +2611,16 @@ type = VarSet
 trigger1 = Time = 0
 var(5) = command = "holdfwd"
 
+[State 810, CornerPush]
+type = posadd
+trigger1 = frontedgebodydist <= 50 && time = 0 && var(5)
+x = -25
+
+[State 810, CornerPush]
+type = posadd
+trigger1 = backedgebodydist <= 50 && time = 0 && !var(5)
+x = 25
+
 [State 825, Grab Sound]
 type = PlaySnd
 trigger1 = Time = 0
@@ -2565,7 +2637,7 @@ volumescale = 100
 [State 825, Voice]
 type = PlaySnd
 trigger1 = AnimElemtime(6) = 2
-value = 400, 0
+value = 400, 3
 volumescale = 100
 
 [State 825, Width 2-11]
@@ -2581,7 +2653,7 @@ pos = 48, 0
 [State 825, Bind 2]
 type = TargetBind
 trigger1 = AnimElemtime(2) >= 0 && AnimElemtime(3) < 0
-pos = 47, -15
+pos = 47, -80
 
 [State 825, Bind 3]
 type = TargetBind
@@ -2596,43 +2668,48 @@ pos = 23, -95
 [State 825, Bind 5]
 type = TargetBind
 trigger1 = AnimElemtime(5) >= 0 && AnimElemtime(6) < 0
-pos = -10, -105
+pos = -20, -73
 
 [State 825, Bind 6]
 type = TargetBind
 trigger1 = AnimElemtime(6) >= 0 && AnimElemtime(7) < 0
 pos = -55, -87
 
-[State 825, TarGetState]
-type = targetstate
-trigger1 = animelem = 7
-value = 831
-
-[State 825, GetBehind]
-type = sprpriority
-trigger1 = animelem = 5
-value = -5
-
-[State 825, GetInFront
-type = sprpriority
-trigger1 = animelem = 6
-value = 5
+[State 825, Bind 7]
+type = TargetBind
+trigger1 = AnimElemtime(7) >= 0 && AnimElemtime(11) < 0
+pos = -80, 0
 
 [State 825, holdfwd - Turn 6] ;If was holding fwd before, turn now
 type = Turn
 trigger1 = var(5)
 trigger1 = AnimElem = 1
 
-[State 825, holdfwd - Turn Target 6] ;If was holding fwd before, turn target too
-type = TargetFacing
-trigger1 = var(5)
-trigger1 = AnimElem = 6
-value = -1
-
 [State 825, Hurt 11]
 type = TargetLifeAdd
 trigger1 = AnimElem = 7
-value = -78
+value = -132
+
+[State 825, Shockwave]
+type = Explod
+trigger1 = animelem = 7
+anim = 8054
+id = 8054
+postype = p2
+pos = 0,0
+scale = 0.5,0.5
+sprpriority = -5
+ignorehitpause = 1
+
+[State 825, Hit Sound]
+type = playsnd
+trigger1 = animelem = 7
+value = 5000,14
+volumescale = 100
+
+[State 825, Turn]
+type = turn
+trigger1 = !animtime
 
 [State 825, State End]
 type = ChangeState
@@ -2657,67 +2734,43 @@ value = 821
 
 [State 830, turn]
 type = turn
-trigger1 = enemynear, animelem = 1 && enemynear, Var(5) = 1
+trigger1 = enemynear, animelem = 1 && enemynear, Var(5) = 1 && animelemtime(8) < 0
 
-;In case attacker loses binding on player for any reason, this ;controller
-;guarantees that the player will never get stuck in this thrown state.
 [State 830, 2]
 type = SelfState
-trigger1 = !gethitvar(isbound)
+trigger1 = !gethitvar(isbound) && animelemtime(7) < 0
 value = 5050
-
-
-;----------------------------------------------------------------------
-;Thrown by Over Head Throw
-;----------------------------------------------------------------------
-[Statedef 831]
-type    = A
-movetype= H
-physics = N
-velset =  4,-9  ;2.8,-7
-poweradd = 40
-
-[State 831, 1] ;Gravity
-type = VelAdd
-Trigger1 = 1
-y = 0.50
 
 [State 831, Rumble]
 type  = envshake
-trigger1 = Vel Y > 0
-trigger1 = Pos Y >= -18
-freq  = 120
-time  = 20
-ampl  = -6
+trigger1 = animelem = 7
+freq  = 150
+time  = 5
+ampl  = 4
 
-[State 831, Hurt]
-type = LifeAdd
-trigger1 = Vel Y > 0
-trigger1 = Pos Y >= 0
-value = -132
+[State 831, NotHitting]
+type = nothitby
+trigger1 = animelem = 8
+value = SCA
+time = 55
 
-[State 831, 2] ; Recover near ground (use ChangeState)
-type = ChangeState
-triggerall = Vel Y > 0
-triggerall = Pos Y >= -20
-triggerall = alive
-triggerall = CanRecover
-trigger1 = Command = "recovery"
-value = 5200 ;HITFALL_RECOVER
+[State 831, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 0
+movecamera = 0,0
 
-[State 831, 3] ; Recover in mid air (use SelfState)
+
+[State 831, Turn]
+type = turn
+trigger1 = time = 61 && facing = (p2, facing)*-1
+
+[State 831, Get Up]
 type = SelfState
-triggerall = Vel Y > 0
-triggerall = alive
-triggerall = CanRecover
-trigger1 = Command = "recovery"
-value = 5210 ;HITFALL_AIRRECOVER
+trigger1 = !animtime
+value = 5120 ;Hit ground
 
-[State 831, 4] ;Hit ground
-type = SelfState
-trigger1 = Vel Y > 0
-trigger1 = Pos Y >= -18
-value = 5100 ;Hit ground
+
 
 ;----------------------------------------------------------------------
 ;CVS2-Style Power Charge
