@@ -17,7 +17,10 @@ ignorehitpause{
 
 assertspecial{flag: nokovelocity}
 
-##|Counter Hit Damage|##
+###############################################################
+# Counter Effects
+###############################################################
+##|Counter Hit Damage Boost|##
 map(counter_damage):= (hitdefvar(hitdamage)*0.2)*-1;
 
 ignorehitpause{
@@ -29,7 +32,9 @@ ignorehitpause{
 }
 
 
-##|Damage Dampener|##
+###############################################################
+# Damage Scaling
+###############################################################
 #Decrease Timer (Timer is no longer used for resets, but I'm keeping this in case I need it for something)
 if map(scale_factor) > 0 && NumHelper(4000) = 0 {
 	MapAdd{
@@ -44,7 +49,6 @@ if map(scale_factor) > 0 && NumHelper(4000) = 0 {
 			value: 0;
 		}
 	}
-
 
 ##Attack State Scale Factor -- Normals and Specials##
 if time = 1 && (stateno = [200,699] || (stateno = 1000 || stateno = 1010 || stateno = 1020) || (stateno = [1030,1050] && stateno != 1031) || stateno = [1100,1115]){
@@ -100,7 +104,34 @@ AttackMulSet{
 	value: (map(damage_scale));
 }
 
-###########|EX PalFX Flash|###########
+
+###############################################################
+# Low Health Scaling
+###############################################################
+# < 30%
+if life <= 291{
+		DefenceMulSet{
+			value: 1.1;
+			}
+		}
+# < 15%
+if life < 145{
+		DefenceMulSet{
+			value: 1.25;
+			}
+		}
+
+#Reset -- Primarily for debug purposes
+if life = LifeMax{
+	DefenceMulSet{
+		value: 1;
+	}
+}
+
+
+###############################################################
+# EX PalFX Flash
+###############################################################
 ignorehitpause{
 		if stateno = [2000,2999] && !IsHelper && !InCustomState{
 			MapAdd{
@@ -121,5 +152,5 @@ ignorehitpause{
 						add:  0, floor((sin(map(palfx_timer)*10)+1)*100), 0;
 						mul: 256, 256, 256;
 					}
-		}
+				}
 }
