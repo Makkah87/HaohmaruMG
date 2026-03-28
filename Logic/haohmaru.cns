@@ -1735,7 +1735,7 @@ priority = 6
 pausetime = 10,10
 sparkno = s8000
 Guard.Sparkno = s8030
-sparkxy = -15,-80
+sparkxy = -15,-60
 hitsound   = s300,1
 guardsound = s300,3
 animtype = Med
@@ -1776,7 +1776,7 @@ priority = 7
 pausetime = 12,12
 sparkno = s8000
 Guard.Sparkno = s8030
-sparkxy = -10,-40
+sparkxy = -10,-60
 hitsound   = s300,2
 guardsound = s300,3
 animtype = Med
@@ -2760,17 +2760,14 @@ trigger1 = 1
 value = 0
 movecamera = 0,0
 
-
 [State 831, Turn]
 type = turn
 trigger1 = time = 61 && facing = (p2, facing)*-1
 
-[State 831, Get Up]
+[State 831, Get Up or Die]
 type = SelfState
 trigger1 = !animtime
-value = 5120 ;Hit ground
-
-
+value = cond(alive,5120,5150) ;Hit ground
 
 ;----------------------------------------------------------------------
 ;CVS2-Style Power Charge

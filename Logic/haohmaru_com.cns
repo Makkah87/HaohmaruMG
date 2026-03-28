@@ -558,6 +558,7 @@ trigger4 = stateno = 430 || stateno = 440 && MoveContact
 trigger5 = (stateno = 210 && anim = 211) || stateno = 410 || stateno = 420 || (stateno = 240) && movecontact
 trigger6 = stateno = [1000,2999] && movecontact
 trigger7 = stateno = 3000 && movecontact
+trigger8 = stateno = 3031 && movecontact && animelemtime(8) < 0
 ;----------------------------------------------------------------------
 ;Tenha Seiouzan
 [State -1, Tenha Seiouzan]
@@ -586,7 +587,7 @@ trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && mov
 trigger4 = stateno = 430 || stateno = 440 && MoveContact
 trigger5 = (stateno = 210 && anim = 211) || stateno = 410 || stateno = 420 || (stateno = 240) && movecontact
 trigger6 = stateno = [1000,2999] && movecontact
-
+trigger7 = stateno = 3031 && movecontact
 ;----------------------------------------------------------------------
 ;Zankuu Rengeki
 [State -1, Zankuu Rengeki]
@@ -601,7 +602,7 @@ trigger3 = (stateno = 240 && anim = 241) || (stateno = 250 && anim = 251) && mov
 trigger4 = stateno = 430 || stateno = 440 && MoveContact
 trigger5 = (stateno = 210 && anim = 211) || stateno = 410 || stateno = 420 || (stateno = 240) && movecontact
 trigger6 = stateno = [1000,2999] && movecontact
-
+trigger7 = stateno = 3000 && movecontact
 ;----------------------------------------------------------------------
 ;Kogetsu Zan Zan EX
 [State -1, Kogetsu Zan Zan EX]
