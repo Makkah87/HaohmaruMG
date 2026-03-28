@@ -1,5 +1,5 @@
 =======================================================================
-		   Haohmaru V2.0 by Makkah/Master Gouken
+		   Haohmaru V2.0.1 by Makkah/Master Gouken
 =======================================================================
 
 PLEASE NOTE THAT THIS CHARACTER IS NO LONGER COMPATIABLE WITH MUGEN. SORRY.
@@ -9,7 +9,11 @@ Story
 While travelling through a bamboo forest, Haohmaru is pounced upon by five demonic warriors. He draws his sword, and with great skill, manages to slay them all. Upon his victory, He senses another demonic presence. He looks behind him and discovers that Amakusa has been resurrected. Exhausted from his previous battle, Haoh charges bravely at the sorcerer. Amakusa quickly casts as a spell which paralizes Haohmaru and causes him to be consumed by a giant vortex which transports him to another dimension. While in this new world, he is approached by Suave Dude, the sponsor of the great M.U.G.E.N tournament. Suave, promisesthat if he wins this tournament, he will transport him back to his own dimension. Haohmaru graciously accepts his offer and prepares himself mentally and physically, for the upcoming slaughter.
 -----------------------------------------------------------------------
 
-
+V2.0.1 Changes
+---------------
+-Fixed a bug where opponents KO'd by Overhead Throw would get up then die afterrwards
+-Fixed conflict between taunt and sword weilding women special intro
+-Added CVS2'slow life defense scaling
 
 v2.0 Changes
 -------------------

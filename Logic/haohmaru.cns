@@ -259,7 +259,7 @@ value = 193
 [State 191, Demon]
 type = ChangeState
 trigger1 = Time = 0 && var(1) = 4
-value = 195
+value = 196
 
 ;--------------------------------------------------------------------
 ; Introduction -Lets have a fair fight
@@ -361,7 +361,7 @@ value = 0
 ;--------------------------------------------------------------------
 ; Introduction - You shouldn't play with such things
 ;--------------------------------------------------------------------
-[Statedef 195]
+[Statedef 196]
 type = S
 ctrl = 0
 anim = 194
@@ -2735,6 +2735,9 @@ value = 821
 [State 830, turn]
 type = turn
 trigger1 = enemynear, animelem = 1 && enemynear, Var(5) = 1 && animelemtime(8) < 0
+trigger2 = facing = -1 && p2,facing = -1 && !time
+ignorehitpause = 1
+
 
 [State 830, 2]
 type = SelfState
@@ -2761,7 +2764,7 @@ value = 0
 movecamera = 0,0
 
 [State 831, Turn]
-type = turn
+type = null;turn
 trigger1 = time = 61 && facing = (p2, facing)*-1
 
 [State 831, Get Up or Die]
@@ -9701,8 +9704,8 @@ ctrl = 1
 [State -2, Debug data]
 type = displaytoclipboard
 trigger1 = time >= 0
-text = "damage_scale =%f,scale_factor =%f,P2Dist X = %f,P2Dist Y = %f,ground_hit_type = %d,Special State = %f, Super_State = %f, Target ID = %f,By Makkah/Master Gouken"
-params = map(damage_scale),map(scale_factor),P2Dist X,P2Dist Y,gethitvar(groundtype), map(special_cancel), map(super_cancel), map(target_id)
+text = "damage_scale =%f,scale_factor =%f,P2Dist X = %f,P2Dist Y = %f,facing = %d,p2facing = %d,Special State = %f, Super_State = %f, Target ID = %f,By Makkah/Master Gouken"
+params = map(damage_scale),map(scale_factor),P2Dist X,P2Dist Y,facing, p2,facing, map(special_cancel), map(super_cancel), map(target_id)
 ignorehitpause = 1
 
 [State -2, Kogetsu_CPush_Reset]
