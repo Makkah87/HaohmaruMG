@@ -15,7 +15,6 @@ ignorehitpause{
 
 [StateDef -4]
 
-assertspecial{flag: nokovelocity}
 
 ###############################################################
 # Counter Effects
