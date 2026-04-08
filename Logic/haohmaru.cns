@@ -2370,6 +2370,32 @@ type = changestate
 trigger1 = animtime = 0
 value = 50
 ctrl = 1
+
+;----------------------------------------------------------------------
+;Guard Cancel -- Sake Kougeki
+;----------------------------------------------------------------------
+[Statedef 730]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 730
+sprpriority = 5
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = !time
+value = SCA
+time = 50
+
+
+[State 730, End]
+type = changestate
+trigger1 = !animtime
+value = 0
+ctrl = 1
 ;----------------------------------------------------------------------
 ;Skull Crusher!! -Attempt-
 ;----------------------------------------------------------------------
@@ -9951,8 +9977,17 @@ triggerall = Alive = 1
 trigger1 = StateNo = 5100 && Random < 500
 value = 5000,ifelse(random > 500,0,1)
 
-[State 1071, NoJuggle]
+[State -3, NoJuggle]
 type = varset
 trigger1 = enemynear,movetype !=H
 v = 7
 value = 0
+
+;Guard Canel -- Sake Kougeki
+[State -3, Guard Canel -- Sake Kougeki]
+type = ChangeState
+value = 730
+triggerall = command = "y" && command = "z"
+triggerall = statetype != A
+trigger1 = anim = [150, 151]
+ignorehitpause = 1
