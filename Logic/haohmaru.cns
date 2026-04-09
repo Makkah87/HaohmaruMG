@@ -2383,13 +2383,89 @@ velset = 0,0
 ctrl = 0
 anim = 730
 sprpriority = 5
+poweradd = -500
 
-[State 0, NotHitBy]
+[State 730, Woosh]
+type = playsnd
+trigger1 = animelem = 6
+value = 0,2
+volumescale = 100
+
+[State 730, Voice]
+type = PlaySnd
+trigger1 = animelem = 6
+value = 400, 1
+volumescale = 100
+channel = 1
+
+[State 730, GCsnd]
+type = playsnd
+trigger1 = !time
+value = 300,4
+volumescale = 100
+
+[State 730, BGPalFX]
+type = BGPalFX
+trigger1 = !time
+time = 18
+;add = 0,0,0
+mul = 200,200,200
+;invertall = 1
+
+[State 730, PalFX]
+type = PalFX
+trigger1 = !time
+time = 5
+add = 255,255,255
+
+[State 730, Pause]
+type = Pause
+trigger1 = !time
+time = 14
+movetime = 14
+
+[State 730, NotHitBy]
 type = NotHitBy
 trigger1 = !time
 value = SCA
 time = 50
 
+[State 3550, HitDef]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NA
+animtype  = diagup
+damage    = 42,0
+priority  = 7
+guardflag = MA
+pausetime = 12,12
+Sparkno = s8004
+sparkscale = 0.5,0.5
+guardsound = s300,3
+Guard.Sparkno = s8032
+sparkxy = -10,-40
+hitsound   = s250,3
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -14,-12
+air.velocity = -12,-12
+envshake.time = 4
+envshake.ampl = 8
+envshake.freq = 176
+fall.recover = 0
+fall = 1
+getpower = 0
+yaccel = 0.85
+kill = 0
+guard.kill = 0
+fall.kill = 0
+
+[State 730, Anim_HitPause]
+type = assertspecial
+trigger1 = animelemtime(10)<=0
+flag = animatehitpause
+ignorehitpause = 1
 
 [State 730, End]
 type = changestate
@@ -9987,6 +10063,7 @@ value = 0
 [State -3, Guard Canel -- Sake Kougeki]
 type = ChangeState
 value = 730
+triggerall = power >= 500
 triggerall = command = "y" && command = "z"
 triggerall = statetype != A
 trigger1 = anim = [150, 151]
