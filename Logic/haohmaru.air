@@ -2166,6 +2166,13 @@ Clsn2: 3
   Clsn2[2] = -26, -43, 49, 1
 1800,11, 0,0, 3
 
+; GC Effect
+[Begin Action 731]
+8018,0, 0,0, 10, , A, 0.25,0.25
+Interpolate Blend
+Interpolate Scale
+8018,0, 0,0, 1, , AS50D256
+
 ; 
 [Begin Action 800]
 Clsn1:1

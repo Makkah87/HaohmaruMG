@@ -2430,6 +2430,20 @@ trigger1 = !time
 value = SCA
 time = 50
 
+[State 730, Effect]
+type = Explod
+trigger1 = animelem = 2
+anim = 731
+id = 731
+postype = p1
+pos = 15, -70
+bindtime = 1
+sprpriority = 25
+ownpal = 1
+removetime = 11
+pausemovetime = 999
+
+
 [State 3550, HitDef]
 type = HitDef
 trigger1 = Time = 0
@@ -2448,8 +2462,8 @@ hitsound   = s250,3
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -14,-12
-air.velocity = -12,-12
+ground.velocity = -8.3,-7.6
+air.velocity = -8,-7.5
 envshake.time = 4
 envshake.ampl = 8
 envshake.freq = 176
