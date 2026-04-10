@@ -28,8 +28,37 @@ ignorehitpause{
 			Value: map(counter_damage);
 		}
 	}
+
 }
 
+ignorehitpause{
+	if MoveCountered = 1{
+		PalFX{
+			time: 5;
+			add: 255, 255, 255;
+			mul: 130, 130, 130;
+			RedirectID: P2,ID;
+		}
+
+		if movehitvar(frame) = 1{
+		Explod{
+			anim: 731;
+			ID: 731;
+			Postype:  p2;
+			pos: map(sparkx)+20, map(sparky);
+			removetime: 11;
+			supermovetime: 18;
+			pausemovetime: 255;
+			sprpriority: 10;
+			ontop: 1;
+			shadow: 0;
+			ownpal: 1;
+			}
+		}
+	}
+
+
+}
 
 ###############################################################
 # Damage Scaling
