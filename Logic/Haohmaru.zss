@@ -1,20 +1,10 @@
-[Statedef -2]
-
-##|Acquire and Log Target ID|##
-
-ignorehitpause{
-	if numtarget {
-		if movehit || (numproj =1 && projhit = 1){
-			MapSet{
-				map: "target_id";
-				value: target, id;
-			}
-		}
-	}
-}
-
 [StateDef -4]
 
+if P2, MoveType = A && Movetype = A{
+	AssertSpecial{
+		flag: runfirst;
+	}
+}
 
 ###############################################################
 # Counter Effects

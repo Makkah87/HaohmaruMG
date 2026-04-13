@@ -458,6 +458,8 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 ownpal = 1
+removeongethit = 1
+removeonchangestate = 1
 
 [State 200, 1]
 type = HitDef
@@ -551,7 +553,8 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 ownpal = 1
-;pos = 35,6
+removeongethit = 1
+removeonchangestate = 1
 
 [State 200, SlashEffect]
 type = Explod
@@ -562,9 +565,9 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 ownpal = 1
-;pos = 35,6
 IGNOREHITPAUSE = 0
-
+removeongethit = 1
+removeonchangestate = 1
 
 [State 210, 1]
 type = PlaySnd
@@ -639,8 +642,9 @@ anim = 225
 id = 225
 postype = p1
 ownpal = 1
-;bindtime = -1
 sprpriority = 5
+removeongethit = 1
+removeonchangestate = 1
 
 [State 220, SlashEffect]
 type = Explod
@@ -651,6 +655,8 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 ownpal = 1
+removeongethit = 1
+removeonchangestate = 1
 
 [State 220, Anim_HitPause]
 type = assertspecial
@@ -1119,6 +1125,8 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 ownpal = 1
+removeongethit = 1
+removeonchangestate = 1
 
 [State 400, Anim_HitPause]
 type = assertspecial
@@ -1206,6 +1214,8 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 ownpal = 1
+removeongethit = 1
+removeonchangestate = 1
 
 [State 410, 1]
 type = PlaySnd
@@ -1273,6 +1283,8 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 ownpal = 1
+removeongethit = 1
+removeonchangestate = 1
 
 [State 410, 1]
 type = PlaySnd
@@ -1517,6 +1529,7 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 ownpal = 1
+removeonchangestate = 1
 
 [State 600, 1]
 type = PlaySnd
@@ -1581,6 +1594,7 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 ownpal = 1
+removeonchangestate = 1
 
 [State 610, 2]
 type = PlaySnd
@@ -1639,6 +1653,7 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 ownpal = 1
+removeonchangestate = 1
 
 [State 620, 2]
 type = PlaySnd
@@ -3109,6 +3124,7 @@ id = 1004
 postype = p1
 bindtime = -1
 sprpriority = 5
+removeonchangestate = 1
 
 [State 1000, SlashEffect]
 type = Explod
@@ -3118,6 +3134,7 @@ id = 1005
 postype = p1
 bindtime = 0
 sprpriority = 5
+removeongethit = 1
 
 [State 1000, VelSet]
 type = velset
@@ -3405,6 +3422,7 @@ id = 1004
 postype = p1
 bindtime = -1
 sprpriority = 5
+removeongethit = 1
 
 [State 1010, SlashEffect]
 type = Explod
@@ -3414,6 +3432,7 @@ id = 1005
 postype = p1
 bindtime = 0
 sprpriority = 5
+removeongethit = 1
 
 [State 1010, VelSet]
 type = velset
@@ -3608,6 +3627,7 @@ id = 1004
 postype = p1
 bindtime = -1
 sprpriority = 5
+removeongethit = 1
 
 [State 1020, SlashEffect]
 type = Explod
@@ -3617,6 +3637,7 @@ id = 1005
 postype = p1
 bindtime = 0
 sprpriority = 5
+removeongethit = 1
 
 [State 1020, VelSet]
 type = velset
@@ -5512,6 +5533,7 @@ postype = p1
 bindtime = -1
 sprpriority = 5
 ownpal = 1
+removeongethit = 1
 
 [State 2010, SlashEffect]
 type = Explod
@@ -5522,6 +5544,7 @@ postype = p1
 bindtime = 0
 sprpriority = 5
 ownpal = 1
+removeongethit = 1
 
 [State 2010, VelSet]
 type = velset
@@ -6464,6 +6487,7 @@ id = 3002
 postype = p1
 bindtime = -1
 sprpriority = 5
+removeongethit = 1
 
 [State 3000, SlashEffect]
 type = Explod
@@ -6474,6 +6498,7 @@ pos = 0,0
 postype = p1
 bindtime = -1
 sprpriority = 5
+removeongethit = 1
 
 [State 3000, Super E]
 type = NotHitBy
@@ -6590,6 +6615,7 @@ pos = 0,0
 postype = p1
 bindtime = 0
 sprpriority = 5
+removeongethit = 1
 
 [State 3001, 5]
 type = HitDef
@@ -6696,6 +6722,7 @@ id = 3423
 postype = p1
 bindtime = -1
 sprpriority = 5
+removeongethit = 1
 
 [State 3020, PowerSpark]
 type = Helper
@@ -7597,6 +7624,7 @@ pos = 0,0
 postype = p1
 bindtime = -1
 sprpriority = 5
+removeongethit = 1
 
 [State 3500, Super E]
 type = NotHitBy
@@ -7713,6 +7741,7 @@ pos = 0,0
 postype = p1
 bindtime = 0
 sprpriority = 5
+removeongethit = 1
 
 [State 3501, 5]
 type = HitDef
@@ -7867,6 +7896,7 @@ id = 3423
 postype = p1
 bindtime = -1
 sprpriority = 5
+removeongethit = 1
 
 [State 3520, PowerSpark]
 type = Helper
@@ -8687,6 +8717,7 @@ postype = p1
 pos = -21,-28
 bindtime = -1
 sprpriority = 5
+removeongethit = 1
 
 [State 3550,Effect2]
 type = Explod
@@ -8696,6 +8727,7 @@ id = 3011
 postype = p1
 bindtime = -1
 sprpriority = 5
+removeongethit = 1
 
 [State 3550, UPissMeOff]
 type = playsnd
@@ -9935,7 +9967,7 @@ trigger1 =time=0&&movetype=H&&(prevstateno = 900||prevstateno = 901)
 channel = 6
 
 [State -2, Effect begone]
-type = removeexplod
+type = null;removeexplod
 trigger1 = Movetype = H && statetype != L
 
 [State -2, Super C]
