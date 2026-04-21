@@ -1,4 +1,4 @@
-;		   Haohmaru v2.0b Beta by Master Gouken
+;		   Haohmaru v2.0.3 by Master Gouken
 ;======================================================================
 ;                            Variable Table		
 ;======================================================================
@@ -449,6 +449,11 @@ trigger1 = animelemtime(3)<=0
 flag = animatehitpause
 ignorehitpause = 1
 
+[State 200, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 3
+movetype = I
+
 [State 200, SlashEffect]
 type = Explod
 trigger1 = animelem = 2
@@ -536,6 +541,11 @@ trigger1 = animelemtime(4)<=0
 trigger1 = anim = 211
 flag = animatehitpause
 ignorehitpause = 1
+
+[State 210, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
 
 [State 210, Voice]
 type = PlaySnd
@@ -664,6 +674,12 @@ trigger1 = animelemtime(6)<=0
 ;trigger1 = anim = 220
 flag = animatehitpause
 ignorehitpause = 1
+
+[State 220, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 8 && anim = 220
+trigger2 = animelem = 7 && anim = 221
+movetype = I
 
 [State 220, Step 1]
 type = PosAdd
@@ -833,6 +849,11 @@ trigger1 = animelemtime(3)<=0
 flag = animatehitpause
 ignorehitpause = 1
 
+[State 230, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 4
+movetype = I
+
 [State 230, 1]
 type = PlaySnd
 trigger1 = Time = 3
@@ -941,6 +962,12 @@ trigger1 = anim = 241
 flag = animatehitpause
 ignorehitpause = 1
 
+[State 240, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 6 && anim = 240
+trigger2 = animelem = 4 && anim = 241
+movetype = I
+
 [State 240, 2]
 type = HitDef
 trigger1 = Time = 0 && anim = 240
@@ -1040,6 +1067,11 @@ trigger1 = anim = 251
 flag = animatehitpause
 ignorehitpause = 1
 
+[State 230, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
+
 [State 250, Woosh]
 type = PlaySnd
 trigger1 = Time = 5 && anim = 250
@@ -1134,6 +1166,11 @@ trigger1 = animelemtime(3)<=0
 flag = animatehitpause
 ignorehitpause = 1
 
+[State 400, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 4
+movetype = I
+
 [State 400, Voice]
 type = PlaySnd
 trigger1 = Time = 2 && random < 600
@@ -1204,6 +1241,11 @@ type = assertspecial
 trigger1 = animelemtime(4)<=0
 flag = animatehitpause
 ignorehitpause = 1
+
+[State 410, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
 
 [State 410, SlashEffect]
 type = Explod
@@ -1286,6 +1328,11 @@ ownpal = 1
 removeongethit = 1
 removeonchangestate = 1
 
+[State 420, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 4
+movetype = I
+
 [State 410, 1]
 type = PlaySnd
 trigger1 = Time = 4
@@ -1352,6 +1399,11 @@ trigger1 = animelemtime(3)<=0
 flag = animatehitpause
 ignorehitpause = 1
 
+[State 430, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 4
+movetype = I
+
 [State 430, 1]
 type = PlaySnd
 trigger1 = Time = 2
@@ -1409,6 +1461,11 @@ type = assertspecial
 trigger1 = animelemtime(3)<=0
 flag = animatehitpause
 ignorehitpause = 1
+
+[State 440, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 4
+movetype = I
 
 [State 440, 3]
 type = HitDef
@@ -1471,11 +1528,16 @@ type = PlaySnd
 trigger1 = animelem = 5
 value = 0, 3
 
-[State 440, Anim_HitPause]
+[State 450, Anim_HitPause]
 type = assertspecial
 trigger1 = animelemtime(6)<=0
 flag = animatehitpause
 ignorehitpause = 1
+
+[State 450, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 7
+movetype = I
 
 [State 450, 3]
 type = HitDef
@@ -1536,6 +1598,11 @@ type = PlaySnd
 trigger1 = Time = 3
 value = 210, 0
 
+[State 600, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
+
 [State 600, 2]
 type = HitDef
 trigger1 = Time = 0
@@ -1584,6 +1651,11 @@ type = assertspecial
 trigger1 = animelemtime(4)<=0
 flag = animatehitpause
 ignorehitpause = 1
+
+[State 620, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
 
 [State 610, SlashEffect]
 type = Explod
@@ -1643,6 +1715,11 @@ type = assertspecial
 trigger1 = animelemtime(4)<=0
 flag = animatehitpause
 ignorehitpause = 1
+
+[State 620, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
 
 [State 620, SlashEffect]
 type = Explod
@@ -1745,6 +1822,11 @@ type = PlaySnd
 trigger1 = Time = 4
 value = 0, 2
 
+[State 640, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
+
 [State 640, 3]
 type = HitDef
 trigger1 = Time = 0
@@ -1785,6 +1867,11 @@ hitcountpersist = 1
 type = PlaySnd
 trigger1 = Time = 5
 value = 0, 3
+
+[State 650, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
 
 [State 650, 3]
 type = HitDef
@@ -2458,8 +2545,7 @@ ownpal = 1
 removetime = 11
 pausemovetime = 999
 
-
-[State 3550, HitDef]
+[State 730, HitDef]
 type = HitDef
 trigger1 = Time = 0
 attr = S, NA
@@ -2566,6 +2652,11 @@ trigger1 = Time = 0
 value = 800, 0
 volumescale = 100
 freqmul = 1.5
+
+[State 810, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 2
+movetype = I
 
 [State 810, Woosh]
 type = PlaySnd
@@ -2699,6 +2790,11 @@ velset = 0,0
 ctrl = 0
 anim = 800
 sprpriority = 2
+
+[State 820, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 2
+movetype = I
 
 [State 820, 1]
 type = HitDef
@@ -3273,7 +3369,7 @@ ctrl = 0
 ;======================================================================
 [Statedef 1002]
 type    = A
-movetype= A
+movetype= I
 physics = N
 juggle  = 4
 anim = 1002
@@ -3338,7 +3434,7 @@ ctrl = 0
 ;======================================================================
 [Statedef 1003]
 type    = S
-movetype= A
+movetype= I
 physics = S
 juggle  = 4
 anim = 1003
@@ -3913,6 +4009,11 @@ pos = 60,0
 postype = p1
 sprpriority = 5
 
+[State 1031, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 3
+movetype = I
+
 [State 1031, Hitdef]
 type = HitDef
 trigger1 = Time = 0
@@ -4081,10 +4182,10 @@ trigger1 = Time = 10
 value = 1000,0
 channel = 1
 
-;[State 1060, Effect]
-;type = PlaySnd
-;trigger1 = Time = 10
-;value = 1000,5
+[State 1060, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 10
+movetype = I
 
 [State 1060, Wind]
 type = PlaySnd
@@ -4335,6 +4436,11 @@ trigger1 = Time = 10
 value = 1000,0
 channel = 1
 
+[State 1065, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 10
+movetype = I
+
 [State 1065, Wind]
 type = PlaySnd
 trigger1 = Time = 11
@@ -4545,6 +4651,11 @@ type = PlaySnd
 trigger1 = Time = 10
 value = 1000,0
 channel = 1
+
+[State 1070, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 10
+movetype = I
 
 [State 1070, Wind]
 type = PlaySnd
@@ -4967,6 +5078,11 @@ velset = 0,0
 anim = 1090
 ctrl = 0
 
+[State 1100, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
+
 [State 1100, Woosh]
 type = playsnd
 trigger1 = animelem = 3
@@ -5054,6 +5170,11 @@ physics = S
 velset = 0,0
 anim = 1095
 ctrl = 0
+
+[State 1110, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
 
 [State 1110, Woosh]
 type = playsnd
@@ -5148,6 +5269,11 @@ velset = 0,0
 anim = 1100
 ctrl = 0
 
+[State 1115, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
+
 [State 1115, Woosh]
 type = playsnd
 trigger1 = animelem = 3
@@ -5237,6 +5363,11 @@ physics = N
 velset = 0
 anim = 2000
 ctrl = 0
+
+[State 2000, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 10
+movetype = I
 
 [State 2000, EX Effect]
 type = Helper
@@ -5856,6 +5987,11 @@ physics = S
 velset = 0,0
 anim = 1100
 ctrl = 0
+
+[State 2030, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 5
+movetype = I
 
 [State 2020, EX Effect]
 type = Helper
@@ -7128,6 +7264,11 @@ anim = 3030
 ctrl = 0
 sprpriority = 2
 
+[State 3030, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 9 && anim = 3055
+movetype = I
+
 [State 3030, Muteki]
 type = nothitby
 trigger1 = !time
@@ -8245,6 +8386,11 @@ anim = 3030
 ctrl = 0
 sprpriority = 2
 
+[State 3530, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 9 && anim = 3075
+movetype = I
+
 [State 3530, Muteki]
 type = nothitby
 trigger1 = !time
@@ -8674,6 +8820,11 @@ anim = 3010
 ctrl = 0
 sprpriority = 3
 hitcountpersist = 1
+
+[State 3550, Idle_Type]
+type = StateTypeSet
+trigger1 = animelem = 13
+movetype = I
 
 [State 3550, Super D]
 type = NotHitBy
