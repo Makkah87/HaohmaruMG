@@ -23,7 +23,7 @@ ignorehitpause{
 
 #Counter Hit PalFX
 ignorehitpause{
-	if MoveCountered = 1 && !HitOverridden && !P2, ishelper{
+if MoveCountered = 1 && !HitOverridden && !P2, ishelper{
 		PalFX{
 			time: 5;
 			add: 255, 255, 255;
@@ -32,7 +32,7 @@ ignorehitpause{
 		}
 
 #Counter Hit Spark
-		if movehitvar(frame) = 1 && !HitOverridden && !P2, ishelper{
+		if !ishelper && movehitvar(frame) = 1 && !HitOverridden && !P2, ishelper{
 		Explod{
 			anim: 8005;
 			ID: 8005;
