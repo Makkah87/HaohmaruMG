@@ -39,7 +39,7 @@ if MoveCountered = 1 && !HitOverridden && !P2, ishelper{
 			Postype:  p2;
 			#pos: hitdefvar(sparkx)+20, (hitdefvar(sparky))-p2dist y;
 			pos: map(sparkx)+20, (map(sparky))-p2dist y;
-			removetime: 11;
+			removetime: 8;
 			supermovetime: 18;
 			pausemovetime: 255;
 			sprpriority: 10;
