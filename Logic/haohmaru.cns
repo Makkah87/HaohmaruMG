@@ -6673,7 +6673,7 @@ value = 1
 
 [State 3000, 5]
 type = HitDef
-trigger1 = AnimElem = 3
+trigger1 = !time || AnimElem = 3
 trigger2 = AnimElem = 4
 attr = S, HA
 animtype  = Hard
@@ -7804,7 +7804,7 @@ value = 1
 
 [State 3500, 5]
 type = HitDef
-trigger1 = AnimElem = 3
+trigger1 = !time || AnimElem = 3
 trigger2 = AnimElem = 4
 attr = S, HA
 animtype  = Hard

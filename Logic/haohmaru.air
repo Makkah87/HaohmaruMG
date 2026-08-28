@@ -5073,7 +5073,7 @@ Interpolate Scale
 
 ; 
 [Begin Action 8005]
-8019,0, 0,0, 15, H, A, 0.4,0.4
+8019,0, 0,0, 7, H, A, 0.4,0.4
 Interpolate Blend
 Interpolate Scale
 8019,0, 0,0, 1, H, AS50D256
