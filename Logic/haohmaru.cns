@@ -9006,7 +9006,7 @@ type    = L
 movetype = H
 physics = N
 vel = 0,0
-anim = 9998
+anim = 5950
 
 [State 5950, Set]
 type = posset
@@ -9028,13 +9028,31 @@ volumescale = 100
 [State 5950, Posadd]
 type = posadd
 trigger1 = animelem = 6
-x = -7
+x = -4
 
 [State 5950, Fall]
 type = playsnd
-trigger1 = animtime = 0
+trigger1 = animelem = 3
 value = 5000,11
 volumescale = 100
+
+[State 5950, Fall]
+type = playsnd
+trigger1 = animelem = 7
+value = 5000,12
+volumescale = 100
+
+
+[State 0, Explod]
+type = Explod
+trigger1 = animelem = 7 
+anim = 8053
+ID = 8053
+pos = 0,0
+scale = 0.5,0.5
+postype = p1
+ownpal = 1
+
 
 [State 5950, 7]
 type = ChangeState
